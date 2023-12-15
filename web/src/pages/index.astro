@@ -1,0 +1,16 @@
+---
+import Hero from '../components/Hero.astro'
+import Layout from '../layouts/Layout.astro'
+import { getSanity } from '../lib/api'
+import '/src/styles/style.scss'
+
+const query = `*[_type == "home"] 
+	`
+const homeSections = await getSanity(query)
+
+const sections = homeSections[0].sections
+---
+
+<Layout>
+	<Hero title={sections[0].title.title} tag={sections[0].title.tag} />
+</Layout>

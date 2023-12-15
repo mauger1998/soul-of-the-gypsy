@@ -1,0 +1,40 @@
+---
+const { tag, title } = Astro.props
+
+console.log(title)
+---
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<img
+				src="/images/351769015_680000343919710_6624808798732099216_n (1) 1.png"
+				alt="Laughing Man Pencil Illustration"
+			/>
+			<h3>{tag}</h3>
+			<h1>{title}</h1>
+		</div>
+	</div>
+</main>
+
+<style lang="scss">
+	main {
+		background-image: url('/images/marbel-hero-canvas-illustration.png');
+		background-size: cover;
+		.wrapper {
+			padding-block: 24rem 2rem;
+			.title {
+				img {
+					width: 100px;
+					margin-block-end: 1.5rem;
+				}
+
+				h3 {
+					color: $white;
+				}
+				h1 {
+				}
+			}
+		}
+	}
+</style>

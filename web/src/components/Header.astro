@@ -1,0 +1,72 @@
+<header>
+	<div class="header-wrapper">
+		<div class="socials">
+			<a href="https://facebook.com/">
+				<img src="/svg/facebook.svg" alt="Facebook Icon" />
+			</a>
+			<a href="https://instagram.com/">
+				<img src="/svg/instagram.svg" alt="Instagram Icon" />
+			</a>
+		</div>
+		<div class="logo">
+			<img src="/svg/KEV ASH.svg" alt="Kev Ash Art Logo" />
+		</div>
+		<nav>
+			<ul>
+				<a href="/"> <li>Home</li></a>
+				<a href="/gallery/"> <li>Gallery</li></a>
+				<a href="/about-kev/"> <li>About Kev</li></a>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<style lang="scss">
+	header {
+		position: absolute;
+
+		.header-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			max-width: 1440px;
+			padding: 1rem 4rem;
+
+			@media (max-width: 700px) {
+				padding-inline: 2rem;
+			}
+			@media (max-width: 500px) {
+				padding-inline: 1rem;
+			}
+
+			.socials {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				width: 300px;
+
+				img {
+					width: 1.5rem;
+				}
+			}
+			nav {
+				width: 300px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				ul {
+					display: flex;
+					align-items: center;
+					gap: 2rem;
+
+					a {
+						li {
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>
