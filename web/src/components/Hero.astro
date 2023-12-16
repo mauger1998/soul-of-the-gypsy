@@ -1,7 +1,10 @@
 ---
+import { formatTitle } from '../lib/formatTitle.js'
+import { formatSubtitle } from '../lib/formatTitle.js'
 const { tag, title } = Astro.props
 
-console.log(title)
+const formattedTitle = formatTitle(title)
+const formattedSubtitle = formatSubtitle(tag)
 ---
 
 <main>
@@ -11,28 +14,43 @@ console.log(title)
 				src="/images/351769015_680000343919710_6624808798732099216_n (1) 1.png"
 				alt="Laughing Man Pencil Illustration"
 			/>
-			<h3>{tag}</h3>
-			<h1>{title}</h1>
+			<h3 set:html={formattedSubtitle} />
+			<h1 set:html={formattedTitle} />
 		</div>
 	</div>
 </main>
-
-<style lang="scss">
+<style is:global lang="scss">
 	main {
 		background-image: url('/images/marbel-hero-canvas-illustration.png');
 		background-size: cover;
+		background-position: center;
+
 		.wrapper {
 			padding-block: 24rem 2rem;
 			.title {
 				img {
 					width: 100px;
 					margin-block-end: 1.5rem;
+					scale: 0;
 				}
 
 				h3 {
 					color: $white;
+					clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+					margin-block-end: -1rem;
+
+					span {
+						font-family: 'Hyperwave';
+						font-size: calc($h3 * 1.4);
+						vertical-align: middle;
+					}
 				}
 				h1 {
+					clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+
+					span {
+						font-style: italic !important;
+					}
 				}
 			}
 		}

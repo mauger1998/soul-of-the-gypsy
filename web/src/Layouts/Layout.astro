@@ -1,9 +1,10 @@
 ---
 import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
 const { title = 'The Soul Of The Gypsy', description, keywords, pathname } = Astro.props
 ---
 
-<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -34,8 +35,10 @@ const { title = 'The Soul Of The Gypsy', description, keywords, pathname } = Ast
 		<link rel="canonical" href={`https://soulofthegypsy.com/${pathname}`} />
 	</head>
 	<body>
-		<Header />
-		<slot />
-		<!-- <Footer /> -->
+		<div class="scroll-content">
+			<Header />
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>

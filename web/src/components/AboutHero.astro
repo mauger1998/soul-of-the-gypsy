@@ -1,0 +1,68 @@
+---
+import { formatText } from '../lib/formatText'
+import { urlForImage } from '../lib/urlForImage'
+const { image, text, title } = Astro.props
+
+const paragraphs = formatText(text)
+---
+
+<main>
+	<div class="wrapper">
+		<div class="content">
+			<h1>{title}</h1>
+			<img src="/images/kev-wall-dark.png" alt="Kev Ash" />
+			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
+		</div>
+	</div>
+</main>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	const aboutHeroTimeline = gsap.timeline()
+
+	aboutHeroTimeline
+		.to('main img', {
+			clipPath: 'polygon(0 1%, 100% 1%, 100% 100%, 0% 100%)'
+		})
+		.to('main h1', {
+			y: 0,
+			opacity: 1
+		})
+		.to('main p', {
+			y: 0,
+			opacity: 1,
+			stagger: 0.2
+		})
+</script>
+
+<style lang="scss">
+	main {
+		.wrapper {
+			.content {
+				max-width: 700px;
+				margin-inline: auto;
+
+				img {
+					clip-path: polygon(0 99.9%, 100% 99.9%, 100% 100%, 0% 100%);
+				}
+
+				h1 {
+					font-size: $h2;
+					text-align: center;
+					opacity: 0;
+					transform: translateY(2rem);
+				}
+				p {
+					max-width: 42ch;
+					margin-block-start: 1.5rem;
+					padding-inline-start: 1.25rem;
+					opacity: 0;
+					transform: translateY(2rem);
+				}
+			}
+		}
+	}
+</style>

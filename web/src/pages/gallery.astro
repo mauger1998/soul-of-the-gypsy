@@ -1,0 +1,39 @@
+---
+import ProjectGrid from '../components/ProjectGrid.astro'
+import Card from '../components/sections/Card.astro'
+import Layout from '../layouts/Layout.astro'
+import { getSanity } from '../lib/api'
+import '/src/styles/style.scss'
+
+const query = `*[_type == "gallery"]`
+const gallerySections = await getSanity(query)
+const sections = gallerySections[0].sections
+const projectsQuery = `*[_type == "project"]`
+const projects = await getSanity(projectsQuery)
+// console.log(sections)
+---
+
+<script is:inline src="/ScrollSmoother.min.js"></script>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+	gsap.registerPlugin(ScrollTrigger)
+	gsap.registerPlugin(ScrollSmoother)
+
+	ScrollSmoother.create({
+		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
+		effects: true, // looks for data-speed and data-lag attributes on elements
+		smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+	})
+</script>
+<Layout>
+	<Card
+		title={sections[0].title}
+		tag={sections[0].tag}
+		text={sections[0].text}
+		image={sections[0].image}
+	/>
+	<ProjectGrid projects={projects} />
+</Layout>

@@ -1,0 +1,160 @@
+<footer>
+	<div class="wrapper">
+		<div class="footer-top">
+			<div class="column">
+				<div class="logo">
+					<a href="/"> <img src="/svg/KEV ASH.svg" alt="Kev Ash Art Logo" /></a>
+					<p>© {new Date().getFullYear()}</p>
+				</div>
+			</div>
+			<div class="column">
+				<nav>
+					<a href="/">
+						<h3>Home</h3>
+					</a>
+					<a href="/about-kev/">
+						<li>About Kev</li>
+					</a>
+					<a href="/gallery/">
+						<li>Gallery</li>
+					</a>
+				</nav>
+			</div>
+			<div class="column">
+				<nav>
+					<a href="/about-kev/">
+						<h3>About Kev</h3>
+					</a>
+					<a href=" about-kev ">
+						<li>Bio</li>
+					</a>
+					<a href=" about-kev ">
+						<li>Soul Of The Gypsy</li>
+					</a>
+				</nav>
+			</div>
+			<div class="column">
+				<nav>
+					<a href="/gallery/">
+						<h3>Gallery</h3>
+					</a>
+					<a href="/gallery/">
+						<li>All Art</li>
+					</a>
+					<a href="/gallery/">
+						<li>Contact Kev</li>
+					</a>
+				</nav>
+			</div>
+			<div class="column">
+				<h3>Follow Us</h3>
+				<div class="socials">
+					<a rel="external nofollow" target="_blank" href="https://www.facebook.com/"
+						><img src="/svg/facebook.svg" alt="Facebook Icon" /></a
+					>
+					<a rel="external nofollow" target="_blank" href="https://instagram.com/kevinashart"
+						><img src="/svg/instagram.svg" alt="Instagram Icon" /></a
+					>
+					<a rel="external nofollow" target="_blank" href="https://www.facebook.com/"
+						><img src="/svg/facebook.svg" alt="Facebook Icon" /></a
+					>
+					<a rel="external nofollow" target="_blank" href="https://instagram.com/kevinashart"
+						><img src="/svg/instagram.svg" alt="Instagram Icon" /></a
+					>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bar">
+			<div class="content">
+				<a rel="external dofollow" target="_blank" href="https://islandwebdesign.net/">
+					Website by...
+					<img src="/svg/black-island-logo 2.svg" alt="Island Web Design Guernsey & Jersey Logo" />
+				</a>
+				<p>Copyright &copy; {new Date().getFullYear()}</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style lang="scss">
+	footer {
+		.wrapper {
+			padding-block: 4rem 2rem;
+
+			.footer-top {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 2rem;
+				row-gap: 4rem;
+				margin-inline: auto;
+				.logo {
+					img {
+						width: 6rem;
+					}
+					p {
+						color: $white;
+					}
+				}
+				.column {
+					h4 {
+						color: $white;
+					}
+					nav {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						gap: 1rem;
+						h3,
+						li {
+							color: $white;
+						}
+					}
+					h3 {
+						color: $white;
+					}
+
+					.socials {
+						display: flex;
+						align-items: center;
+						gap: 1rem;
+						margin-block: 1rem 0;
+
+						img {
+							width: 1.5rem;
+						}
+					}
+				}
+			}
+			.footer-bar {
+				margin-block-start: 4rem;
+
+				.content {
+					width: 100%;
+					margin-inline: auto;
+					display: flex;
+					align-items: flex-end;
+					justify-content: space-between;
+					a {
+						color: $white;
+						font-size: $text;
+						font-weight: 300;
+						text-align: left;
+						img {
+							display: block;
+							width: 125px;
+							margin-block-start: 0.5rem;
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 550px) {
+			.wrapper {
+				.footer-bottom {
+					gap: 1rem;
+					row-gap: 2rem;
+				}
+			}
+		}
+	}
+</style>

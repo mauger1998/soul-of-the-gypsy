@@ -9,13 +9,14 @@
 	font-weight: 400;
 }
 
-html,
-body {
+html {
 	overflow-x: hidden !important;
+	// overflow-y: hidden;
 }
 
 body {
-	background-color: $white;
+	background-color: $black;
+	overflow-x: hidden !important;
 }
 ul,
 li {

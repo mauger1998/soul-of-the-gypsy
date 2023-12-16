@@ -1,16 +1,41 @@
 ---
+import Cta from '../components/Cta.astro'
 import Hero from '../components/Hero.astro'
+import ProjectGrid from '../components/ProjectGrid.astro'
+import Card from '../components/sections/Card.astro'
+import Soul from '../components/sections/Soul.astro'
+import TwoColumn from '../components/sections/TwoColumn.astro'
 import Layout from '../layouts/Layout.astro'
 import { getSanity } from '../lib/api'
+import Loader from '../components/loader/Loader.astro'
 import '/src/styles/style.scss'
 
-const query = `*[_type == "home"] 
-	`
+const query = `*[_type == "home"]`
 const homeSections = await getSanity(query)
-
 const sections = homeSections[0].sections
+
+const projectsQuery = `*[_type == "project"]`
+const projects = await getSanity(projectsQuery)
 ---
 
 <Layout>
 	<Hero title={sections[0].title.title} tag={sections[0].title.tag} />
+	<TwoColumn
+		title={sections[1].title}
+		tag={sections[1].tag}
+		image={sections[1].image}
+		subtitle={sections[1].subtitle}
+		text={sections[1].text}
+	/>
+	<Soul title={sections[2].title.title} text={sections[2].text} />
+
+	<ProjectGrid projects={projects} />
+	<Card
+		title={sections[4].title}
+		tag={sections[4].tag}
+		text={sections[4].text}
+		image={sections[4].image}
+	/>
+	<Cta title={sections[5].title.title} />
 </Layout>
+<Loader />

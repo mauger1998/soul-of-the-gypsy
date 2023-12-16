@@ -1,0 +1,142 @@
+<div class="loader">
+	<div class="panel">
+		<h3>
+			<div class="track">
+				<span id="target">KEV</span>
+				<span id="target-two">ASH</span>
+			</div>
+		</h3>
+	</div>
+</div>
+
+<script is:inline src="/ScrollSmoother.min.js"></script>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	import SplitType from 'split-type'
+
+	gsap.registerPlugin(ScrollTrigger)
+	const loaderTimeline = gsap.timeline({})
+
+	// Register the ScrollSmoother plugin
+	gsap.registerPlugin(ScrollSmoother)
+
+	ScrollSmoother.create({
+		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
+		effects: true, // looks for data-speed and data-lag attributes on elements
+		smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+	})
+
+	const loaderText = new SplitType('#target')
+	const loaderTextTwo = new SplitType('#target-two')
+	const html = document.querySelector('html')
+
+	loaderTimeline
+		.to('.panel', {
+			clipPath: 'polygon(0 1%, 100% 1%, 100% 100%, 0% 100%)',
+			ease: 'power1.ease'
+		})
+		.to('span .word .char', {
+			y: '-100%',
+			stagger: 0.05,
+			duration: 0.3,
+			ease: 'power1.out'
+		})
+		.to('.panel', {
+			clipPath: 'polygon(0 1%, 100% 1%, 100% 1%, 0% 1%)',
+			ease: 'power4.ease',
+			delay: 0.2
+		})
+		.to(
+			'.loader',
+			{
+				clipPath: 'polygon(0 0, 100% 0, 100% 0.001%, 0 0.001%)',
+				ease: 'power1.ease',
+
+				onComplete: () => {
+					html.style.overflowY = 'scroll'
+				}
+			},
+			'-=0.25'
+		)
+		.to('main h1', {
+			clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+			ease: 'power1.inOut',
+			duration: 0.75
+		})
+		.to(
+			'main h3',
+			{
+				clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+				ease: 'power1.inOut',
+				duration: 0.6
+			},
+			'-=0.35'
+		)
+		.to(
+			'main img ',
+			{
+				scale: 1,
+				ease: 'power1.inOut',
+				duration: 0.4,
+				onComplete: () => {
+					document.querySelector('.loader').remove()
+				}
+			},
+			'-=0.5'
+		)
+</script>
+
+<style lang="scss">
+	.loader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		z-index: 9999;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $white;
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		pointer-events: none;
+
+		&.disabled {
+			opacity: 0;
+		}
+
+		.panel {
+			clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+			background-color: $black;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		h3 {
+			height: $h2 * 1.1;
+			overflow: hidden;
+
+			.track {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				span {
+					font-size: $h2;
+					line-height: 1.1;
+					font-weight: 700;
+					&:nth-child(1) {
+						color: $white;
+					}
+					&:nth-child(2) {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+</style>

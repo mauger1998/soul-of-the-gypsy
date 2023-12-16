@@ -1,0 +1,22 @@
+---
+const { text } = Astro.props
+---
+
+<p class="tag">
+	<img src="/svg/Rectangle 28.svg" alt="Diamond Element" />
+	{text}
+	<img src="/svg/Rectangle 28.svg" alt="Diamond Element" />
+</p>
+
+<style lang="scss">
+	.tag {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-style: italic;
+
+		img {
+			width: 0.5rem;
+		}
+	}
+</style>

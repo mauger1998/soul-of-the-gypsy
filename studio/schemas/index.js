@@ -1,3 +1,5 @@
+import about from './documents/about'
+import gallery from './documents/gallery'
 import home from './documents/home'
 import customImage from './objects/customImage'
 import heroTitle from './objects/heroTitle'
@@ -17,4 +19,6 @@ export const schemaTypes = [
   projects,
   // Home
   home,
+  about,
+  gallery,
 ]

@@ -59,6 +59,10 @@
 	font-weight: 700;
 	font-style: italic;
 }
+@font-face {
+	font-family: 'Hyperwave';
+	src: url('/hyperwave/Hyperwave.otf') format('truetype');
+}
 
 h1 {
 	font-size: $h1;
@@ -72,7 +76,7 @@ h1 {
 }
 h2 {
 	font-size: $h2;
-	line-height: 1.2;
+	line-height: 1;
 	font-weight: 500;
 
 	@media (max-width: 700px) {
@@ -81,7 +85,7 @@ h2 {
 }
 h3 {
 	font-size: $h3;
-	line-height: 1.2;
+	line-height: 1.3;
 	font-weight: 500;
 
 	@media (max-width: 700px) {
@@ -93,7 +97,13 @@ p {
 	line-height: 1.6;
 	font-size: $text;
 	color: $white;
-	font-weight: 400;
+	font-weight: 300;
+
+	&.tag {
+		font-size: $text;
+		line-height: 1.2;
+		font-weight: 500;
+	}
 
 	@media (max-width: 700px) {
 		font-size: $mobile-text;

@@ -1,0 +1,58 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+const { image, title, text, index } = Astro.props
+---
+
+<div data-speed={1 - index / 50} class="project">
+	<div class="mask"><img src={urlForImage(image).format('webp').url()} alt={image.alt} /></div>
+	<div class="text">
+		<h3>{title} <img src="/svg/Rectangle 28.svg" alt="Diamond Element" /></h3>
+		<p>{text}</p>
+	</div>
+</div>
+
+<script>
+	if ('ontouchstart' in window) {
+		const projects = document.querySelectorAll('.project')
+		projects.forEach((project) => {
+			project.removeAttribute('data-speed')
+		})
+	}
+</script>
+
+<style lang="scss">
+	.project {
+		.mask {
+			overflow: hidden;
+			display: flex;
+			& > img {
+				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+				scale: 1.1;
+				transition: 300ms scale ease-in-out;
+				object-fit: cover;
+			}
+
+			&:hover {
+				img {
+					scale: 1.075 !important;
+					transition: 300ms scale ease-in-out;
+				}
+			}
+		}
+
+		.text {
+			transform: translateY(2rem);
+			opacity: 0;
+			h3 {
+				color: $white;
+				margin-block: 0.75rem 1rem;
+				img {
+					width: 0.5rem;
+				}
+			}
+			p {
+				max-width: 40ch;
+			}
+		}
+	}
+</style>

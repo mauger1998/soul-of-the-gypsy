@@ -1,0 +1,117 @@
+---
+const { title, text } = Astro.props
+import { formatText } from '../../lib/formatText'
+const paragraphs = formatText(text)
+---
+
+<section class="soul-section">
+	<div class="wrapper">
+		<img src="/images/Screenshot 2023-12-09 at 08.08 1.png" alt="Elvis Presley Art" />
+		<div class="content">
+			<div class="container">
+				<div class="h2-wrap">
+					<h2>{title}</h2>
+				</div>
+				<img src="/images/middle-finger-canvas-black.png" alt="Middle Finger Art" />
+			</div>
+			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
+		</div>
+	</div>
+</section>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.fromTo(
+		'.soul-section .container > img',
+		{
+			clipPath: 'polygon(0 99%, 100% 99%, 100% 100%, 0% 100%)' // start with a polygon that is just barely visible on the right side of the image
+		},
+		{
+			scrollTrigger: {
+				trigger: '.soul-section .container > img',
+				start: 'top 60%',
+				toggleActions: 'play none none reverse'
+			},
+			clipPath: 'polygon(0 1%, 100% 1%, 100% 100%, 0% 100%)', // animate to a polygon that spans the entire width of the image,
+			ease: 'power1.inOut'
+		}
+	)
+	gsap.to('.soul-section h2', {
+		scrollTrigger: {
+			trigger: '.soul-section h2',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 1,
+		opacity: 1,
+		ease: 'power1.inOut'
+	})
+	gsap.to('.soul-section p', {
+		scrollTrigger: {
+			trigger: '.soul-section p',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 1,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.3
+	})
+</script>
+
+<style lang="scss">
+	.soul-section {
+		.wrapper {
+			position: relative;
+			& > img {
+				max-width: 200px;
+				position: absolute;
+				top: 0rem;
+				right: 0rem;
+				opacity: 0.5;
+			}
+
+			.content {
+				max-width: 800px;
+				margin-inline: auto;
+
+				.container {
+					position: relative;
+
+					.h2-wrap {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						z-index: 1;
+						width: 150%;
+						max-width: 100vw;
+
+						h2 {
+							color: $white;
+							text-align: center;
+							transform: translateY(4rem);
+							opacity: 0;
+						}
+					}
+
+					& > img {
+						display: block;
+						opacity: 0.5;
+					}
+				}
+
+				p {
+					max-width: 42ch;
+					padding-inline-start: 2.5rem;
+					transform: translateY(4rem);
+					opacity: 0;
+					margin-block-start: 1.5rem;
+				}
+			}
+		}
+	}
+</style>

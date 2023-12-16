@@ -1,0 +1,79 @@
+---
+const { title, tag, text, image } = Astro.props
+import { formatText } from '../../lib/formatText'
+import { urlForImage } from '../../lib/urlForImage'
+import Button from '../Button.astro'
+import Tag from '../type/Tag.astro'
+console.log(text)
+const paragraphs = formatText(text)
+---
+
+<section class="card-section">
+	<div class="wrapper">
+		<div class="card">
+			<div class="left">
+				<h2>{title}</h2>
+				<Tag text={tag} />
+				{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
+				<Button text="See gallery now" to="/gallery/" variant="white-outline" />
+			</div>
+			<div class="right">
+				<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.card-section .card', {
+		scrollTrigger: {
+			trigger: '.card-section .card',
+			start: 'top 90%',
+
+			toggleActions: 'play none none reverse'
+		},
+		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
+	})
+</script>
+
+<style lang="scss">
+	.card-section {
+		.wrapper {
+			.card {
+				width: 100%;
+				background-color: $light-black;
+				display: flex;
+				align-items: stretch;
+				padding: 4rem 4rem;
+				gap: 2rem;
+				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+
+				.left {
+					width: 55%;
+					align-self: center;
+					h2 {
+						color: $white;
+						width: 120%;
+						margin-block: 0 2rem;
+					}
+					p {
+						margin-block: 1.5rem 2.5rem;
+						max-width: 50ch;
+					}
+				}
+				.right {
+					width: 45%;
+					margin-block-end: -4rem;
+					margin-inline-end: -4rem;
+					width: calc(45% + 4rem);
+					display: flex;
+					align-items: flex-end;
+				}
+			}
+		}
+	}
+</style>

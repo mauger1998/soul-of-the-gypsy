@@ -1,0 +1,123 @@
+---
+const { title, subtitle, text, image, tag } = Astro.props
+import { urlForImage } from '../../lib/urlForImage'
+import Tag from '../type/Tag.astro'
+---
+
+<section class="two-column-section">
+	<div class="wrapper">
+		<div class="left">
+			<div class="left-top">
+				<h2>{title}</h2>
+				<Tag text={tag} />
+			</div>
+			<div class="left-bottom">
+				<h3>{subtitle}</h3>
+			</div>
+		</div>
+		<div class="right">
+			<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+			<p>{text}</p>
+		</div>
+	</div>
+</section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.fromTo(
+		'.two-column-section .right img',
+		{
+			clipPath: 'polygon(99.9% 0, 100% 0, 100% 100%, 99.9% 100%)' // start with a polygon that is just barely visible on the right side of the image
+		},
+		{
+			scrollTrigger: {
+				trigger: '.two-column-section .right img',
+				start: 'top 60%',
+				toggleActions: 'play none none reverse'
+			},
+			clipPath: 'polygon(1% 0, 100% 0, 100% 100%, 1% 100%)' // animate to a polygon that spans the entire width of the image
+		}
+	)
+	gsap.to('.two-column-section .left h2, .two-column-section .left .tag', {
+		scrollTrigger: {
+			trigger: '.two-column-section',
+			start: 'top 70%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+
+		stagger: 0.3
+	})
+	gsap.to('.two-column-section .left h3, .two-column-section .right p', {
+		scrollTrigger: {
+			trigger: '.two-column-section .left-bottom',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+
+		stagger: 0.3
+	})
+</script>
+
+<style is:global lang="scss">
+	.two-column-section {
+		.wrapper {
+			display: flex;
+			align-items: stretch;
+			gap: 4rem;
+			.left {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+				width: 60%;
+				.left-top {
+					h2 {
+						color: $white;
+						transform: translateY(2rem);
+						opacity: 0;
+					}
+					.tag {
+						transform: translateY(2rem);
+						opacity: 0;
+
+						margin-block-start: 0.5rem;
+					}
+				}
+				.left-bottom {
+					h3 {
+						color: $white;
+						max-width: 28ch;
+						transform: translateY(2rem);
+						opacity: 0;
+					}
+				}
+			}
+			.right {
+				width: 40%;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+				height: 100%;
+				gap: 4rem;
+				img {
+					max-height: 300px;
+					object-fit: cover;
+					// clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+					// transition: 300ms clip-path ease;
+				}
+				p {
+					color: $white;
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+			}
+		}
+	}
+</style>
