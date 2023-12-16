@@ -3,6 +3,7 @@ import AboutHero from '../components/AboutHero.astro'
 import Cta from '../components/Cta.astro'
 import Card from '../components/sections/Card.astro'
 import TwoColumn from '../components/sections/TwoColumn.astro'
+import Why from '../components/sections/Why.astro'
 import Layout from '../layouts/Layout.astro'
 import { getSanity } from '../lib/api'
 import '/src/styles/style.scss'
@@ -31,17 +32,20 @@ const sections = aboutSections[0].sections
 <Layout>
 	<AboutHero title={sections[0].title.title} text={sections[0].text} />
 	<TwoColumn
+		pagename="about"
 		title={sections[1].title}
 		tag={sections[1].tag}
 		image={sections[1].image}
 		text={sections[1].text}
 		subtitle={sections[1].subtitle}
 	/>
+	<Why pagename="about" title={sections[2].title} cards={sections[2].iconCards} />
+
 	<Card
-		tag={sections[2].tag}
-		title={sections[2].title}
-		text={sections[2].text}
-		image={sections[2].image}
+		tag={sections[3].tag}
+		title={sections[3].title}
+		text={sections[3].text}
+		image={sections[3].image}
 	/>
-	<Cta title={sections[3].title.title} />
+	<Cta title={sections[4].title.title} />
 </Layout>

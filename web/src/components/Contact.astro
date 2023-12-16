@@ -1,0 +1,150 @@
+---
+import Button from './Button.astro'
+---
+
+<section class="contact-section" id="contact">
+	<div class="wrapper">
+		<div class="left">
+			<h2>Contact Kev</h2>
+			<div class="contact-info">
+				<a href="mailto:">
+					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
+					 info@soulofthegypsy.com
+					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
+				</a>
+				<a href="tel:">
+					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
+					 07897 123456
+					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
+				</a>
+			</div>
+			<img src="/images/frames.png" alt="Ghandi and an original Piece" />
+		</div>
+		<div class="right">
+			<form action="POST">
+				<fieldset>
+					<label for="name">Name:</label>
+					<input type="text" name="name" id="name" />
+				</fieldset>
+				<fieldset>
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email" />
+				</fieldset>
+				<fieldset>
+					<label for="phone">Phone:</label>
+					<input type="text" inputmode="numberic" name="phone" id="phone" />
+				</fieldset>
+				<fieldset>
+					<label for="message">Message:</label>
+					<textarea name="message" id="message" rows="4"></textarea>
+				</fieldset>
+				<Button text="Send Message" variant="white-outline" />
+			</form>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	gsap.to('.contact-section .left > img', {
+		scrollTrigger: {
+			trigger: '.contact-section .left > img',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
+	})
+
+	gsap.to('.contact-section .left h2, .contact-section .left a', {
+		scrollTrigger: {
+			trigger: '.contact-section .left h2',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		y: 0,
+		opacity: 1,
+		stagger: 0.2
+	})
+</script>
+<style lang="scss">
+	.contact-section {
+		.wrapper {
+			display: flex;
+			align-items: stretch;
+			gap: 6rem;
+
+			.left {
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+				h2 {
+					color: $white;
+					margin-block: 0 1.5rem;
+					opacity: 0;
+					transform: translateY(2rem);
+				}
+				.contact-info {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1.5rem;
+					a {
+						color: $white;
+						opacity: 0;
+						transform: translateY(2rem);
+						img {
+							width: 1rem;
+						}
+					}
+				}
+				& > img {
+					max-height: 300px;
+					object-fit: cover;
+					margin-block-start: 4rem;
+					clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+				}
+			}
+			.right {
+				width: 50%;
+				align-self: flex-end;
+				form {
+					fieldset {
+						border: none;
+						width: 100%;
+
+						&:not(:first-child) {
+							margin-block-start: 1.5rem;
+						}
+						&:last-of-type {
+							margin-block-end: 2.5rem;
+						}
+						input,
+						textarea {
+							padding: 0.5rem;
+							background-color: transparent;
+							width: 100%;
+							border: none;
+							border-bottom: 0.5px solid $white;
+							color: $white;
+							resize: none;
+
+							&:focus {
+								outline: none;
+								border: 0.5px solid $white;
+							}
+						}
+						label {
+							color: $white;
+							display: block;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

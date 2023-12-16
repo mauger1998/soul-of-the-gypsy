@@ -1,5 +1,5 @@
 ---
-const { title, tag, text, image } = Astro.props
+const { title, tag, text, image, pagename = 'home' } = Astro.props
 import { formatText } from '../../lib/formatText'
 import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
@@ -19,6 +19,14 @@ const paragraphs = formatText(text)
 			</div>
 			<div class="right">
 				<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+				{
+					pagename === 'gallery' ? (
+						<img
+							src="/images/stickers/gallery-stickers/birdland-sticker 1.png"
+							alt="Birdland Sticker"
+						/>
+					) : null
+				}
 			</div>
 		</div>
 	</div>
@@ -36,7 +44,7 @@ const paragraphs = formatText(text)
 
 			toggleActions: 'play none none reverse'
 		},
-		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
+		clipPath: 'polygon(0 -50%, 150% -50%, 150% 100%, 0 100%)'
 	})
 </script>
 
@@ -72,6 +80,16 @@ const paragraphs = formatText(text)
 					width: calc(45% + 4rem);
 					display: flex;
 					align-items: flex-end;
+					position: relative;
+
+					img {
+						&:nth-child(2) {
+							position: absolute;
+							width: 100px;
+							top: -6rem;
+							right: -2rem;
+						}
+					}
 				}
 			}
 		}

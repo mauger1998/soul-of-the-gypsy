@@ -1,0 +1,44 @@
+---
+const { title } = Astro.props
+---
+
+<dialog id="videoDialog">
+	<video id="video" playsinline controls src="/videos/kev-ash-video.mp4"></video>
+</dialog>
+
+<script type="module">
+	const dialog = document.getElementById('videoDialog')
+	const openButton = document.getElementById('openDialog')
+	const video = document.getElementById('video')
+
+	openButton.addEventListener('click', () => {
+		dialog.showModal()
+		video.play()
+	})
+
+	document.addEventListener('click', (event) => {
+		if (event.target === dialog) {
+			video.pause()
+			video.currentTime = 0
+			dialog.close()
+		}
+	})
+</script>
+<style lang="scss">
+	dialog {
+		width: 80vw;
+		height: 80vh;
+		background-color: $white;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		video {
+			width: 100%;
+		}
+
+		&::backdrop {
+			background-color: #030303aa;
+		}
+	}
+</style>

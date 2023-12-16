@@ -1,10 +1,34 @@
 ---
-const { projects } = Astro.props
+const { projects, pagename } = Astro.props
 import Project from './items/Project.astro'
 ---
 
 <section class="project-grid-section">
-	<div class="wrapper">
+	<div class={pagename === 'gallery' ? 'wrapper gallery-page' : 'wrapper'}>
+		{
+			pagename === 'home' ? (
+				<>
+					<img src="/images/stickers/71FpX231+0L 1.png" alt="Keitch Richards Sticker" />
+					<img src="/images/stickers/PngItem_4919813 1.png" alt="Jimmy Hendrix Sticker" />
+					<img src="/images/stickers/pngwing 2.png" alt="Salvadordini Sticker" />
+				</>
+			) : pagename === 'gallery' ? (
+				<>
+					<img
+						src="/images/stickers/gallery-stickers/blues-hall-of-fame-blues-foundation-museum-music-hall-of-fame-92a5ba5f57878f8f6823244a6773edb3 1.png"
+						alt="Keitch Richards Sticker"
+					/>
+					<img
+						src="/images/stickers/gallery-stickers/ghandi-sticker 1.png"
+						alt="Jimmy Hendrix Sticker"
+					/>
+					<img
+						src="/images/stickers/gallery-stickers/lighting-hopkins-sticker 1.png"
+						alt="Salvadordini Sticker"
+					/>
+				</>
+			) : null
+		}
 		{
 			projects.map((project, index) => (
 				<Project
@@ -62,6 +86,55 @@ import Project from './items/Project.astro'
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 12rem;
+			position: relative;
+
+			&.gallery-page {
+				& > img {
+					position: absolute;
+					width: 60px;
+					z-index: 10;
+					top: 4rem;
+					left: 3rem;
+
+					&:nth-child(1) {
+						right: 1rem;
+						width: 100px;
+						left: auto;
+					}
+					&:nth-child(2) {
+						right: 72%;
+						width: 50px;
+						top: 45%;
+						left: auto;
+					}
+
+					&:nth-child(3) {
+						right: 1rem;
+						width: 100px;
+						left: auto;
+						top: 50%;
+					}
+				}
+			}
+
+			& > img {
+				position: absolute;
+				width: 60px;
+				z-index: 10;
+				top: 4rem;
+				left: 3rem;
+
+				&:nth-child(2) {
+					right: 38%;
+					width: 50px;
+					left: auto;
+				}
+				&:nth-child(3) {
+					right: 1rem;
+					width: 100px;
+					left: auto;
+				}
+			}
 		}
 	}
 </style>

@@ -1,0 +1,52 @@
+---
+import IconCard from '../items/IconCard.astro'
+const { title, cards, pagename = 'home' } = Astro.props
+---
+
+<section class="why-section">
+	<div class="wrapper">
+		<div class="title">
+			<h2>{title}</h2>
+		</div>
+		<div class="cards">
+			{
+				pagename === 'home' ? (
+					<img src="/images/stickers/hendrix-sticker 1.png" alt="Groovy Sticker" />
+				) : (
+					<img src="/images/stickers/Mask group.png" alt="Jack Daniels Sticker" />
+				)
+			}
+			{
+				cards.map((card) => (
+					<IconCard icon={card.icon} title={card.title} text={card.description} />
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.why-section {
+		.wrapper {
+			.title {
+				h2 {
+					color: $white;
+				}
+			}
+			.cards {
+				margin-block: 4rem 0;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 2rem;
+				position: relative;
+
+				& > img {
+					position: absolute;
+					width: 100px;
+					right: -2rem;
+					top: -2rem;
+				}
+			}
+		}
+	}
+</style>

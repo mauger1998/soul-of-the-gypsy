@@ -1,0 +1,138 @@
+---
+const { title, text, cards } = Astro.props
+---
+
+<section class="list-section">
+	<div class="wrapper">
+		<div class="left">
+			<div class="title">
+				<h2>{title}</h2>
+				<p>{text}</p>
+			</div>
+			<img src="/images/stickers/billy-idol 1.png" alt="Billy Idol Sticker" />
+		</div>
+		<div class="right">
+			<div class="list">
+				{
+					cards.map((card) => (
+						<div class="list-item">
+							<div class="wrap">
+								<div class="circle" />
+								<div class="line" />
+							</div>
+							<h3>{card.title}</h3>
+							<p>{card.description}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	const allLines = document.querySelectorAll('.line')
+	const allCircles = document.querySelectorAll('.circle')
+
+	allLines.forEach((line, index) => {
+		gsap.to(line, {
+			scrollTrigger: {
+				trigger: line,
+				start: 'top 60%',
+				end: 'bottom 20%',
+				scrub: true
+			},
+			scaleY: 1
+		})
+	})
+</script>
+<style lang="scss">
+	.list-section {
+		.wrapper {
+			display: flex;
+			align-items: stretch;
+			gap: 4rem;
+			.left {
+				width: 60%;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+				h2 {
+					color: $white;
+				}
+				p {
+					max-width: 50ch;
+					margin-block: 1.5rem 0;
+				}
+				img {
+					width: 150px;
+				}
+			}
+			.right {
+				width: 40%;
+				.list {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 4rem;
+
+					.list-item {
+						position: relative;
+						height: 100%;
+						padding: 0;
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						justify-content: flex-start;
+						height: max-content;
+
+						.wrap {
+							position: absolute;
+							left: -3rem;
+							width: 1.5rem;
+							height: 1.5rem;
+							border-radius: 50%;
+							top: 18%;
+							transform: translateY(-50%);
+							.circle {
+								width: 100%;
+								height: 100%;
+								border-radius: 50%;
+								background-color: $blue;
+							}
+						}
+						&:not(:last-child) {
+							.wrap {
+								.line {
+									position: absolute;
+									height: 160px;
+									left: 50%;
+									transform: translateX(-50%);
+									width: 1px;
+									border: none;
+									background-color: $blue;
+									scale: 1 0;
+									transform-origin: top;
+									opacity: 1;
+								}
+							}
+						}
+
+						h3 {
+							color: $white;
+						}
+						p {
+							color: $white;
+							max-width: 50ch;
+							margin-block: 0.5rem 0;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

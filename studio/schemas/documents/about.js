@@ -14,7 +14,7 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{type: 'basic'}, {type: 'card'}, {type: 'twoColumn'}],
+      of: [{type: 'basic'}, {type: 'card'}, {type: 'twoColumn'}, {type: 'iconCardSection'}],
     },
   ],
 }

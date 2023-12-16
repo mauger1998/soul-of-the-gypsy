@@ -1,4 +1,5 @@
 ---
+import Cta from '../components/Cta.astro'
 import ProjectGrid from '../components/ProjectGrid.astro'
 import Card from '../components/sections/Card.astro'
 import Layout from '../layouts/Layout.astro'
@@ -30,10 +31,12 @@ const projects = await getSanity(projectsQuery)
 </script>
 <Layout>
 	<Card
+		pagename="gallery"
 		title={sections[0].title}
 		tag={sections[0].tag}
 		text={sections[0].text}
 		image={sections[0].image}
 	/>
-	<ProjectGrid projects={projects} />
+	<ProjectGrid pagename="gallery" projects={projects} />
+	<Cta title={sections[1].title.title} />
 </Layout>

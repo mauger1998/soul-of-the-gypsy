@@ -17,6 +17,7 @@ const formattedSubtitle = formatSubtitle(tag)
 			<h3 set:html={formattedSubtitle} />
 			<h1 set:html={formattedTitle} />
 		</div>
+		<img src="/images/stickers/paul-siminon 2.png" alt="Dan Siminon Sticker" />
 	</div>
 </main>
 <style is:global lang="scss">
@@ -27,6 +28,13 @@ const formattedSubtitle = formatSubtitle(tag)
 
 		.wrapper {
 			padding-block: 24rem 2rem;
+			position: relative;
+			& > img {
+				position: absolute;
+				bottom: 2rem;
+				width: 200px;
+				right: 2rem;
+			}
 			.title {
 				img {
 					width: 100px;

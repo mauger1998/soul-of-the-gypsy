@@ -12,7 +12,10 @@ const paragraphs = formatText(text)
 				<div class="h2-wrap">
 					<h2>{title}</h2>
 				</div>
-				<img src="/images/middle-finger-canvas-black.png" alt="Middle Finger Art" />
+				<div class="image-container">
+					<img src="/images/middle-finger-canvas-black.png" alt="Middle Finger Art" />
+					<img src="/images/stickers/image 8.png" alt="Jonny Cash Sticker" />
+				</div>
 			</div>
 			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
 		</div>
@@ -98,9 +101,21 @@ const paragraphs = formatText(text)
 						}
 					}
 
-					& > img {
-						display: block;
-						opacity: 0.5;
+					& > .image-container {
+						position: relative;
+						img {
+							&:nth-child(1) {
+								display: block;
+								opacity: 0.5;
+							}
+							&:nth-child(2) {
+								width: 150px;
+								border-radius: 100%;
+								position: absolute;
+								top: -2rem;
+								right: -2rem;
+							}
+						}
 					}
 				}
 
