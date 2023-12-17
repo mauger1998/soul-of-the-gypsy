@@ -25,6 +25,39 @@ const { title, cards, pagename = 'home' } = Astro.props
 	</div>
 </section>
 
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
+	const allIconCardGrids = document.querySelectorAll('.why-section .cards')
+
+	allIconCardGrids.forEach((grid) => {
+		const cards = grid.querySelectorAll('.icon-card')
+		const img = grid.querySelector('img')
+
+		gsap.to(cards, {
+			scrollTrigger: {
+				trigger: cards[0],
+				start: 'top 80%',
+				toggleActions: 'play none none reverse'
+			},
+			opacity: 1,
+			x: 1,
+			stagger: 0.2 // Add this line
+		})
+
+		gsap.to(img, {
+			scrollTrigger: {
+				trigger: img,
+				start: 'top 80%',
+				toggleActions: 'play none none reverse'
+			},
+			scale: 1
+		})
+	})
+</script>
+
 <style lang="scss">
 	.why-section {
 		.wrapper {
@@ -45,6 +78,16 @@ const { title, cards, pagename = 'home' } = Astro.props
 					width: 100px;
 					right: -2rem;
 					top: -2rem;
+					z-index: 10;
+					scale: 0.01;
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				.cards {
+					grid-template-columns: 1fr;
+					gap: 4rem;
 				}
 			}
 		}

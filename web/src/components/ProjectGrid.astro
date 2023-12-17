@@ -6,32 +6,9 @@ import Project from './items/Project.astro'
 <section class="project-grid-section">
 	<div class={pagename === 'gallery' ? 'wrapper gallery-page' : 'wrapper'}>
 		{
-			pagename === 'home' ? (
-				<>
-					<img src="/images/stickers/71FpX231+0L 1.png" alt="Keitch Richards Sticker" />
-					<img src="/images/stickers/PngItem_4919813 1.png" alt="Jimmy Hendrix Sticker" />
-					<img src="/images/stickers/pngwing 2.png" alt="Salvadordini Sticker" />
-				</>
-			) : pagename === 'gallery' ? (
-				<>
-					<img
-						src="/images/stickers/gallery-stickers/blues-hall-of-fame-blues-foundation-museum-music-hall-of-fame-92a5ba5f57878f8f6823244a6773edb3 1.png"
-						alt="Keitch Richards Sticker"
-					/>
-					<img
-						src="/images/stickers/gallery-stickers/ghandi-sticker 1.png"
-						alt="Jimmy Hendrix Sticker"
-					/>
-					<img
-						src="/images/stickers/gallery-stickers/lighting-hopkins-sticker 1.png"
-						alt="Salvadordini Sticker"
-					/>
-				</>
-			) : null
-		}
-		{
 			projects.map((project, index) => (
 				<Project
+					sticker={project.sticker ? project.sticker : null}
 					index={index}
 					image={project.image}
 					title={project.title}
@@ -85,7 +62,8 @@ import Project from './items/Project.astro'
 		.wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
-			gap: 12rem;
+			gap: 6rem;
+			row-gap: 12rem;
 			position: relative;
 
 			&.gallery-page {
@@ -134,6 +112,24 @@ import Project from './items/Project.astro'
 					width: 100px;
 					left: auto;
 				}
+			}
+		}
+		@media (max-width: 1024px) {
+			.wrapper {
+				gap: 2rem;
+				row-gap: 12rem;
+			}
+		}
+		@media (max-width: 800px) {
+			.wrapper {
+				grid-template-columns: 1fr 1fr;
+				column-gap: 4rem;
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				grid-template-columns: 1fr;
+				column-gap: 4rem;
 			}
 		}
 	}

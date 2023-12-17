@@ -8,11 +8,12 @@ const paragraphs = formatText(text)
 
 <main>
 	<div class="wrapper">
-		<img src="/images/stickers/howlin-wolf-sticker.png" alt="Howling Wolf Sticker" />
 		<img src="/images/singer-nobg 1.png" alt="Howling Wolf" />
 		<div class="content">
 			<h1>{title}</h1>
 			<img src="/images/kev-wall-dark.png" alt="Kev Ash" />
+			<img src="/images/stickers/howlin-wolf-sticker.png" alt="Howling Wolf Sticker" />
+
 			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
 		</div>
 	</div>
@@ -26,7 +27,7 @@ const paragraphs = formatText(text)
 	const aboutHeroTimeline = gsap.timeline()
 
 	aboutHeroTimeline
-		.to('main img', {
+		.to('main .content > img', {
 			clipPath: 'polygon(0 1%, 100% 1%, 100% 100%, 0% 100%)'
 		})
 		.to('main h1', {
@@ -52,18 +53,30 @@ const paragraphs = formatText(text)
 				left: 25%;
 				z-index: 10;
 
-				&:nth-child(2) {
-					width: 250px;
+				&:nth-child(1) {
+					width: clamp(50px, 15vw, 250px);
 					left: 0;
-					top: 45%;
+					top: 42%;
 				}
 			}
 			.content {
 				max-width: 700px;
 				margin-inline: auto;
+				position: relative;
 
-				img {
-					clip-path: polygon(0 99.9%, 100% 99.9%, 100% 100%, 0% 100%);
+				& > img {
+					// visibility: hidden;
+
+					&:nth-child(2) {
+						clip-path: polygon(0 99.9%, 100% 99.9%, 100% 100%, 0% 100%);
+					}
+
+					&:nth-child(3) {
+						width: clamp(50px, 8vw, 100px);
+						position: absolute;
+						top: 5rem;
+						right: 0;
+					}
 				}
 
 				h1 {
@@ -71,6 +84,10 @@ const paragraphs = formatText(text)
 					text-align: center;
 					opacity: 0;
 					transform: translateY(2rem);
+
+					@media (max-width: 700px) {
+						font-size: $mobile-h2;
+					}
 				}
 				p {
 					max-width: 42ch;

@@ -1,18 +1,19 @@
 <header>
 	<div class="header-wrapper">
-		<div class="socials">
-			<a href="https://facebook.com/">
-				<img src="/svg/facebook.svg" alt="Facebook Icon" />
-			</a>
-			<a href="https://instagram.com/">
-				<img src="/svg/instagram.svg" alt="Instagram Icon" />
-			</a>
-		</div>
-		<div class="logo">
+		<div class="content">
 			<a href="/">
 				<img src="/svg/KEV ASH.svg" alt="Kev Ash Art Logo" />
 			</a>
+			<div class="socials">
+				<a href="https://facebook.com/">
+					<img src="/svg/facebook.svg" alt="Facebook Icon" />
+				</a>
+				<a href="https://instagram.com/">
+					<img src="/svg/instagram.svg" alt="Instagram Icon" />
+				</a>
+			</div>
 		</div>
+
 		<nav>
 			<ul>
 				<a href="/"> <li>Home</li></a>
@@ -44,11 +45,17 @@
 				padding-inline: 1rem;
 			}
 
+			.content {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+			}
+
 			.socials {
 				display: flex;
 				align-items: center;
+				justify-content: flex-start;
 				gap: 1rem;
-				width: 400px;
 
 				img {
 					width: 1.5rem;
@@ -79,6 +86,13 @@
 							color: $white;
 						}
 					}
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.header-wrapper {
+				nav {
+					display: none;
 				}
 			}
 		}

@@ -9,6 +9,11 @@ export default {
       type: 'customImage',
     },
     {
+      name: 'sticker',
+      title: 'Sticker',
+      type: 'customImage',
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',

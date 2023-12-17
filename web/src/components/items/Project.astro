@@ -1,10 +1,19 @@
 ---
 import { urlForImage } from '../../lib/urlForImage'
-const { image, title, text, index } = Astro.props
+const { image, title, text, index, sticker } = Astro.props
 ---
 
 <div data-speed={1 - index / 50} class="project">
-	<div class="mask"><img src={urlForImage(image).format('webp').url()} alt={image.alt} /></div>
+	{
+		sticker ? (
+			<img class="sticker" src={urlForImage(sticker).format('webp').url()} alt={sticker.alt} />
+		) : (
+			''
+		)
+	}
+	<div class="mask">
+		<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+	</div>
 	<div class="text">
 		<h3>{title} <img src="/svg/Rectangle 28.svg" alt="Diamond Element" /></h3>
 		<p>{text}</p>
@@ -12,16 +21,43 @@ const { image, title, text, index } = Astro.props
 </div>
 
 <script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	gsap.registerPlugin(ScrollTrigger)
+
 	if ('ontouchstart' in window) {
 		const projects = document.querySelectorAll('.project')
 		projects.forEach((project) => {
 			project.removeAttribute('data-speed')
 		})
 	}
+
+	const allStickers = document.querySelectorAll('.project .sticker')
+
+	allStickers.forEach((sticker) => {
+		gsap.to(sticker, {
+			scrollTrigger: {
+				trigger: sticker,
+				start: 'top bottom',
+				toggleActions: 'play none none reverse'
+			},
+			scale: 1,
+			transformOrigin: 'center'
+		})
+	})
 </script>
 
 <style lang="scss">
 	.project {
+		position: relative;
+		& > img {
+			max-width: 100px;
+			position: absolute;
+			z-index: 1;
+			top: -2rem;
+			right: -2rem;
+			scale: 0;
+		}
 		.mask {
 			overflow: hidden;
 			display: flex;

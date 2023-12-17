@@ -67,6 +67,7 @@ const paragraphs = formatText(text)
 						color: $white;
 						width: 120%;
 						margin-block: 0 2rem;
+						font-size: $mobile-h2;
 					}
 					p {
 						margin-block: 1.5rem 2.5rem;
@@ -89,6 +90,43 @@ const paragraphs = formatText(text)
 							top: -6rem;
 							right: -2rem;
 						}
+					}
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				.card {
+					flex-direction: column;
+
+					.left {
+						width: 100%;
+						h2 {
+							max-width: 16ch;
+						}
+					}
+					.right {
+						width: calc(100% + 4rem);
+					}
+				}
+			}
+		}
+		@media (max-width: 700px) {
+			.wrapper {
+				.card {
+					padding-inline: 2rem;
+					.right {
+						width: calc(100% + 2rem);
+					}
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				.card {
+					padding-inline: 1rem;
+					.right {
+						width: calc(100% + 1rem);
 					}
 				}
 			}

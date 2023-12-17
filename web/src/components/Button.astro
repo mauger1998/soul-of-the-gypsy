@@ -5,7 +5,13 @@ const { to, variant, text } = Astro.props
 <a href={to}>
 	<button class={variant}>
 		{text}
-		<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+		{
+			variant === 'white-outline' ? (
+				<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+			) : (
+				<img src="/svg/plus-svgrepo-com-11 copy.svg" alt="Plus Icon" />
+			)
+		}
 	</button>
 </a>
 
@@ -32,6 +38,19 @@ const { to, variant, text } = Astro.props
 				&:hover {
 					background-color: $white;
 					color: $black;
+					transition:
+						color 300ms ease,
+						background-color 300ms ease;
+				}
+			}
+			&.black-outline {
+				background-color: transparent;
+				border: 0.5px solid $black;
+				color: $black;
+
+				&:hover {
+					background-color: $black;
+					color: $white;
 					transition:
 						color 300ms ease,
 						background-color 300ms ease;

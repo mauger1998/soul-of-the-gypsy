@@ -24,6 +24,9 @@ export default {
         {
           type: 'basic',
         },
+        {
+          type: 'collection',
+        },
       ],
     },
   ],
