@@ -1,12 +1,13 @@
 ---
 import IconCard from '../items/IconCard.astro'
-const { title, cards, pagename = 'home' } = Astro.props
+const { title, cards, pagename = 'home', text } = Astro.props
 ---
 
 <section class="why-section">
 	<div class="wrapper">
 		<div class="title">
 			<h2>{title}</h2>
+			{text ? <p>{text}</p> : null}
 		</div>
 		<div class="cards">
 			{
@@ -64,6 +65,10 @@ const { title, cards, pagename = 'home' } = Astro.props
 			.title {
 				h2 {
 					color: $white;
+				}
+				p {
+					max-width: 50ch;
+					margin-block: 2.5rem 0;
 				}
 			}
 			.cards {

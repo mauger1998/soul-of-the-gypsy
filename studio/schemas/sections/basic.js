@@ -12,6 +12,11 @@ export default {
       type: 'heroTitle',
     },
     {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
       name: 'text',
       title: 'Text',
       type: 'text',

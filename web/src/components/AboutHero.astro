@@ -14,7 +14,9 @@ const paragraphs = formatText(text)
 			<img src="/images/kev-wall-dark.png" alt="Kev Ash" />
 			<img src="/images/stickers/howlin-wolf-sticker.png" alt="Howling Wolf Sticker" />
 
-			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
+			<div class="text">
+				{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
+			</div>
 		</div>
 	</div>
 </main>
