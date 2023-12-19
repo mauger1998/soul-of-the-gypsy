@@ -6,7 +6,16 @@ const { title, cards, pagename = 'home', text } = Astro.props
 <section class="why-section">
 	<div class="wrapper">
 		<div class="title">
-			<h2>{title}</h2>
+			<h2>
+				{title}{
+					pagename === 'home' ? null : (
+						<>
+							<img src="/svg/flag-for-flag-european-union-svgrepo-com.svg" alt="Groovy Sticker" />
+							<img src="/svg/flag-us-svgrepo-com.svg" alt="Groovy Sticker" />
+						</>
+					)
+				}
+			</h2>
 			{text ? <p>{text}</p> : null}
 		</div>
 		<div class="cards">
@@ -65,6 +74,25 @@ const { title, cards, pagename = 'home', text } = Astro.props
 			.title {
 				h2 {
 					color: $white;
+					max-width: max-content;
+					width: 100%;
+					position: relative;
+
+					& > img {
+						width: 50px;
+						position: absolute;
+
+						&:nth-child(2) {
+							top: 50%;
+							transform: translateY(-50%);
+							right: -4rem;
+						}
+						&:nth-child(1) {
+							top: 50%;
+							transform: translateY(-50%);
+							right: -8rem;
+						}
+					}
 				}
 				p {
 					max-width: 50ch;

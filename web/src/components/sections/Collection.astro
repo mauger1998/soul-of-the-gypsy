@@ -71,7 +71,12 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		})
 	})
 </script>
-<section class={`${themeColor.split(' ').join('-').toLowerCase()} collection-section`}>
+<section
+	id={title.split(' ').join('-').toLowerCase()}
+	class={`
+	${themeColor.split(' ').join('-').toLowerCase()}
+	collection-section`}
+>
 	<div class="wrapper">
 		<div class="banner">
 			<div class="content">
@@ -105,6 +110,12 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 						<img src="/images/singer-nobg 1.png" alt="Howling Wolf Drawing" />
 					</>
 				) : themeColor.split(' ').join('-').toLowerCase() === 'fine-art' ? (
+					<>
+						<img src="/images/stickers/PngItem_1679584 1.png" alt="Working Man Painting" />
+						<Button text="Contact us now" variant="black-outline" to="/contact/" />
+						<img src="/images/stickers/PngItem_4919813 1.png" alt="Howling Wolf Drawing" />
+					</>
+				) : themeColor.split(' ').join('-').toLowerCase() === 'murals' ? (
 					<>
 						<img src="/images/stickers/PngItem_1679584 1.png" alt="Working Man Painting" />
 						<Button text="Contact us now" variant="black-outline" to="/contact/" />
@@ -303,6 +314,27 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 							}
 							p {
 								color: $white;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.murals {
+			background-color: $blue;
+
+			.wrapper {
+				.banner {
+					padding-block: 2rem 40rem;
+				}
+				.projects {
+					.project {
+						.text {
+							h3 {
+								color: $black;
+							}
+							p {
+								color: $black;
 							}
 						}
 					}

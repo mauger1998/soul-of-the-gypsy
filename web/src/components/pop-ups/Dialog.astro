@@ -1,0 +1,140 @@
+---
+import { urlForImage } from '../../lib/urlForImage'
+const { styles } = Astro.props
+---
+
+<dialog class="search-dialog">
+	<img id="close-modal" src="/svg/close-svgrepo-com.svg" alt="Close Modal" />
+	<div class="menu">
+		<div class="title">
+			<h3>Search by art style</h3>
+		</div>
+		<div class="content">
+			<div class="list">
+				{
+					styles.map((style) => (
+						<div class="list-item">
+							<div class="left">
+								<img src={urlForImage(style.image).format('webp').url()} alt={style.image.alt} />
+							</div>
+							<div class="right">
+								<h3>{style.title}</h3>
+								<p>{style.description}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</dialog>
+
+<style lang="scss">
+	dialog {
+		width: 100%;
+		height: 100%;
+		max-width: 85%;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		background-color: $white;
+		transform: translate(-50%, -50%);
+		padding: 2rem;
+		& > img {
+			width: 2rem;
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			cursor: pointer;
+		}
+		&:focus {
+			outline: none;
+		}
+
+		&::backdrop {
+			background-color: #030303b6;
+		}
+
+		.menu {
+			width: 100%;
+			height: 100%;
+			display: grid;
+			place-content: center;
+			.title {
+				max-width: 700px;
+				margin-inline: auto;
+				width: 100%;
+				h3 {
+					color: $black;
+					font-size: $mobile-h2;
+				}
+			}
+
+			.content {
+				margin-block: 2rem 0;
+				width: 100%;
+				max-width: 700px;
+				margin-inline: auto;
+				.list {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 2rem;
+					.list-item {
+						display: flex;
+						align-items: stretch;
+						gap: 1.5rem;
+						transition: background-color 0.3s ease-in-out;
+						cursor: pointer;
+
+						&:hover {
+							background-color: $black;
+							transition: background-color 0.3s ease-in-out;
+
+							.right {
+								h3,
+								p {
+									color: $white;
+									transition: color 0.3s ease-in-out;
+								}
+							}
+							.left {
+								img {
+									scale: 1.05;
+									transition: scale 300ms ease;
+								}
+							}
+						}
+
+						.left {
+							width: 50%;
+							height: 100%;
+							display: flex;
+							overflow: hidden;
+
+							img {
+								width: 100%;
+								height: 100%;
+								transition: scale 300ms ease;
+							}
+						}
+						.right {
+							width: 50%;
+							align-self: center;
+
+							h3 {
+								color: $black;
+								transition: color 0.3s ease-in-out;
+							}
+							p {
+								color: $black;
+								transition: color 0.3s ease-in-out;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+</style>

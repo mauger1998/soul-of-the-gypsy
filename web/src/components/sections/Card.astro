@@ -4,49 +4,52 @@ import { formatText } from '../../lib/formatText'
 import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
 import Tag from '../type/Tag.astro'
+import Dialog from '../pop-ups/Dialog.astro'
 const paragraphs = formatText(text)
 ---
 
 <section class="card-section">
 	<div class="wrapper">
-		{
-			pagename === 'gallery' ? (
-				<dialog>
-					<img id="close-modal" src="/svg/close-svgrepo-com.svg" alt="Close Modal" />
-					<div class="menu">
-						<div class="title">
-							<h3>Search by art style</h3>
-						</div>
-						<div class="content">
-							<div class="list">
-								{styles.map((style) => (
-									<div class="list-item">
-										<div class="left">
-											<img
-												src={urlForImage(style.image).format('webp').url()}
-												alt={style.image.alt}
-											/>
-										</div>
-										<div class="right">
-											<h3>{style.title}</h3>
-											<p>{style.description}</p>
-										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					</div>
-				</dialog>
-			) : null
-		}
+		{pagename === 'gallery' ? <Dialog styles={styles} /> : null}
 		<div class="card">
+			{
+				pagename === 'gallery' ? (
+					<svg
+						id="keep-scrolling"
+						width="15"
+						height="28"
+						viewBox="0 0 15 28"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<rect
+							x="1.03516"
+							y="0.589844"
+							width="12.93"
+							height="26.2188"
+							rx="6.46501"
+							stroke="white"
+							stroke-width="0.5"
+						/>
+						<circle cx="7.5" cy="20.3125" r="5.01172" fill="white" />
+					</svg>
+				) : null
+			}
 			<div class="left">
 				{pagename === 'gallery' ? <h1>{title}</h1> : <h2>{title}</h2>}
 				<Tag text={tag} />
 				{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
 				<div class="buttons">
-					<Button text="See gallery now" to="/gallery/" variant="white-outline" />
-					{pagename === 'gallery' ? <a id="open-modal">Search by art style</a> : null}
+					<!-- <Button text="See gallery now" to="/gallery/" variant="white-outline" /> -->
+					{
+						pagename === 'gallery' ? (
+							<>
+								<a id="open-modal">Search by art style</a>
+							</>
+						) : (
+							<Button variant="white-outline" to="/gallery/" text="View gallery now" />
+						)
+					}
 				</div>
 			</div>
 			<div class="right">
@@ -79,9 +82,18 @@ const paragraphs = formatText(text)
 	})
 </script>
 <script type="module">
+	let smoother = window.smoother
+
+	const keepScrollingIcon = document.getElementById('keep-scrolling')
+
+	keepScrollingIcon.addEventListener('click', (event) => {
+		event.preventDefault()
+		smoother.scrollTo('#fine-art', true, 'top top')
+	})
+
 	document.addEventListener('DOMContentLoaded', (event) => {
 		const openModal = document.getElementById('open-modal')
-		const dialog = document.querySelector('dialog')
+		const dialog = document.querySelector('.search-dialog')
 		const closeModal = document.getElementById('close-modal')
 
 		openModal.addEventListener('click', (event) => {
@@ -104,112 +116,6 @@ const paragraphs = formatText(text)
 <style lang="scss">
 	.card-section {
 		.wrapper {
-			dialog {
-				width: 100%;
-				height: 100%;
-				max-width: 85%;
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				background-color: $white;
-				transform: translate(-50%, -50%);
-				padding: 2rem;
-				& > img {
-					width: 2rem;
-					position: absolute;
-					top: 1rem;
-					right: 1rem;
-					cursor: pointer;
-				}
-				&:focus {
-					outline: none;
-				}
-
-				&::backdrop {
-					background-color: #030303b6;
-				}
-
-				.menu {
-					width: 100%;
-					height: 100%;
-					display: grid;
-					place-content: center;
-					.title {
-						max-width: 700px;
-						margin-inline: auto;
-						width: 100%;
-						h3 {
-							color: $black;
-							font-size: $mobile-h2;
-						}
-					}
-
-					.content {
-						margin-block: 2rem 0;
-						width: 100%;
-						max-width: 700px;
-						margin-inline: auto;
-						.list {
-							width: 100%;
-							display: flex;
-							flex-direction: column;
-							align-items: flex-start;
-							gap: 2rem;
-							.list-item {
-								display: flex;
-								align-items: stretch;
-								gap: 1.5rem;
-								transition: background-color 0.3s ease-in-out;
-
-								&:hover {
-									background-color: $black;
-									transition: background-color 0.3s ease-in-out;
-
-									.right {
-										h3,
-										p {
-											color: $white;
-											transition: color 0.3s ease-in-out;
-										}
-									}
-									.left {
-										img {
-											scale: 1.05;
-											transition: scale 300ms ease;
-										}
-									}
-								}
-
-								.left {
-									width: 50%;
-									height: 100%;
-									display: flex;
-									overflow: hidden;
-
-									img {
-										width: 100%;
-										height: 100%;
-										transition: scale 300ms ease;
-									}
-								}
-								.right {
-									width: 50%;
-									align-self: center;
-
-									h3 {
-										color: $black;
-										transition: color 0.3s ease-in-out;
-									}
-									p {
-										color: $black;
-										transition: color 0.3s ease-in-out;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
 			.card {
 				width: 100%;
 				background-color: $light-black;
@@ -218,6 +124,32 @@ const paragraphs = formatText(text)
 				padding: 4rem 4rem;
 				gap: 2rem;
 				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+				position: relative;
+
+				#keep-scrolling {
+					width: 1.5rem;
+					position: absolute;
+					left: 50%;
+					top: 85%;
+					transform: translate(-50%, 0%);
+					cursor: pointer;
+
+					circle {
+						animation: bounce 2s infinite ease-in-out;
+
+						@keyframes bounce {
+							0% {
+								transform: translateY(0);
+							}
+							50% {
+								transform: translateY(-0.25rem);
+							}
+							100% {
+								transform: translateY(0);
+							}
+						}
+					}
+				}
 
 				.left {
 					width: 55%;
@@ -242,7 +174,7 @@ const paragraphs = formatText(text)
 					}
 					.buttons {
 						display: flex;
-						align-items: center;
+						align-items: flex-start;
 						gap: 1rem;
 						a {
 							color: $white;

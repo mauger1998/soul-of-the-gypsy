@@ -1,12 +1,11 @@
 ---
 import Cta from '../components/Cta.astro'
-import ProjectGrid from '../components/ProjectGrid.astro'
+import GalleryCta from '../components/GalleryCta.astro'
 import Card from '../components/sections/Card.astro'
 import Collection from '../components/sections/Collection.astro'
 import Video from '../components/Video.astro'
 import Layout from '../Layouts/Layout.astro'
 import { getSanity } from '../lib/api'
-import Search from '../components/sections/Search.astro'
 import '/src/styles/style.scss'
 
 const query = `*[_type == "gallery"]{
@@ -34,10 +33,23 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	gsap.registerPlugin(ScrollTrigger)
 	gsap.registerPlugin(ScrollSmoother)
 
-	ScrollSmoother.create({
+	window.smoother = ScrollSmoother.create({
 		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
 		effects: true, // looks for data-speed and data-lag attributes on elements
 		smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+	})
+
+	let smoother = window.smoother
+
+	const eachMenuItem = document.querySelectorAll('.list-item')
+	const eachCollection = document.querySelectorAll('.collection-section')
+	const dialogToClose = document.querySelector('.search-dialog')
+
+	eachMenuItem.forEach((item, index) => {
+		item.addEventListener('click', () => {
+			smoother.scrollTo(eachCollection[index], true, 'top top')
+			dialogToClose.close()
+		})
 	})
 </script>
 <Layout>
@@ -71,8 +83,15 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 		projects={sections[3].projects}
 		themeColor={sections[3].themeColor}
 	/>
+	<Collection
+		titleColor={sections[5].titleColor}
+		title={sections[5].title}
+		image={sections[5].image}
+		projects={sections[5].projects}
+		themeColor={sections[5].themeColor}
+	/>
 
 	<!-- <ProjectGrid pagename="gallery" projects={projects} /> -->
-	<Cta title={sections[4].title.title} />
+	<GalleryCta title={sections[4].title.title} />
 </Layout>
 <Video />

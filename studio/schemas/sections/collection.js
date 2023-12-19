@@ -32,6 +32,7 @@ export default {
           {title: 'Fine Art', value: 'fine art'},
           {title: 'Sketchbook', value: 'sketchbook'},
           {title: 'Kustum', value: 'kustum'},
+          {title: 'Murals', value: 'murals'},
         ],
         layout: 'radio', // if you want to display them as radio buttons
       },
