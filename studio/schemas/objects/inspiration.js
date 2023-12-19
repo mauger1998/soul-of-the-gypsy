@@ -1,7 +1,9 @@
+import BillyIdolSticker from '../../components/BillyIdolSticker'
 export default {
   name: 'inspiration',
   title: 'Inspiration',
   type: 'document',
+  icon: BillyIdolSticker,
   fields: [
     {
       title: 'Image',

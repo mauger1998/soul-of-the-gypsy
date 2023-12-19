@@ -1,7 +1,10 @@
+import KeithRichardsSticker from '../../components/KeithRichardsSticker'
+
 export default {
   name: 'project',
   title: 'Project',
   type: 'document',
+  icon: KeithRichardsSticker,
   fields: [
     {
       name: 'title',
