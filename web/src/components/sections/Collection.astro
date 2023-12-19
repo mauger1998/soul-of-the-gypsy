@@ -111,7 +111,10 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 					</>
 				) : themeColor.split(' ').join('-').toLowerCase() === 'fine-art' ? (
 					<>
-						<img src="/images/stickers/PngItem_1679584 1.png" alt="Working Man Painting" />
+						<img
+							src="/images/stickers/gallery-stickers/Mask group.png"
+							alt="Working Man Painting"
+						/>
 						<Button text="Contact us now" variant="black-outline" to="/contact/" />
 						<img src="/images/stickers/PngItem_4919813 1.png" alt="Howling Wolf Drawing" />
 					</>
@@ -119,7 +122,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 					<>
 						<img src="/images/stickers/PngItem_1679584 1.png" alt="Working Man Painting" />
 						<Button text="Contact us now" variant="black-outline" to="/contact/" />
-						<img src="/images/stickers/PngItem_4919813 1.png" alt="Howling Wolf Drawing" />
+						<img src="/images/stickers/gallery-stickers/pngwing 8.png" alt="Howling Wolf Drawing" />
 					</>
 				) : (
 					<>
@@ -254,6 +257,8 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				align-items: center;
 				justify-content: space-between;
 				width: 100%;
+				position: relative;
+				z-index: 10;
 				& > img {
 					width: 200px;
 					scale: 0;
@@ -291,11 +296,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			background-color: $black;
 			.wrapper {
 				.bottom {
-					& > img {
-						&:nth-child(3) {
-							transform: rotateY(180deg) !important;
-						}
-					}
 				}
 			}
 		}
