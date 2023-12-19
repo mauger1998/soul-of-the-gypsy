@@ -4,6 +4,7 @@ import home from './documents/home'
 import customImage from './objects/customImage'
 import heroTitle from './objects/heroTitle'
 import iconCard from './objects/iconCard'
+import inspiration from './objects/inspiration'
 import project from './objects/project'
 import basic from './sections/basic'
 import card from './sections/card'
@@ -18,7 +19,6 @@ export const schemaTypes = [
   basic,
   twoColumn,
   card,
-  project,
   projects,
   iconCard,
   iconCardSection,
@@ -27,4 +27,6 @@ export const schemaTypes = [
   home,
   about,
   gallery,
+  project,
+  inspiration,
 ]

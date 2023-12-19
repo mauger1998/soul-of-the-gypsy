@@ -2,6 +2,7 @@
 import AboutHero from '../components/AboutHero.astro'
 import Cta from '../components/Cta.astro'
 import Card from '../components/sections/Card.astro'
+import Inspiration from '../components/sections/Inspiration.astro'
 import TwoColumn from '../components/sections/TwoColumn.astro'
 import Why from '../components/sections/Why.astro'
 import Video from '../components/Video.astro'
@@ -10,7 +11,9 @@ import { getSanity } from '../lib/api'
 import '/src/styles/style.scss'
 
 const query = `*[_type == "about"]`
+const inspirationQuery = `*[_type == "inspiration"]`
 const aboutSections = await getSanity(query)
+const inspiration = await getSanity(inspirationQuery)
 const sections = aboutSections[0].sections
 ---
 
@@ -46,6 +49,7 @@ const sections = aboutSections[0].sections
 		title={sections[2].title}
 		cards={sections[2].iconCards}
 	/>
+	<Inspiration cards={inspiration} />
 
 	<Card
 		tag={sections[3].tag}

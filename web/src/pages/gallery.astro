@@ -22,7 +22,8 @@ const gallerySections = await getSanity(query)
 const sections = gallerySections[0].sections
 const projectsQuery = `*[_type == "project"]`
 const projects = await getSanity(projectsQuery)
-// console.log(sections)
+
+const collectionSections = sections.filter((section) => section._type === 'collection')
 ---
 
 <script is:inline src="/ScrollSmoother.min.js"></script>
@@ -46,8 +47,8 @@ const projects = await getSanity(projectsQuery)
 		tag={sections[0].tag}
 		text={sections[0].text}
 		image={sections[0].image}
+		styles={collectionSections}
 	/>
-	<Search />
 	<Collection
 		titleColor={sections[1].titleColor}
 		title={sections[1].title}

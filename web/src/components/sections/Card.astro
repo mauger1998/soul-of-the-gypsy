@@ -1,21 +1,53 @@
 ---
-const { title, tag, text, image, pagename = 'home' } = Astro.props
+const { title, tag, text, image, pagename = 'home', styles } = Astro.props
 import { formatText } from '../../lib/formatText'
 import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
 import Tag from '../type/Tag.astro'
-console.log(text)
 const paragraphs = formatText(text)
 ---
 
 <section class="card-section">
 	<div class="wrapper">
+		{
+			pagename === 'gallery' ? (
+				<dialog>
+					<img id="close-modal" src="/svg/close-svgrepo-com.svg" alt="Close Modal" />
+					<div class="menu">
+						<div class="title">
+							<h3>Search by art style</h3>
+						</div>
+						<div class="content">
+							<div class="list">
+								{styles.map((style) => (
+									<div class="list-item">
+										<div class="left">
+											<img
+												src={urlForImage(style.image).format('webp').url()}
+												alt={style.image.alt}
+											/>
+										</div>
+										<div class="right">
+											<h3>{style.title}</h3>
+											<p>{style.description}</p>
+										</div>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</dialog>
+			) : null
+		}
 		<div class="card">
 			<div class="left">
 				{pagename === 'gallery' ? <h1>{title}</h1> : <h2>{title}</h2>}
 				<Tag text={tag} />
 				{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
-				<Button text="See gallery now" to="/gallery/" variant="white-outline" />
+				<div class="buttons">
+					<Button text="See gallery now" to="/gallery/" variant="white-outline" />
+					{pagename === 'gallery' ? <a id="open-modal">Search by art style</a> : null}
+				</div>
 			</div>
 			<div class="right">
 				<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
@@ -31,7 +63,6 @@ const paragraphs = formatText(text)
 		</div>
 	</div>
 </section>
-
 <script>
 	import { gsap } from 'gsap'
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -47,10 +78,138 @@ const paragraphs = formatText(text)
 		clipPath: 'polygon(0 -50%, 150% -50%, 150% 100%, 0 100%)'
 	})
 </script>
+<script type="module">
+	document.addEventListener('DOMContentLoaded', (event) => {
+		const openModal = document.getElementById('open-modal')
+		const dialog = document.querySelector('dialog')
+		const closeModal = document.getElementById('close-modal')
+
+		openModal.addEventListener('click', (event) => {
+			event.stopPropagation() // Prevent this click from triggering the document click event
+			dialog.showModal()
+		})
+		closeModal.addEventListener('click', (event) => {
+			event.stopPropagation() // Prevent this click from triggering the document click event
+			dialog.close()
+		})
+
+		document.addEventListener('click', (event) => {
+			if (event.target === dialog) {
+				dialog.close()
+			}
+		})
+	})
+</script>
 
 <style lang="scss">
 	.card-section {
 		.wrapper {
+			dialog {
+				width: 100%;
+				height: 100%;
+				max-width: 85%;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				background-color: $white;
+				transform: translate(-50%, -50%);
+				padding: 2rem;
+				& > img {
+					width: 2rem;
+					position: absolute;
+					top: 1rem;
+					right: 1rem;
+					cursor: pointer;
+				}
+				&:focus {
+					outline: none;
+				}
+
+				&::backdrop {
+					background-color: #030303b6;
+				}
+
+				.menu {
+					width: 100%;
+					height: 100%;
+					display: grid;
+					place-content: center;
+					.title {
+						max-width: 700px;
+						margin-inline: auto;
+						width: 100%;
+						h3 {
+							color: $black;
+							font-size: $mobile-h2;
+						}
+					}
+
+					.content {
+						margin-block: 2rem 0;
+						width: 100%;
+						max-width: 700px;
+						margin-inline: auto;
+						.list {
+							width: 100%;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							gap: 2rem;
+							.list-item {
+								display: flex;
+								align-items: stretch;
+								gap: 1.5rem;
+								transition: background-color 0.3s ease-in-out;
+
+								&:hover {
+									background-color: $black;
+									transition: background-color 0.3s ease-in-out;
+
+									.right {
+										h3,
+										p {
+											color: $white;
+											transition: color 0.3s ease-in-out;
+										}
+									}
+									.left {
+										img {
+											scale: 1.05;
+											transition: scale 300ms ease;
+										}
+									}
+								}
+
+								.left {
+									width: 50%;
+									height: 100%;
+									display: flex;
+									overflow: hidden;
+
+									img {
+										width: 100%;
+										height: 100%;
+										transition: scale 300ms ease;
+									}
+								}
+								.right {
+									width: 50%;
+									align-self: center;
+
+									h3 {
+										color: $black;
+										transition: color 0.3s ease-in-out;
+									}
+									p {
+										color: $black;
+										transition: color 0.3s ease-in-out;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 			.card {
 				width: 100%;
 				background-color: $light-black;
@@ -80,6 +239,18 @@ const paragraphs = formatText(text)
 					p {
 						margin-block: 1.5rem 2.5rem;
 						max-width: 50ch;
+					}
+					.buttons {
+						display: flex;
+						align-items: center;
+						gap: 1rem;
+						a {
+							color: $white;
+							font-weight: 300;
+							text-decoration: underline;
+							display: block;
+							cursor: pointer;
+						}
 					}
 				}
 				.right {
