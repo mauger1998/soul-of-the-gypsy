@@ -288,7 +288,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			.wrapper {
 				.banner {
 					@media (max-width: 700px) {
-						margin-block-start: -3rem !important;
+						// margin-block-start: -3rem !important;
 					}
 				}
 				.projects {
@@ -381,7 +381,8 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		@media (max-width: 1024px) {
 			.wrapper {
 				.projects {
-					gap: 2rem;
+					grid-template-columns: 1fr 1fr;
+					column-gap: 4rem;
 					row-gap: 6rem;
 				}
 			}
@@ -389,11 +390,13 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		@media (max-width: 800px) {
 			.wrapper {
 				.projects {
-					grid-template-columns: 1fr 1fr;
+					grid-template-columns: 1fr;
 					column-gap: 4rem;
+					row-gap: 6rem;
 				}
 			}
 		}
+
 		@media (max-width: 550px) {
 			.wrapper {
 				.bottom {
@@ -407,15 +410,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 							display: none;
 						}
 					}
-				}
-			}
-		}
-		@media (max-width: 500px) {
-			.wrapper {
-				.projects {
-					grid-template-columns: 1fr;
-					column-gap: 4rem;
-					row-gap: 6rem;
 				}
 			}
 		}

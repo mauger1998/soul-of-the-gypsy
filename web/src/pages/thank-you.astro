@@ -1,10 +1,11 @@
 ---
 import Layout from '../Layouts/Layout.astro'
+import ThankYouLayout from '../Layouts/ThankYouLayout.astro'
 import Button from '../components/Button.astro'
 import '/src/styles/style.scss'
 ---
 
-<Layout>
+<ThankYouLayout>
 	<main>
 		<div class="wrapper">
 			<h1>Message Received</h1>
@@ -12,7 +13,7 @@ import '/src/styles/style.scss'
 			<Button text="Back to website" to="/" variant="white-outline" />
 		</div>
 	</main>
-</Layout>
+</ThankYouLayout>
 
 <style is:global lang="scss">
 	main {

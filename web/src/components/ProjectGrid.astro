@@ -116,17 +116,13 @@ import Project from './items/Project.astro'
 		}
 		@media (max-width: 1024px) {
 			.wrapper {
-				gap: 2rem;
+				grid-template-columns: 1fr 1fr;
+				column-gap: 4rem;
 				row-gap: 6rem;
 			}
 		}
+
 		@media (max-width: 800px) {
-			.wrapper {
-				grid-template-columns: 1fr 1fr;
-				column-gap: 4rem;
-			}
-		}
-		@media (max-width: 500px) {
 			.wrapper {
 				grid-template-columns: 1fr;
 				column-gap: 4rem;

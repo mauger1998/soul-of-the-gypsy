@@ -1,0 +1,25 @@
+---
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+const { title = 'Message Recieved | Soul Of The Gypsy' } = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/kev-ash-favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="noindex" />
+		<title>{title}</title>
+
+		<link rel="canonical" href={`https://soulofthegypsy.com/thankyou`} />
+	</head>
+	<body>
+		<div class="scroll-content">
+			<Header />
+			<slot />
+		</div>
+	</body>
+</html>
