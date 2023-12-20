@@ -1,0 +1,50 @@
+---
+import Layout from '../Layouts/Layout.astro'
+import Button from '../components/Button.astro'
+import '/src/styles/style.scss'
+---
+
+<Layout>
+	<main>
+		<div class="wrapper">
+			<h1>Message Received</h1>
+			<p>We have received your order/message and we will get back to you promptly!</p>
+			<Button text="Back to website" to="/" variant="white-outline" />
+		</div>
+	</main>
+</Layout>
+
+<style is:global lang="scss">
+	main {
+		.wrapper {
+			padding-block: 10rem;
+
+			h1 {
+				text-align: center;
+				margin-inline: auto;
+				font-size: 96px;
+				max-width: 12ch;
+
+				@media (max-width: 700px) {
+					font-size: 48px;
+				}
+			}
+			p {
+				margin-block: 0.5rem 2.5rem;
+				max-width: 40ch;
+				text-align: center;
+				margin-inline: auto;
+
+				@media (max-width: 700px) {
+					max-width: 32ch;
+					margin-block: 1rem 2.5rem;
+				}
+			}
+			a {
+				margin-inline: auto;
+				display: block;
+				width: max-content;
+			}
+		}
+	}
+</style>
