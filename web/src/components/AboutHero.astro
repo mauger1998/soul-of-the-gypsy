@@ -41,6 +41,14 @@ const paragraphs = formatText(text)
 			opacity: 1,
 			stagger: 0.2
 		})
+		.to(
+			'main .wrapper > img',
+			{
+				scale: 1,
+				stagger: 0.2
+			},
+			'-=0.5'
+		)
 </script>
 
 <style lang="scss">
@@ -54,6 +62,7 @@ const paragraphs = formatText(text)
 				top: 55%;
 				left: 25%;
 				z-index: 10;
+				scale: 0;
 
 				&:nth-child(1) {
 					width: clamp(50px, 15vw, 250px);

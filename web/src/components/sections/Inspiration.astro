@@ -38,7 +38,12 @@ const secondHalf = cards.slice(-half)
 						firstHalf.map((card) => (
 							<div class="card">
 								<img src={urlForImage(card.image).format('webp').url()} alt={card.image.alt} />
-								<div class="content" />
+								<div class="content">
+									<div class="text">
+										<h3>{card.title}</h3>
+										<p>{card.description}</p>
+									</div>
+								</div>
 							</div>
 						))
 					}
@@ -81,6 +86,21 @@ const secondHalf = cards.slice(-half)
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
 	gsap.registerPlugin(ScrollTrigger)
 
+	const inspirationTitles = document.querySelector('.inspo-section .title')
+	const inspoH2 = inspirationTitles.querySelector('h2')
+	const inspoP = inspirationTitles.querySelector('p')
+
+	gsap.to([inspoH2, inspoP], {
+		scrollTrigger: {
+			trigger: inspirationTitles,
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		},
+		opacity: 1,
+		y: 0,
+		stagger: 0.2
+	})
+
 	gsap.to('.track .cards .card', {
 		scrollTrigger: {
 			trigger: '.track .cards .card',
@@ -98,10 +118,14 @@ const secondHalf = cards.slice(-half)
 			.title {
 				h2 {
 					color: $white;
+					transform: translateY(4rem);
+					opacity: 0;
 				}
 				p {
 					max-width: 50ch;
 					margin-block: 2.5rem 0;
+					transform: translateY(4rem);
+					opacity: 0;
 				}
 			}
 			.marquee {
@@ -130,7 +154,7 @@ const secondHalf = cards.slice(-half)
 							.content {
 								position: absolute;
 								z-index: 100000;
-								background-color: #03030313;
+								background-color: #03030385;
 								backdrop-filter: blur(10px);
 								-webkit-backdrop-filter: blur(10px);
 								width: 100%;

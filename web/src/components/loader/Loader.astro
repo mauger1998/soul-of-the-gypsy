@@ -18,15 +18,28 @@
 
 	gsap.registerPlugin(ScrollTrigger)
 	const loaderTimeline = gsap.timeline({})
+	gsap.config({ nullTargetWarn: false })
 
 	// Register the ScrollSmoother plugin
 	gsap.registerPlugin(ScrollSmoother)
 
-	ScrollSmoother.create({
+	window.homeSmoother = ScrollSmoother.create({
 		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
 		effects: true, // looks for data-speed and data-lag attributes on elements
 		smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
 	})
+
+	let homeSmoother = window.homeSmoother
+	window.onload = (event) => {
+		let urlHash = window.location.href.split('#')[1]
+
+		let scrollElem = document.querySelector('#' + urlHash)
+		console.log(scrollElem)
+
+		if (urlHash && scrollElem) {
+			homeSmoother.scrollTo(scrollElem, true, 'top top')
+		}
+	}
 
 	const loaderText = new SplitType('#target')
 	const loaderTextTwo = new SplitType('#target-two')
@@ -102,6 +115,7 @@
 		background-color: $white;
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 		pointer-events: none;
+		display: none;
 		&.disabled {
 			opacity: 0;
 		}

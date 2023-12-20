@@ -19,9 +19,6 @@ const query = `*[_type == "gallery"]{
 }`
 const gallerySections = await getSanity(query)
 const sections = gallerySections[0].sections
-const projectsQuery = `*[_type == "project"]`
-const projects = await getSanity(projectsQuery)
-
 const collectionSections = sections.filter((section) => section._type === 'collection')
 ---
 
@@ -53,7 +50,36 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	})
 </script>
 <Layout>
-	<Card
+	{
+		sections.map((section) => {
+			switch (section._type) {
+				case 'card':
+					return (
+						<Card
+							pagename="gallery"
+							title={section.title}
+							tag={section.tag}
+							text={section.text}
+							image={section.image}
+							styles={collectionSections}
+						/>
+					)
+				case 'collection':
+					return (
+						<Collection
+							titleColor={section.titleColor}
+							title={section.title}
+							image={section.image}
+							projects={section.projects}
+							themeColor={section.themeColor}
+						/>
+					)
+				default:
+					return null
+			}
+		})
+	}
+	<!-- <Card
 		pagename="gallery"
 		title={sections[0].title}
 		tag={sections[0].tag}
@@ -89,9 +115,9 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 		image={sections[5].image}
 		projects={sections[5].projects}
 		themeColor={sections[5].themeColor}
-	/>
+	/> -->
 
 	<!-- <ProjectGrid pagename="gallery" projects={projects} /> -->
-	<GalleryCta title={sections[4].title.title} />
+	<!-- <GalleryCta title={sections[4].title.title} /> -->
 </Layout>
 <Video />

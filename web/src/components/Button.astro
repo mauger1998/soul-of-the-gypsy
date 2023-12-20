@@ -7,9 +7,15 @@ const { to, variant, text } = Astro.props
 		{text}
 		{
 			variant === 'white-outline' ? (
-				<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+				<span>
+					<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+					<img src="/svg/plus-svgrepo-com-11 copy.svg" alt="Plus Icon" />
+				</span>
 			) : (
-				<img src="/svg/plus-svgrepo-com-11 copy.svg" alt="Plus Icon" />
+				<span>
+					<img src="/svg/plus-svgrepo-com-11 copy.svg" alt="Plus Icon" />
+					<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+				</span>
 			)
 		}
 	</button>
@@ -26,8 +32,22 @@ const { to, variant, text } = Astro.props
 			gap: 0.5rem;
 			justify-content: space-between;
 
-			img {
-				width: 1rem;
+			span {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				img {
+					width: 1rem;
+
+					&:nth-of-type(2) {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						opacity: 0;
+					}
+				}
 			}
 
 			&.white-outline {
@@ -41,6 +61,19 @@ const { to, variant, text } = Astro.props
 					transition:
 						color 300ms ease,
 						background-color 300ms ease;
+
+					span {
+						img {
+							&:nth-of-type(1) {
+								opacity: 0;
+								transition: opacity 300ms ease;
+							}
+							&:nth-of-type(2) {
+								opacity: 1;
+								transition: opacity 300ms ease;
+							}
+						}
+					}
 				}
 			}
 			&.black-outline {
@@ -54,6 +87,19 @@ const { to, variant, text } = Astro.props
 					transition:
 						color 300ms ease,
 						background-color 300ms ease;
+
+					span {
+						img {
+							&:nth-of-type(1) {
+								opacity: 0;
+								transition: opacity 300ms ease;
+							}
+							&:nth-of-type(2) {
+								opacity: 1;
+								transition: opacity 300ms ease;
+							}
+						}
+					}
 				}
 			}
 		}

@@ -6,15 +6,16 @@ const { title, cards, pagename = 'home', text } = Astro.props
 <section class="why-section">
 	<div class="wrapper">
 		<div class="title">
+			{
+				pagename === 'home' ? null : (
+					<span>
+						<img src="/svg/flag-for-flag-european-union-svgrepo-com.svg" alt="Groovy Sticker" />
+						<img src="/svg/flag-us-svgrepo-com.svg" alt="Groovy Sticker" />
+					</span>
+				)
+			}
 			<h2>
-				{title}{
-					pagename === 'home' ? null : (
-						<>
-							<img src="/svg/flag-for-flag-european-union-svgrepo-com.svg" alt="Groovy Sticker" />
-							<img src="/svg/flag-us-svgrepo-com.svg" alt="Groovy Sticker" />
-						</>
-					)
-				}
+				{title}{}
 			</h2>
 			{text ? <p>{text}</p> : null}
 		</div>
@@ -41,6 +42,27 @@ const { title, cards, pagename = 'home', text } = Astro.props
 	gsap.registerPlugin(ScrollTrigger)
 
 	const allIconCardGrids = document.querySelectorAll('.why-section .cards')
+	const allWhyTitleContainers = document.querySelectorAll('.why-section .title')
+
+	allWhyTitleContainers.forEach((title) => {
+		const h2 = title.querySelector('h2')
+		const p = title.querySelector('p')
+		const span = title.querySelector('span')
+
+		// Create an array of elements that exist
+		const elements = [span, h2, p].filter(Boolean)
+
+		gsap.to(elements, {
+			scrollTrigger: {
+				trigger: h2,
+				start: 'top 80%',
+				toggleActions: 'play none none reverse'
+			},
+			opacity: 1,
+			y: 1,
+			stagger: 0.2
+		})
+	})
 
 	allIconCardGrids.forEach((grid) => {
 		const cards = grid.querySelectorAll('.icon-card')
@@ -72,31 +94,29 @@ const { title, cards, pagename = 'home', text } = Astro.props
 	.why-section {
 		.wrapper {
 			.title {
+				& > span {
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+					opacity: 0;
+					transform: translateY(4rem);
+					img {
+						width: 40px;
+					}
+				}
 				h2 {
 					color: $white;
 					max-width: max-content;
 					width: 100%;
 					position: relative;
-
-					& > img {
-						width: 50px;
-						position: absolute;
-
-						&:nth-child(2) {
-							top: 50%;
-							transform: translateY(-50%);
-							right: -4rem;
-						}
-						&:nth-child(1) {
-							top: 50%;
-							transform: translateY(-50%);
-							right: -8rem;
-						}
-					}
+					opacity: 0;
+					transform: translateY(4rem);
 				}
 				p {
 					max-width: 50ch;
 					margin-block: 2.5rem 0;
+					opacity: 0;
+					transform: translateY(4rem);
 				}
 			}
 			.cards {
