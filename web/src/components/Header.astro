@@ -39,8 +39,44 @@
 				</button>
 			</div>
 		</nav>
+		<div class="dropdown">
+			<img id="open-dropdown" src="/svg/menu-alt-02-svgrepo-com.svg" alt="Open Dropdown Menu" />
+			<div aria-expanded="false" class="dropdown-menu">
+				<img id="close-dropdown" src="/svg/close-lg-svgrepo-com.svg" alt="Close Icon" />
+				<nav>
+					<ul>
+						<a href="/"> <li>Home</li></a>
+						<a href="/about-kev/"><li>About Kev</li></a>
+						<a href="/gallery/"><li>Gallery</li></a>
+						<a href="/#contact/"><li>Contact us</li></a>
+						<a href="/#contact/"><li>Order Now</li></a>
+					</ul>
+
+					<!-- <button id="openDialog" class="open-video">
+						Watch video <span>
+							<img src="/svg/plus-svgrepo-com-11.svg" alt="Plus Icon" />
+							<img src="/svg/plus-svgrepo-com-11 copy.svg" alt="Plus Icon" />
+						</span>
+					</button> -->
+				</nav>
+			</div>
+		</div>
 	</div>
 </header>
+
+<script>
+	const openDropdown = document.querySelector('#open-dropdown')
+	const closeDropdown = document.querySelector('#close-dropdown')
+	const dropdownMenu = document.querySelector('.dropdown-menu')
+
+	openDropdown.addEventListener('click', () => {
+		dropdownMenu.classList.add('active')
+	})
+
+	closeDropdown.addEventListener('click', () => {
+		dropdownMenu.classList.remove('active')
+	})
+</script>
 
 <script type="module">
 	const mySmoother = window.homeSmoother
@@ -100,7 +136,7 @@
 					width: 1.5rem;
 				}
 			}
-			nav {
+			& > nav {
 				display: flex;
 				align-items: center;
 				justify-content: flex-end;
@@ -245,11 +281,53 @@
 					}
 				}
 			}
+			.dropdown {
+				display: none;
+			}
 		}
-		@media (max-width: 900px) {
+		@media (max-width: 1024px) {
 			.header-wrapper {
-				nav {
+				& > nav {
 					display: none;
+				}
+				.dropdown {
+					display: block;
+					img {
+						width: 3rem;
+						cursor: pointer;
+					}
+					.dropdown-menu {
+						width: 100vw;
+						height: 100vh;
+						position: absolute;
+						inset: 0;
+						background-color: $white;
+						display: grid;
+						place-content: center;
+						clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+						transition: clip-path 300ms ease-in-out;
+
+						&.active {
+							clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+							transition: clip-path 300ms ease-in-out;
+						}
+						& > img {
+							position: absolute;
+							width: 2rem;
+							top: 2rem;
+							right: 2rem;
+							cursor: pointer;
+						}
+
+						nav {
+							ul {
+								display: flex;
+								flex-direction: column;
+								align-items: flex-start;
+								gap: 1.5rem;
+							}
+						}
+					}
 				}
 			}
 		}
