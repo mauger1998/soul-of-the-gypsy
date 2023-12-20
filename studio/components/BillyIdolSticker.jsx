@@ -1,7 +1,7 @@
 import React from 'react'
 
 function BillyIdolSticker() {
-  return <img src="/static/billy-idol 1.png" alt="Billy Idol Sticker" />
+  return <img width={100} src="/static/images/billy-idol.png" alt="Billy Idol Sticker" />
 }
 
 export default BillyIdolSticker

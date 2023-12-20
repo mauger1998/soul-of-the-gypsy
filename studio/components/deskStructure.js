@@ -1,4 +1,3 @@
-import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import KustumSticker from './KustumSticker'
 import LightingHopkinsSticker from './LightingHopkinsSticker'
 import JonnyCashSticker from './JonnyCashSticker'
