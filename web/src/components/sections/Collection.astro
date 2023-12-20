@@ -200,6 +200,11 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				padding-block: 40rem 2rem;
 				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 
+				@media (max-width: 700px) {
+					margin-block-start: -3rem;
+					padding-block: 32rem 2rem;
+				}
+
 				.content {
 					max-width: 1440px;
 					margin-inline: auto;
@@ -295,7 +300,17 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		&.sketchbook {
 			background-color: $black;
 			.wrapper {
-				.bottom {
+				.projects {
+					.project {
+						.text {
+							h3 {
+								color: $black;
+							}
+							p {
+								color: $black;
+							}
+						}
+					}
 				}
 			}
 		}

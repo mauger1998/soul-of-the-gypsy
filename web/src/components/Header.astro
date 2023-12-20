@@ -71,10 +71,12 @@
 
 	openDropdown.addEventListener('click', () => {
 		dropdownMenu.classList.add('active')
+		dropdownMenu.setAttribute('aria-expanded', 'true')
 	})
 
 	closeDropdown.addEventListener('click', () => {
 		dropdownMenu.classList.remove('active')
+		dropdownMenu.setAttribute('aria-expanded', 'false')
 	})
 </script>
 
