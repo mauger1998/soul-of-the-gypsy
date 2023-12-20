@@ -195,7 +195,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			flex-direction: column;
 			align-items: center;
 			.banner {
-				background-image: var(--bgUrl);
+				background-image: linear-gradient(#0303036d, #0303036d), var(--bgUrl);
 				background-size: cover;
 				background-position: center;
 				width: 100vw;
@@ -287,9 +287,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 
 			.wrapper {
 				.banner {
-					@media (max-width: 700px) {
-						// margin-block-start: -3rem !important;
-					}
 				}
 				.projects {
 					.project {
@@ -309,9 +306,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			background-color: $black;
 			.wrapper {
 				.banner {
-					@media (max-width: 700px) {
-						margin-block-start: -3rem !important;
-					}
 				}
 				.projects {
 					.project {
@@ -331,13 +325,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			background-color: $white;
 
 			.wrapper {
-				.banner {
-					padding-block: 2rem 40rem;
-
-					@media (max-width: 700px) {
-						padding-block: 2rem 32rem;
-					}
-				}
 				.projects {
 					.project {
 						.text {
@@ -356,14 +343,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			background-color: $blue;
 
 			.wrapper {
-				.banner {
-					padding-block: 2rem 40rem;
-
-					@media (max-width: 700px) {
-						margin-block-start: -3rem !important;
-						padding-block: 2rem 32rem;
-					}
-				}
 				.projects {
 					.project {
 						.text {
