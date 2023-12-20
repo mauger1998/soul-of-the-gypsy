@@ -201,7 +201,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 
 				@media (max-width: 700px) {
-					margin-block-start: -3rem;
+					// margin-block-start: -3rem !important;
 					padding-block: 32rem 2rem;
 				}
 
@@ -283,6 +283,11 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			background-color: $white;
 
 			.wrapper {
+				.banner {
+					@media (max-width: 700px) {
+						margin-block-start: -3rem !important;
+					}
+				}
 				.projects {
 					.project {
 						.text {
@@ -300,6 +305,11 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		&.sketchbook {
 			background-color: $black;
 			.wrapper {
+				.banner {
+					@media (max-width: 700px) {
+						margin-block-start: -3rem !important;
+					}
+				}
 				.projects {
 					.project {
 						.text {
@@ -320,6 +330,10 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			.wrapper {
 				.banner {
 					padding-block: 2rem 40rem;
+
+					@media (max-width: 700px) {
+						padding-block: 2rem 32rem;
+					}
 				}
 				.projects {
 					.project {
@@ -341,6 +355,11 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			.wrapper {
 				.banner {
 					padding-block: 2rem 40rem;
+
+					@media (max-width: 700px) {
+						margin-block-start: -3rem !important;
+						padding-block: 2rem 32rem;
+					}
 				}
 				.projects {
 					.project {
@@ -360,7 +379,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			.wrapper {
 				.projects {
 					gap: 2rem;
-					row-gap: 12rem;
+					row-gap: 6rem;
 				}
 			}
 		}
@@ -369,6 +388,22 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				.projects {
 					grid-template-columns: 1fr 1fr;
 					column-gap: 4rem;
+				}
+			}
+		}
+		@media (max-width: 550px) {
+			.wrapper {
+				.bottom {
+					flex-direction: column;
+					gap: 4rem;
+
+					& > img {
+						margin: 0 !important;
+
+						&:nth-child(1) {
+							display: none;
+						}
+					}
 				}
 			}
 		}

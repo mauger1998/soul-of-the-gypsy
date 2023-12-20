@@ -32,7 +32,7 @@ const { styles } = Astro.props
 <style lang="scss">
 	dialog {
 		width: 100%;
-		height: 100%;
+		// height: 100%;
 		max-width: 85%;
 		position: fixed;
 		top: 50%;
@@ -68,6 +68,10 @@ const { styles } = Astro.props
 					color: $black;
 					font-size: $mobile-h2;
 					text-align: center;
+
+					@media (max-width: 700px) {
+						font-size: $h3;
+					}
 				}
 			}
 
@@ -119,6 +123,7 @@ const { styles } = Astro.props
 								width: 100%;
 								height: 100%;
 								transition: scale 300ms ease;
+								object-fit: cover;
 							}
 						}
 						.right {
@@ -132,6 +137,26 @@ const { styles } = Astro.props
 							p {
 								color: $black;
 								transition: color 0.3s ease-in-out;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 700px) {
+			padding: 1rem;
+			.menu {
+				.content {
+					.list {
+						.list-item {
+							flex-direction: column;
+							align-items: flex-start;
+
+							.left {
+								width: 100%;
+							}
+							.right {
+								width: 100%;
 							}
 						}
 					}

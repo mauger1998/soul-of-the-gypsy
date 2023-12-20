@@ -15,7 +15,7 @@ const { image, title, text, index, sticker } = Astro.props
 		<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
 	</div>
 	<div class="text">
-		<h3>{title} <img src="/svg/Rectangle 28.svg" alt="Diamond Element" /></h3>
+		<h3>{title}</h3>
 		<p>{text}</p>
 	</div>
 </div>
@@ -83,9 +83,6 @@ const { image, title, text, index, sticker } = Astro.props
 			h3 {
 				color: $white;
 				margin-block: 0.75rem 1rem;
-				img {
-					width: 0.5rem;
-				}
 			}
 			p {
 				max-width: 40ch;
