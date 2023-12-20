@@ -23,6 +23,9 @@ const { to, variant, text } = Astro.props
 
 <style lang="scss">
 	a {
+		&:focus {
+			outline: none !important;
+		}
 		button {
 			padding: 0.75rem 2rem;
 			font-weight: 500;
@@ -31,6 +34,10 @@ const { to, variant, text } = Astro.props
 			align-items: center;
 			gap: 0.5rem;
 			justify-content: space-between;
+
+			&:focus {
+				outline: none !important;
+			}
 
 			span {
 				position: relative;

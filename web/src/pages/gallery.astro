@@ -75,50 +75,12 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 							themeColor={section.themeColor}
 						/>
 					)
+				case 'basic':
+					return <GalleryCta title={section.title.title} />
 				default:
 					return null
 			}
 		})
 	}
-	<!-- <Card
-		pagename="gallery"
-		title={sections[0].title}
-		tag={sections[0].tag}
-		text={sections[0].text}
-		image={sections[0].image}
-		styles={collectionSections}
-	/>
-	<Collection
-		titleColor={sections[1].titleColor}
-		title={sections[1].title}
-		image={sections[1].image}
-		projects={sections[1].projects}
-		themeColor={sections[1].themeColor}
-	/>
-
-	<Collection
-		titleColor={sections[2].titleColor}
-		title={sections[2].title}
-		image={sections[2].image}
-		projects={sections[2].projects}
-		themeColor={sections[2].themeColor}
-	/>
-	<Collection
-		titleColor={sections[3].titleColor}
-		title={sections[3].title}
-		image={sections[3].image}
-		projects={sections[3].projects}
-		themeColor={sections[3].themeColor}
-	/>
-	<Collection
-		titleColor={sections[5].titleColor}
-		title={sections[5].title}
-		image={sections[5].image}
-		projects={sections[5].projects}
-		themeColor={sections[5].themeColor}
-	/> -->
-
-	<!-- <ProjectGrid pagename="gallery" projects={projects} /> -->
-	<!-- <GalleryCta title={sections[4].title.title} /> -->
 </Layout>
 <Video />

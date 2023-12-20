@@ -1,6 +1,7 @@
 ---
 import { urlForImage } from '../../lib/urlForImage'
-const { image, title, text, index, sticker } = Astro.props
+import Button from '../Button.astro'
+const { image, title, text, index, sticker, pagename } = Astro.props
 ---
 
 <div data-speed={1 - index / 50} class="project">
@@ -15,6 +16,17 @@ const { image, title, text, index, sticker } = Astro.props
 		<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
 		<dialog>
 			<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+			<div class="content">
+				<h3>{title}</h3>
+				<p>{text}</p>
+				{
+					pagename === 'home' ? (
+						<Button text="See all art" variant="black-outline" to="/gallery/" />
+					) : (
+						<Button text="Contact us now" variant="black-outline" to="/#contact" />
+					)
+				}
+			</div>
 		</dialog>
 	</div>
 	<div class="text">
@@ -82,14 +94,25 @@ const { image, title, text, index, sticker } = Astro.props
 
 			dialog {
 				position: fixed;
-				width: 80vw;
-				height: 90vh;
+				width: clamp(350px, 50vw, 800px);
 				background-color: $white;
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
 				overflow: hidden;
 
+				.content {
+					padding: 2rem;
+
+					h3 {
+						color: $black;
+					}
+					p {
+						color: $black;
+						margin-block: 1rem 1.5rem;
+						max-width: 40ch;
+					}
+				}
 				&:focus {
 					outline: none;
 				}
@@ -100,9 +123,13 @@ const { image, title, text, index, sticker } = Astro.props
 					object-fit: cover;
 					margin: 0;
 					padding: 0;
+					object-position: center;
+					max-height: 400px;
 				}
 				&::backdrop {
 					background-color: #030303b5;
+					backdrop-filter: blur(10px);
+					-webkit-backdrop-filter: blur(10px);
 				}
 			}
 

@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import {media} from 'sanity-plugin-media'
 import {deskStructure} from './components/deskStructure'
+import {netlifyTool} from 'sanity-plugin-netlify'
 
 export default defineConfig({
   name: 'default',
@@ -12,7 +13,7 @@ export default defineConfig({
   projectId: '5iens2lz',
   dataset: 'production',
 
-  plugins: [deskTool({structure: deskStructure}), visionTool(), media()],
+  plugins: [deskTool({structure: deskStructure}), visionTool(), media(), netlifyTool()],
 
   schema: {
     types: schemaTypes,

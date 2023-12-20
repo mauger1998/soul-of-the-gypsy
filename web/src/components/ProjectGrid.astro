@@ -8,6 +8,7 @@ import Project from './items/Project.astro'
 		{
 			projects.map((project, index) => (
 				<Project
+					pagename={pagename}
 					sticker={project.sticker ? project.sticker : null}
 					index={index}
 					image={project.image}
