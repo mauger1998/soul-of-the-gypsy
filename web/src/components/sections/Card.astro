@@ -57,7 +57,7 @@ const paragraphs = formatText(text)
 				{
 					pagename === 'gallery' ? (
 						<img
-							src="/images/stickers/gallery-stickers/birdland-sticker 1.png"
+							src="/images/stickers/gallery-stickers/birdland-sticker 1.webp"
 							alt="Birdland Sticker"
 						/>
 					) : null
@@ -82,35 +82,36 @@ const paragraphs = formatText(text)
 	})
 </script>
 <script type="module">
-	let smoother = window.smoother
+	if (window.location.pathname === '/gallery/') {
+		let smoother = window.smoother
 
-	const keepScrollingIcon = document.getElementById('keep-scrolling')
+		const keepScrollingIcon = document.getElementById('keep-scrolling')
 
-	keepScrollingIcon.addEventListener('click', (event) => {
-		event.preventDefault()
-		smoother.scrollTo('#fine-art', true, 'top top')
-	})
-
-	document.addEventListener('DOMContentLoaded', (event) => {
-		const openModal = document.getElementById('open-modal')
-		const dialog = document.querySelector('.search-dialog')
-		const closeModal = document.getElementById('close-modal')
-
-		openModal.addEventListener('click', (event) => {
-			event.stopPropagation() // Prevent this click from triggering the document click event
-			dialog.showModal()
+		keepScrollingIcon.addEventListener('click', (event) => {
+			event.preventDefault()
+			smoother.scrollTo('#fine-art', true, 'top top')
 		})
-		closeModal.addEventListener('click', (event) => {
-			event.stopPropagation() // Prevent this click from triggering the document click event
-			dialog.close()
-		})
+		document.addEventListener('DOMContentLoaded', (event) => {
+			const openModal = document.getElementById('open-modal')
+			const dialog = document.querySelector('.search-dialog')
+			const closeModal = document.getElementById('close-modal')
 
-		document.addEventListener('click', (event) => {
-			if (event.target === dialog) {
+			openModal.addEventListener('click', (event) => {
+				event.stopPropagation() // Prevent this click from triggering the document click event
+				dialog.showModal()
+			})
+			closeModal.addEventListener('click', (event) => {
+				event.stopPropagation() // Prevent this click from triggering the document click event
 				dialog.close()
-			}
+			})
+
+			document.addEventListener('click', (event) => {
+				if (event.target === dialog) {
+					dialog.close()
+				}
+			})
 		})
-	})
+	}
 </script>
 
 <style lang="scss">

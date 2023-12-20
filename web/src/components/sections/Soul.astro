@@ -6,15 +6,15 @@ const paragraphs = formatText(text)
 
 <section class="soul-section">
 	<div class="wrapper">
-		<img src="/images/Screenshot 2023-12-09 at 08.08 1.png" alt="Elvis Presley Art" />
+		<img src="/images/Screenshot 2023-12-09 at 08.08 1.webp" alt="Elvis Presley Art" />
 		<div class="content">
 			<div class="container">
 				<div class="h2-wrap">
 					<h2>{title}</h2>
 				</div>
 				<div class="image-container">
-					<img src="/images/middle-finger-canvas-black.png" alt="Middle Finger Art" />
-					<img src="/images/stickers/image 8.png" alt="Jonny Cash Sticker" />
+					<img src="/images/middle-finger-canvas-black.webp" alt="Middle Finger Art" />
+					<img src="/images/stickers/image 8.webp" alt="Jonny Cash Sticker" />
 				</div>
 			</div>
 			{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
@@ -28,13 +28,13 @@ const paragraphs = formatText(text)
 	gsap.registerPlugin(ScrollTrigger)
 
 	gsap.fromTo(
-		'.soul-section .container > img',
+		'.soul-section .container .image-container img:nth-child(1)',
 		{
 			clipPath: 'polygon(0 99%, 100% 99%, 100% 100%, 0% 100%)' // start with a polygon that is just barely visible on the right side of the image
 		},
 		{
 			scrollTrigger: {
-				trigger: '.soul-section .container > img',
+				trigger: '.soul-section .container .image-container img:nth-child(1)',
 				start: 'top 60%',
 				toggleActions: 'play none none reverse'
 			},

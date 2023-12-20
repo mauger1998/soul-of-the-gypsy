@@ -2,8 +2,6 @@
 import { urlForImage } from '../../lib/urlForImage'
 const { cards } = Astro.props
 
-console.log(cards)
-
 // split cards in to 2 equal arrays
 const half = Math.ceil(cards.length / 2)
 const firstHalf = cards.slice(0, half)
