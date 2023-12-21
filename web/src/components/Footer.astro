@@ -150,9 +150,20 @@
 		}
 		@media (max-width: 550px) {
 			.wrapper {
-				.footer-bottom {
+				.footer-bar {
 					gap: 1rem;
 					row-gap: 2rem;
+				}
+			}
+		}
+		@media (max-width: 350px) {
+			.wrapper {
+				.footer-bar {
+					.content {
+						flex-direction: column;
+						align-items: flex-start;
+						gap: 1.5rem;
+					}
 				}
 			}
 		}

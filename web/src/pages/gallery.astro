@@ -50,7 +50,11 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 		})
 	})
 </script>
-<Layout>
+<Layout
+	title="Soul of the Gypsy Gallery | Order a Custom Piece"
+	description="Explore Kev Ash's creations in our gallery, from Graphite Art to Oil Paintings Custom Clothing Designs & much more. Immerse yourself in the Soul of the Gypsy and order a custom piece today."
+	pathname="gallery/"
+>
 	{
 		sections.map((section) => {
 			switch (section._type) {
@@ -73,6 +77,7 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 							image={section.image}
 							projects={section.projects}
 							themeColor={section.themeColor}
+							stickers={section.stickers}
 						/>
 					)
 				case 'basic':

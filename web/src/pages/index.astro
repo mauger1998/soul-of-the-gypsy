@@ -30,7 +30,12 @@ const projectsQuery = `*[_type == "project"]`
 const projects = await getSanity(projectsQuery)
 ---
 
-<Layout>
+<Layout
+	title="Unapologetic Art by Kev Ash | Soul Of The Gypsy"
+	description="Discover Kev Ash's anapologetic creations at Soul of the Gypsy, featuring Graphite Art, Oil Paintings, Custom Clothing & much more. Inspired by San Francisco's 1968 Summer of Love & Biker Culture amongst other things. Order a custom piece today."
+	pathname=""
+	pagename="home"
+>
 	<Hero title={sections[0].title.title} tag={sections[0].title.tag} />
 	<TwoColumn
 		title={sections[1].title}

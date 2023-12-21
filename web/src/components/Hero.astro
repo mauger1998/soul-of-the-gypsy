@@ -9,52 +9,83 @@ const formattedSubtitle = formatSubtitle(tag)
 
 <main>
 	<div class="wrapper">
+		<div class="florence-image">
+			<img src="/images/new-hero-images/pngegg 1.png" alt="Florence Chapel Art Inspiration" />
+		</div>
 		<div class="title">
-			<img
-				src="/images/351769015_680000343919710_6624808798732099216_n (1) 1.webp"
-				alt="Laughing Man Pencil Illustration"
-			/>
 			<h3 set:html={formattedSubtitle} />
 			<h1 set:html={formattedTitle} />
 		</div>
-		<img src="/images/stickers/paul-siminon 2.webp" alt="Dan Siminon Sticker" />
+		<div class="soul-image">
+			<img
+				src="/images/new-hero-images/soul-of-the-gypsy-nobg 2.png"
+				alt="Soul of the gypsy oil painting canvas"
+			/>
+		</div>
 	</div>
 </main>
 <style is:global lang="scss">
 	main {
-		background-image: url('/images/marbel-hero-canvas-illustration.webp');
+		background-image: linear-gradient(to top, #03030390, #03030300 70%),
+			url('/images/new-hero-images/kevs-gallery 1.png');
 		background-size: cover;
 		background-position: center;
 
 		.wrapper {
-			padding-block: 24rem 2rem;
+			padding-block: 18rem 2rem;
 			position: relative;
-			& > img {
-				position: absolute;
-				bottom: 2rem;
-				right: 2rem;
-				width: clamp(100px, 15vw, 200px);
-			}
-			.title {
-				img {
-					width: 100px;
-					margin-block-end: 1.5rem;
-					scale: 0;
-				}
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			overflow: hidden;
+			gap: 0;
 
+			.florence-image {
+				display: flex;
+				transform: translate(-4rem, 2rem);
+				width: calc(30% + 4rem);
+				z-index: 1;
+
+				img {
+					// display: block;
+				}
+			}
+
+			.soul-image {
+				width: calc(30% + 4rem);
+				transform: translate(10rem, 6rem);
+			}
+
+			.title {
+				width: 40%;
 				h3 {
 					color: $white;
 					clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-					margin-block-end: -1rem;
-
+					line-height: 1;
+					text-align: center;
+					width: max-content;
+					margin-inline: auto;
+					font-size: 24px;
 					span {
 						font-family: 'Hyperwave';
-						font-size: calc($h3 * 1.4);
+						font-size: calc(24px * 1.4);
 						vertical-align: middle;
+
+						@media (max-width: 700px) {
+							font-size: calc($mobile-h3 * 1.4);
+						}
 					}
 				}
 				h1 {
 					clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+					font-size: clamp($mobile-h1, 8vw, $h1);
+					text-align: center;
+					width: max-content;
+					margin-inline: auto;
+
+					@media (max-width: 500px) {
+						font-size: clamp(64px, 20vw, $mobile-h1) !important;
+					}
 
 					span {
 						font-style: italic !important;
@@ -71,15 +102,73 @@ const formattedSubtitle = formatSubtitle(tag)
 				}
 			}
 		}
-		@media (max-width: 700px) {
+		@media (max-width: 768px) {
+			background-image: linear-gradient(to top, #03030390, #03030300 70%),
+				url('/images/new-hero-images/mobile-gallery-image.png');
+
 			.wrapper {
-				padding-block: 22rem 2rem;
+				padding-block: 30rem 2rem;
+				height: 95vh;
+				max-height: 1000px;
+
 				.title {
+					position: absolute;
+					top: 35%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					width: 100%;
+
+					h1 {
+						font-size: $mobile-h1;
+						color: $black;
+					}
+
 					h3 {
+						font-size: 20px;
+						color: $black;
 						span {
-							font-size: calc($mobile-h3 * 1.4);
+							font-size: calc(20px * 1.4);
+							vertical-align: middle;
 						}
 					}
+				}
+				.florence-image {
+					width: 100%;
+					transform: none;
+					margin-inline-start: -4rem;
+					margin-block-end: -2rem;
+					// border: 2px solid red;
+				}
+				.soul-image {
+					width: 100%;
+					transform: none;
+					margin-inline-end: -8rem;
+					margin-block-end: -6rem;
+					// border: 2px solid red;
+				}
+			}
+		}
+
+		@media (max-width: 450px) {
+			.wrapper {
+				.title {
+					h3 {
+						font-size: 14px;
+						span {
+							font-size: calc(20px * 1.4);
+							vertical-align: middle;
+						}
+					}
+				}
+				.florence-image {
+					margin-inline-start: -4rem;
+					margin-inline-end: -3rem;
+					margin-block-end: -2rem;
+				}
+				.soul-image {
+					margin-inline-end: -8rem;
+					margin-inline-start: -3rem;
+					margin-block-end: -6rem;
 				}
 			}
 		}

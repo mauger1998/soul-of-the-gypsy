@@ -3,7 +3,7 @@ import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
 import Project from '../items/Project.astro'
 
-const { title, image, projects, titleColor, themeColor = 'sketchbook' } = Astro.props
+const { title, image, projects, themeColor = 'sketchbook', stickers } = Astro.props
 
 const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 ---
@@ -70,83 +70,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			opacity: 1
 		})
 	})
-</script>
-<section
-	id={title.split(' ').join('-').toLowerCase()}
-	class={`
-	${themeColor.split(' ').join('-').toLowerCase()}
-	collection-section`}
->
-	<div class="wrapper">
-		<div class="banner">
-			<div class="content">
-				<h2 class={titleColor}>{title}</h2>
-			</div>
-		</div>
-		<div class="projects">
-			{
-				themeColor === 'sketchbook' ? (
-					<img src="/images/image 53.webp" alt="Biker Illustration" />
-				) : null
-			}
-			{
-				projects.map((project, index) => (
-					<Project
-						sticker={project.sticker ? project.sticker : null}
-						title={project.title}
-						text={project.description}
-						index={index}
-						image={project.image}
-					/>
-				))
-			}
-		</div>
-		<div class="bottom">
-			{
-				themeColor === 'sketchbook' ? (
-					<>
-						<img src="/images/worker-cutout 1.webp" alt="Working Man Painting" />
-						<Button text="Contact us now" variant="black-outline" to="/#contact" />
-						<img src="/images/singer-nobg 1.webp" alt="Howling Wolf Drawing" />
-					</>
-				) : themeColor.split(' ').join('-').toLowerCase() === 'fine-art' ? (
-					<>
-						<img
-							src="/images/stickers/gallery-stickers/Mask group.webp"
-							alt="Working Man Painting"
-						/>
-						<Button text="Contact us now" variant="white-outline" to="/#contact" />
-						<img src="/images/stickers/PngItem_4919813 1.webp" alt="Howling Wolf Drawing" />
-					</>
-				) : themeColor.split(' ').join('-').toLowerCase() === 'murals' ? (
-					<>
-						<img src="/images/stickers/PngItem_1679584 1.webp" alt="Working Man Painting" />
-						<Button text="Contact us now" variant="black-outline" to="/#contact" />
-						<img
-							src="/images/stickers/gallery-stickers/pngwing 8.webp"
-							alt="Howling Wolf Drawing"
-						/>
-					</>
-				) : (
-					<>
-						<img src="/images/stickers/gallery-stickers/image 52.webp" alt="Working Man Painting" />
-						<Button text="Contact us now" variant="white-outline" to="/#contact" />
-						<img
-							src="/images/stickers/gallery-stickers/kustum-sticker 1.webp"
-							alt="Howling Wolf Drawing"
-						/>
-					</>
-				)
-			}
-		</div>
-	</div>
-</section>
-
-<script>
-	import { gsap } from 'gsap'
-	import { ScrollTrigger } from 'gsap/ScrollTrigger'
-	gsap.registerPlugin(ScrollTrigger)
-
 	const allBottomStickers = document.querySelectorAll('.bottom > img')
 
 	allBottomStickers.forEach((sticker) => {
@@ -185,6 +108,54 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		backgroundColor: '#532b77'
 	})
 </script>
+<section
+	id={title.split(' ').join('-').toLowerCase()}
+	class={`
+	${themeColor.split(' ').join('-').toLowerCase()}
+	collection-section`}
+>
+	<div class="wrapper">
+		<div class="banner">
+			<div class="content">
+				<h2>{title}</h2>
+			</div>
+		</div>
+		<div class="projects">
+			{
+				themeColor === 'sketchbook' ? (
+					<img src="/images/image 53.webp" alt="Biker Illustration" />
+				) : null
+			}
+			{
+				projects.map((project, index) => (
+					<Project
+						sticker={project.sticker ? project.sticker : null}
+						title={project.title}
+						text={project.description}
+						index={index}
+						image={project.image}
+					/>
+				))
+			}
+		</div>
+		<div class="bottom">
+			{
+				stickers.map((sticker, index) => (
+					<>
+						<img src={urlForImage(sticker).format('webp').url()} alt={sticker.alt} />
+						{index === 0 &&
+						(themeColor.split(' ').join('-').toLowerCase() === 'fine-art' ||
+							themeColor.split(' ').join('-').toLowerCase() === 'kustum') ? (
+							<Button text="Contact us" to="/#contact" variant="white-outline" />
+						) : index === 0 ? (
+							<Button variant="black-outline" text="Contact us" to="/#contact" />
+						) : null}
+					</>
+				))
+			}
+		</div>
+	</div>
+</section>
 
 <style is:global define:vars={{ bgUrl }} lang="scss">
 	.collection-section {
@@ -206,6 +177,9 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				@media (max-width: 700px) {
 					// margin-block-start: -3rem !important;
 					padding-block: 32rem 2rem;
+				}
+				@media (max-width: 500px) {
+					margin-block-start: -3rem !important;
 				}
 
 				.content {

@@ -8,20 +8,7 @@ export default {
       title: 'Display Image',
       type: 'customImage',
     },
-    {
-      name: 'titleColor',
-      title: 'Title Color',
-      type: 'string',
-      description:
-        'Title is going to be in the bottom left corner of whatever image you upload so pick a colour based on the image background color.',
-      options: {
-        list: [
-          {title: 'Black', value: 'black'},
-          {title: 'White', value: 'white'},
-        ],
-        layout: 'radio', // if you want to display them as radio buttons
-      },
-    },
+
     {
       name: 'themeColor',
       title: 'Theme Color',
@@ -29,10 +16,10 @@ export default {
 
       options: {
         list: [
-          {title: 'Fine Art', value: 'fine art'},
-          {title: 'Sketchbook', value: 'sketchbook'},
-          {title: 'Kustum', value: 'kustum'},
-          {title: 'Murals', value: 'murals'},
+          {title: 'Fine Art (Black background)', value: 'fine art'},
+          {title: 'Sketchbook (White background)', value: 'sketchbook'},
+          {title: 'Kustum (Purple background)', value: 'kustum'},
+          {title: 'Murals (Blue background)', value: 'murals'},
         ],
         layout: 'radio', // if you want to display them as radio buttons
       },
@@ -47,6 +34,14 @@ export default {
       name: 'description',
       title: 'Description',
       type: 'text',
+    },
+    {
+      name: 'stickers',
+      title: 'Stickers',
+      type: 'array',
+      description: 'Must be 2 stickers here. The first one will dissapear on mobile.',
+      of: [{type: 'customImage'}],
+      validation: (Rule) => Rule.min(2).max(2).error('Must be 2 stickers here.'),
     },
 
     {

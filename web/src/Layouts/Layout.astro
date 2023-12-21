@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 
-const { title = 'The Soul Of The Gypsy', description, keywords, pathname } = Astro.props
+const { title = 'The Soul Of The Gypsy', description, keywords, pathname, pagename } = Astro.props
 ---
 
 <html lang="en">
@@ -36,7 +36,7 @@ const { title = 'The Soul Of The Gypsy', description, keywords, pathname } = Ast
 	</head>
 	<body>
 		<div class="scroll-content">
-			<Header />
+			<Header pagename={pagename} />
 			<slot />
 			<Footer />
 		</div>

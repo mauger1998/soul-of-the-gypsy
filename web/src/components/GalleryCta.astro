@@ -39,5 +39,28 @@ const { title } = Astro.props
 				display: block;
 			}
 		}
+		@media (max-width: 1024px) {
+			.wrapper {
+				.title {
+					margin-block-end: -8rem;
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				& > img {
+				}
+				.title {
+					margin-block-end: -4rem;
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				& > img {
+					margin-block-end: -3rem;
+				}
+			}
+		}
 	}
 </style>

@@ -68,29 +68,30 @@ const { title, text, cards, sticker } = Astro.props
 	const listItems = document.querySelectorAll('.list-item')
 	const images = document.querySelectorAll('.card-image')
 
-	listItems.forEach((listItem, index) => {
-		listItem.addEventListener('mouseover', () => {
-			gsap.to(images[index], {
-				duration: 0.5,
-				clipPath: 'polygon(1% 0, 100% 0, 100% 100%, 1% 100%)'
+	if (window.innerWidth > 1024) {
+		listItems.forEach((listItem, index) => {
+			listItem.addEventListener('mouseover', () => {
+				gsap.to(images[index], {
+					duration: 0.5,
+					clipPath: 'polygon(1% 0, 100% 0, 100% 100%, 1% 100%)'
+				})
+			})
+
+			listItem.addEventListener('mouseout', () => {
+				gsap.to(images[index], {
+					duration: 0.5,
+					clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)'
+				})
 			})
 		})
+		list.addEventListener('mousemove', (event) => {
+			const x = event.clientX - list.getBoundingClientRect().left
+			const y = event.clientY - list.getBoundingClientRect().top
 
-		listItem.addEventListener('mouseout', () => {
-			gsap.to(images[index], {
-				duration: 0.5,
-				clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)'
-			})
+			gsap.to(imageContainer, { duration: 0.5, x: x, y: y })
 		})
-	})
-	list.addEventListener('mousemove', (event) => {
-		const x = event.clientX - list.getBoundingClientRect().left
-		const y = event.clientY - list.getBoundingClientRect().top
-
-		gsap.to(imageContainer, { duration: 0.5, x: x, y: y })
-	})
+	}
 </script>
-
 <style lang="scss">
 	.images-now {
 		position: absolute;

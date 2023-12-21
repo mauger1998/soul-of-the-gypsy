@@ -1,15 +1,37 @@
-<header>
+---
+const { pagename } = Astro.props
+---
+
+<header class={pagename}>
 	<div class="header-wrapper">
 		<div class="content">
 			<a href="/">
-				<img src="/svg/KEV ASH.svg" alt="Kev Ash Art Logo" />
+				{
+					pagename === 'home' ? (
+						<img src="/svg/KEV ASH black.svg" alt="Kev Ash Logo" />
+					) : (
+						<img src="/svg/KEV ASH.svg" alt="Kev Ash Art Logo" />
+					)
+				}
 			</a>
 			<div class="socials">
 				<a href="https://facebook.com/">
-					<img src="/svg/facebook.svg" alt="Facebook Icon" />
+					{
+						pagename === 'home' ? (
+							<img src="/svg/facebook-black.svg" alt="Facebook Icon" />
+						) : (
+							<img src="/svg/facebook.svg" alt="Facebook Icon" />
+						)
+					}
 				</a>
 				<a href="https://instagram.com/">
-					<img src="/svg/instagram.svg" alt="Instagram Icon" />
+					{
+						pagename === 'home' ? (
+							<img src="/svg/instagram-black.svg" alt="Instagram Icon" />
+						) : (
+							<img src="/svg/instagram.svg" alt="Instagram Icon" />
+						)
+					}
 				</a>
 			</div>
 		</div>
@@ -105,7 +127,154 @@
 <style lang="scss">
 	header {
 		position: absolute;
-		z-index: 10000;
+		z-index: 100000000;
+
+		&.home {
+			.header-wrapper {
+				& > nav {
+					ul {
+						a {
+							li {
+								color: $black;
+							}
+						}
+					}
+
+					.buttons {
+						a {
+							button {
+								background-color: $black;
+								color: $white;
+								display: flex;
+								align-items: center;
+								gap: 0.5rem;
+								padding: 0.75rem 1rem;
+								font-weight: 500;
+								cursor: pointer;
+								border: 0.5px solid $black;
+								display: flex;
+								align-items: center;
+								gap: 0.5rem;
+								justify-content: space-between;
+								transition:
+									background-color 0.3s ease-in-out,
+									color 0.3s ease-in-out;
+
+								span {
+									position: relative;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+
+									img {
+										width: 1rem;
+										transition: opacity 0.3s ease-in-out;
+
+										&:nth-child(1) {
+											position: absolute;
+											z-index: 1;
+											top: 50%;
+											left: 50%;
+											transform: translate(-50%, -50%);
+											opacity: 0;
+										}
+										&:nth-child(2) {
+											position: static;
+											z-index: 1;
+											transform: translate(0, 0);
+										}
+									}
+								}
+							}
+							&:hover {
+								button {
+									background-color: transparent;
+									color: $black;
+									transition:
+										background-color 0.3s ease-in-out,
+										color 0.3s ease-in-out;
+
+									span {
+										img {
+											&:nth-of-type(1) {
+												opacity: 1;
+												transition: opacity 0.3s ease-in-out;
+											}
+											&:nth-of-type(2) {
+												opacity: 0;
+												transition: opacity 0.3s ease-in-out;
+											}
+										}
+									}
+								}
+							}
+						}
+						& > button {
+							padding: 0.75rem 1rem;
+							font-weight: 500;
+							cursor: pointer;
+							background-color: transparent;
+							border: 0.5px solid $black;
+							color: $black;
+							display: flex;
+							align-items: center;
+							gap: 0.5rem;
+							justify-content: space-between;
+							transition:
+								background-color 0.3s ease-in-out,
+								color 0.3s ease-in-out;
+
+							span {
+								position: relative;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+
+								img {
+									&:nth-child(1) {
+										position: absolute;
+										top: 50%;
+										left: 50%;
+										transform: translate(-50%, -50%);
+										opacity: 0;
+									}
+									&:nth-child(2) {
+										position: static;
+										opacity: 1;
+										transform: none;
+									}
+								}
+							}
+
+							&:hover {
+								background-color: $black;
+								color: $white;
+								transition:
+									background-color 0.3s ease-in-out,
+									color 0.3s ease-in-out;
+
+								span {
+									position: relative;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									img {
+										&:nth-of-type(1) {
+											opacity: 1;
+											transition: opacity 0.3s ease-in-out;
+										}
+										&:nth-of-type(2) {
+											opacity: 0 !important;
+											transition: opacity 0.3s ease-in-out;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 
 		.header-wrapper {
 			display: flex;
