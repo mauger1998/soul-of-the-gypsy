@@ -1,6 +1,8 @@
 ---
 import Cta from '../components/Cta.astro'
 import GalleryCta from '../components/GalleryCta.astro'
+import GalleryHero from '../components/GalleryHero.astro'
+import Hero from '../components/Hero.astro'
 import Card from '../components/sections/Card.astro'
 import Collection from '../components/sections/Collection.astro'
 import Video from '../components/Video.astro'
@@ -55,6 +57,7 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	description="Explore Kev Ash's creations in our gallery, from Graphite Art to Oil Paintings Custom Clothing Designs & much more. Immerse yourself in the Soul of the Gypsy and order a custom piece today."
 	pathname="gallery/"
 >
+	<GalleryHero tag="Kev Ash" title="Gallery" />
 	{
 		sections.map((section) => {
 			switch (section._type) {

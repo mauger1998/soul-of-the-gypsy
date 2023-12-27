@@ -1,0 +1,106 @@
+---
+import { formatTitle } from '../lib/formatTitle.js'
+import { formatSubtitle } from '../lib/formatTitle.js'
+const { tag, title } = Astro.props
+
+const formattedTitle = formatTitle(title)
+---
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<h1 set:html={formattedTitle} />
+		</div>
+	</div>
+</main>
+<style is:global lang="scss">
+	main {
+		background-image: linear-gradient(to top, #030303, #03030300 70%),
+			url('/images/gallery-hero/posters-on-a-wall-gallery-hero 1.webp');
+		background-size: cover;
+		background-position: center;
+
+		.wrapper {
+			padding-block: 28rem 2rem;
+			position: relative;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			gap: 0;
+
+			.title {
+				width: 40%;
+				h3 {
+					color: $white;
+					// clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+					line-height: 1;
+					text-align: center;
+					width: max-content;
+					margin-inline: auto;
+					font-size: 24px;
+					margin-block: 0 0.5rem;
+				}
+				h1 {
+					// clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+					font-size: clamp($mobile-h1, 14vw, $h1);
+					text-align: center;
+					width: max-content;
+					margin-inline: auto;
+
+					@media (max-width: 500px) {
+						font-size: clamp(64px, 22vw, $mobile-h1) !important;
+					}
+
+					span {
+						font-style: italic !important;
+					}
+				}
+			}
+		}
+		@media (max-width: 1024px) {
+			.wrapper {
+				& > img {
+					bottom: auto;
+					top: 6rem;
+					width: clamp(75px, 12vw, 150px);
+				}
+			}
+		}
+		@media (max-width: 1024px) {
+			background-image: linear-gradient(to top, #03030390, #03030300 70%),
+				url('/images/gallery-hero/posters-on-a-wall-gallery-hero-moible 1.webp');
+
+			.wrapper {
+				padding-block: 30rem 2rem;
+				height: 95vh;
+				max-height: 1000px;
+
+				.title {
+					// position: absolute;
+					// top: 30%;
+					// left: 50%;
+					// transform: translate(-50%, -50%);
+					width: 100%;
+
+					h1 {
+						font-size: $mobile-h1;
+					}
+				}
+			}
+		}
+
+		@media (max-width: 450px) {
+			.wrapper {
+				.title {
+					h3 {
+						font-size: 14px;
+						span {
+							font-size: calc(20px * 1.4);
+							vertical-align: middle;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>
