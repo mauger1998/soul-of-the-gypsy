@@ -1,17 +1,10 @@
 ---
 import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
-const { image, title, text, index, sticker, pagename } = Astro.props
+const { image, title, text, index, pagename } = Astro.props
 ---
 
 <div data-speed={1 - index / 50} class="project">
-	{
-		sticker ? (
-			<img class="sticker" src={urlForImage(sticker).format('webp').url()} alt={sticker.alt} />
-		) : (
-			''
-		)
-	}
 	<div class="mask">
 		<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
 		<dialog>
@@ -47,20 +40,6 @@ const { image, title, text, index, sticker, pagename } = Astro.props
 		})
 	}
 
-	const allStickers = document.querySelectorAll('.project .sticker')
-
-	allStickers.forEach((sticker) => {
-		gsap.to(sticker, {
-			scrollTrigger: {
-				trigger: sticker,
-				start: 'top bottom',
-				toggleActions: 'play none none reverse'
-			},
-			scale: 1,
-			transformOrigin: 'center'
-		})
-	})
-
 	const allMasks = document.querySelectorAll('.project .mask')
 	const allMaskDialogs = document.querySelectorAll('.project .mask dialog')
 
@@ -80,14 +59,6 @@ const { image, title, text, index, sticker, pagename } = Astro.props
 	.project {
 		position: relative;
 
-		& > img {
-			max-width: 75px;
-			position: absolute;
-			z-index: 1;
-			top: -2rem;
-			right: -2rem;
-			scale: 0;
-		}
 		.mask {
 			overflow: hidden;
 			display: flex;

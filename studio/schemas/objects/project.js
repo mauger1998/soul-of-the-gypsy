@@ -2,7 +2,7 @@ import KeithRichardsSticker from '../../components/KeithRichardsSticker'
 
 export default {
   name: 'project',
-  title: 'Project',
+  title: 'Projects',
   type: 'document',
   icon: KeithRichardsSticker,
   fields: [
@@ -20,12 +20,6 @@ export default {
       title: 'Image',
       name: 'image',
       type: 'customImage',
-    },
-    {
-      title: 'Sticker',
-      name: 'sticker',
-      type: 'customImage',
-      description: 'If you want to add a sticker make sure it has no background.',
     },
   ],
   preview: {

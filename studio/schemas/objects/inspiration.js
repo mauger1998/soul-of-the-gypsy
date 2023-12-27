@@ -20,12 +20,6 @@ export default {
       title: 'Description',
       type: 'text',
     },
-    {
-      title: 'Sticker',
-      name: 'sticker',
-      type: 'customImage',
-      description: 'If you want to add a sticker make sure it has no background.',
-    },
   ],
   preview: {
     select: {

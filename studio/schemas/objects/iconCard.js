@@ -1,18 +1,17 @@
+import {PiPaintBrushLight} from 'react-icons/pi'
+
 export default {
   name: 'iconCard',
   title: 'Icon Card',
   type: 'object',
+  icon: PiPaintBrushLight,
   fields: [
     {
       name: 'icon',
       title: 'Icon',
       type: 'customImage',
     },
-    {
-      name: 'sticker',
-      title: 'Sticker',
-      type: 'customImage',
-    },
+
     {
       name: 'title',
       title: 'Title',

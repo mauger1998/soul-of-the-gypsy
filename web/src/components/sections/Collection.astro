@@ -3,7 +3,7 @@ import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
 import Project from '../items/Project.astro'
 
-const { title, image, projects, themeColor = 'sketchbook', stickers } = Astro.props
+const { title, image, projects, themeColor = 'sketchbook' } = Astro.props
 
 const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 ---
@@ -70,18 +70,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			opacity: 1
 		})
 	})
-	const allBottomStickers = document.querySelectorAll('.bottom > img')
-
-	allBottomStickers.forEach((sticker) => {
-		gsap.to(sticker, {
-			scrollTrigger: {
-				trigger: sticker,
-				start: 'top 80%',
-				toggleActions: 'play none none reverse'
-			},
-			scale: 1
-		})
-	})
 
 	gsap.to('.fine-art', {
 		scrollTrigger: {
@@ -99,9 +87,9 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		},
 		backgroundColor: '#ffffff'
 	})
-	gsap.to('.kustum', {
+	gsap.to('.kustom', {
 		scrollTrigger: {
-			trigger: '.kustum .projects',
+			trigger: '.kustom .projects',
 			start: 'top 70%',
 			toggleActions: 'play none none reverse'
 		},
@@ -129,7 +117,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 			{
 				projects.map((project, index) => (
 					<Project
-						sticker={project.sticker ? project.sticker : null}
 						title={project.title}
 						text={project.description}
 						index={index}
@@ -138,22 +125,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				))
 			}
 		</div>
-		<div class="bottom">
-			{
-				stickers.map((sticker, index) => (
-					<>
-						<img src={urlForImage(sticker).format('webp').url()} alt={sticker.alt} />
-						{index === 0 &&
-						(themeColor.split(' ').join('-').toLowerCase() === 'fine-art' ||
-							themeColor.split(' ').join('-').toLowerCase() === 'kustum') ? (
-							<Button text="Contact us" to="/#contact" variant="white-outline" />
-						) : index === 0 ? (
-							<Button variant="black-outline" text="Contact us" to="/#contact" />
-						) : null}
-					</>
-				))
-			}
-		</div>
+		<div class="bottom"></div>
 	</div>
 </section>
 
@@ -241,19 +213,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				width: 100%;
 				position: relative;
 				z-index: 10;
-				& > img {
-					width: 200px;
-					scale: 0;
-
-					&:nth-child(1) {
-						margin-inline-start: -4rem;
-						margin-block-end: -6rem;
-					}
-					&:nth-child(3) {
-						margin-inline-end: -4rem;
-						margin-block-end: -9rem;
-					}
-				}
 			}
 		}
 		&.fine-art {
@@ -295,7 +254,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				}
 			}
 		}
-		&.kustum {
+		&.kustom {
 			background-color: $white;
 
 			.wrapper {
@@ -355,14 +314,6 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				.bottom {
 					flex-direction: column;
 					gap: 4rem;
-
-					& > img {
-						margin: 0 !important;
-
-						&:nth-child(1) {
-							display: none;
-						}
-					}
 				}
 			}
 		}

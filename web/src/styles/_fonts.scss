@@ -59,16 +59,26 @@
 	font-weight: 700;
 	font-style: italic;
 }
+// Hyperwave
 @font-face {
 	font-family: 'Hyperwave';
 	src: url('/hyperwave/Hyperwave.otf') format('truetype');
 }
-
+// Chelantro
+@font-face {
+	font-family: 'Chelantro';
+	src: url('/chelantro/Chelantro.ttf') format('truetype');
+}
 h1 {
 	font-size: $h1;
 	line-height: 1.1;
 	color: $white;
 	font-weight: 500;
+	font-family: 'Chelantro';
+
+	span {
+		font-family: 'Chelantro';
+	}
 
 	@media (max-width: 700px) {
 		font-size: $mobile-h1;
@@ -78,6 +88,7 @@ h2 {
 	font-size: $h2;
 	line-height: 1;
 	font-weight: 500;
+	font-family: 'Chelantro';
 
 	@media (max-width: 700px) {
 		font-size: $mobile-h2;

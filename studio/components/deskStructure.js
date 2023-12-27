@@ -1,4 +1,4 @@
-import KustumSticker from './KustumSticker'
+import kustumSticker from './kustumSticker'
 import LightingHopkinsSticker from './LightingHopkinsSticker'
 import JonnyCashSticker from './JonnyCashSticker'
 
@@ -8,7 +8,7 @@ export const deskStructure = (S, context) =>
     .items([
       S.listItem()
         .title('Home Page')
-        .icon(KustumSticker)
+        .icon(kustumSticker)
         .child(S.document().schemaType('home').documentId('fa93819c-ca6b-4d14-8027-9a4a452d77a3')),
       S.divider(),
 

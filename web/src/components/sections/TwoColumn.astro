@@ -18,13 +18,6 @@ import Tag from '../type/Tag.astro'
 		<div class="right">
 			<div class="mask">
 				<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
-				{
-					pagename === 'home' ? (
-						<img src="/images/stickers/PngItem_6570432 2.webp" alt="Flower Sticker" />
-					) : (
-						<img src="/images/stickers/pngegg (31) 1.webp" alt="Flower Sticker" />
-					)
-				}
 			</div>
 			<p>{text}</p>
 		</div>
@@ -123,12 +116,6 @@ import Tag from '../type/Tag.astro'
 						&:nth-child(1) {
 							max-height: 300px;
 							object-fit: cover;
-						}
-						&:nth-child(2) {
-							width: 100px;
-							position: absolute;
-							top: -2rem;
-							right: -2rem;
 						}
 					}
 				}

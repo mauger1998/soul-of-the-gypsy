@@ -73,14 +73,14 @@
 			'-=0.25'
 		)
 		.to('main h1', {
-			clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+			clipPath: 'polygon(-10% 0, 120% 0, 120% 100%, -10% 100%)',
 			ease: 'power1.inOut',
 			duration: 0.75
 		})
 		.to(
 			'main h3',
 			{
-				clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+				clipPath: 'polygon(0 0, 100% 0, 100% 110%, 0 110%)',
 				ease: 'power1.inOut',
 				duration: 0.6
 			},
@@ -114,7 +114,7 @@
 		background-color: $white;
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 		pointer-events: none;
-		// display: none;
+		display: none;
 		&.disabled {
 			opacity: 0;
 		}

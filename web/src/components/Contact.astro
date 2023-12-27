@@ -5,16 +5,16 @@ import Button from './Button.astro'
 <section class="contact-section" id="contact">
 	<div class="wrapper">
 		<div class="left">
-			<h2>Contact Kev</h2>
+			<h3>Contact Soul Of The Gypsy</h3>
 			<div class="contact-info">
 				<a href="mailto:kev@thesoulofthegypsy.com">
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
-					 kev@soulofthegypsy.com
+					 claire@soulofthegypsy.com
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
 				</a>
-				<a href="tel:+447797733888">
+				<a href="tel:+447971045337">
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
-					 07797 733888
+					 07971 045337
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
 				</a>
 			</div>
@@ -58,9 +58,9 @@ import Button from './Button.astro'
 		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
 	})
 
-	gsap.to('.contact-section .left h2, .contact-section .left a', {
+	gsap.to('.contact-section .left h3, .contact-section .left a', {
 		scrollTrigger: {
-			trigger: '.contact-section .left h2',
+			trigger: '.contact-section .left h3',
 			start: 'top 80%',
 			toggleActions: 'play none none reverse'
 		},
@@ -82,7 +82,7 @@ import Button from './Button.astro'
 				flex-direction: column;
 				align-items: flex-start;
 				justify-content: space-between;
-				h2 {
+				h3 {
 					color: $white;
 					margin-block: 0 1.5rem;
 					opacity: 0;

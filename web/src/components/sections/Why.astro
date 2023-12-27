@@ -6,27 +6,12 @@ const { title, cards, pagename = 'home', text } = Astro.props
 <section class="why-section">
 	<div class="wrapper">
 		<div class="title">
-			{
-				pagename === 'home' ? null : (
-					<span>
-						<img src="/svg/flag-for-flag-european-union-svgrepo-com.svg" alt="Groovy Sticker" />
-						<img src="/svg/flag-us-svgrepo-com.svg" alt="Groovy Sticker" />
-					</span>
-				)
-			}
 			<h2>
 				{title}{}
 			</h2>
 			{text ? <p>{text}</p> : null}
 		</div>
 		<div class="cards">
-			{
-				pagename === 'home' ? (
-					<img src="/images/stickers/hendrix-sticker 1.webp" alt="Groovy Sticker" />
-				) : (
-					<img src="/images/stickers/Mask group.webp" alt="Jack Daniels Sticker" />
-				)
-			}
 			{
 				cards.map((card) => (
 					<IconCard icon={card.icon} title={card.title} text={card.description} />
@@ -94,16 +79,6 @@ const { title, cards, pagename = 'home', text } = Astro.props
 	.why-section {
 		.wrapper {
 			.title {
-				& > span {
-					display: flex;
-					align-items: center;
-					gap: 1rem;
-					opacity: 0;
-					transform: translateY(4rem);
-					img {
-						width: 40px;
-					}
-				}
 				h2 {
 					color: $white;
 					max-width: max-content;

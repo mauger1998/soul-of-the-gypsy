@@ -1,7 +1,10 @@
+import {MdOutlineLocalOffer} from 'react-icons/md'
+
 export default {
   name: 'iconCardSection',
   title: 'Icon Card Section',
   type: 'object',
+  icon: MdOutlineLocalOffer,
   fields: [
     {
       name: 'title',
