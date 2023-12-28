@@ -13,9 +13,40 @@ const { title } = Astro.props
 	</div>
 </section>
 
+<script>
+	import gsap from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+	gsap.registerPlugin(ScrollTrigger)
+
+	const tl = gsap.timeline({
+		scrollTrigger: {
+			start: 'top 70%',
+			toggleActions: 'play none none reverse',
+			trigger: '.gallery-cta-section .wrapper'
+		}
+	})
+
+	tl.to('.gallery-cta-section .wrapper .title h2, .gallery-cta-section .wrapper a', {
+		y: 0,
+		opacity: 1,
+		ease: 'power1.inOut',
+		stagger: 0.2
+	}).to(
+		'.gallery-cta-section .wrapper > img',
+		{
+			y: 0,
+			transform: 'skew(0deg)',
+			ease: 'power1.inOut'
+		},
+		'-=0.25'
+	)
+</script>
+
 <style is:global lang="scss">
 	.gallery-cta-section {
 		background-color: $blue;
+		overflow-y: hidden;
 		.wrapper {
 			.title {
 				display: flex;
@@ -27,6 +58,12 @@ const { title } = Astro.props
 					text-align: center;
 					max-width: 12ch;
 					color: $white;
+					transform: translateY(2rem);
+					opacity: 0;
+				}
+				a {
+					transform: translateY(2rem);
+					opacity: 0;
 				}
 			}
 
@@ -37,6 +74,7 @@ const { title } = Astro.props
 				max-width: 800px;
 				pointer-events: none;
 				display: block;
+				transform: translateY(24rem) skew(-10deg);
 			}
 		}
 		@media (max-width: 1024px) {

@@ -5,6 +5,7 @@ export default {
   title: 'Projects',
   type: 'document',
   icon: KeithRichardsSticker,
+
   fields: [
     {
       name: 'title',

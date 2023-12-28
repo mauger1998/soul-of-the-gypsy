@@ -18,7 +18,7 @@ import Button from './Button.astro'
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
 				</a>
 			</div>
-			<img src="/images/frames.webp" alt="Ghandi and an original Piece" />
+			<div class="mask"><img src="/images/frames.webp" alt="Ghandi and an original Piece" /></div>
 		</div>
 		<div class="right">
 			<form action="POST">
@@ -49,9 +49,9 @@ import Button from './Button.astro'
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
 	gsap.registerPlugin(ScrollTrigger)
 
-	gsap.to('.contact-section .left > img', {
+	gsap.to('.contact-section .left .mask img', {
 		scrollTrigger: {
-			trigger: '.contact-section .left > img',
+			trigger: '.contact-section .left .mask img',
 			start: 'top 80%',
 			toggleActions: 'play none none reverse'
 		},
@@ -102,11 +102,26 @@ import Button from './Button.astro'
 						}
 					}
 				}
-				& > img {
+				.mask {
 					max-height: 300px;
-					object-fit: cover;
+					width: 100%;
 					margin-block-start: 4rem;
-					clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+					overflow: hidden;
+
+					img {
+						max-height: 300px;
+						object-fit: cover;
+						clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+						width: 100%;
+						transition: scale 300ms ease;
+					}
+
+					&:hover {
+						img {
+							scale: 1.05;
+							transition: scale 300ms ease;
+						}
+					}
 				}
 			}
 			.right {

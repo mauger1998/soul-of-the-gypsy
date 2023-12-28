@@ -1,6 +1,8 @@
 import kustumSticker from './kustumSticker'
 import LightingHopkinsSticker from './LightingHopkinsSticker'
 import JonnyCashSticker from './JonnyCashSticker'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
+import BillyIdolSticker from '../components/BillyIdolSticker'
 
 export const deskStructure = (S, context) =>
   S.list()
@@ -26,8 +28,17 @@ export const deskStructure = (S, context) =>
         ),
 
       S.divider(),
+      // Optional configuration
+      orderableDocumentListDeskItem({
+        type: 'inspiration',
+        title: 'Inspiration',
+        icon: BillyIdolSticker,
+        S,
+        context,
+      }),
 
       ...S.documentTypeListItems().filter(
-        (listItem) => !['media.tag', 'home', 'about', 'gallery'].includes(listItem.getId()),
+        (listItem) =>
+          !['media.tag', 'home', 'about', 'gallery', 'inspiration'].includes(listItem.getId()),
       ),
     ])

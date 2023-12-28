@@ -41,7 +41,7 @@ const { pagename } = Astro.props
 				<a href="/"> <li>Home</li></a>
 				<a href="/about-kev/"><li>About Kev</li></a>
 				<a href="/gallery/"><li>Gallery</li></a>
-				<a href="/#contact/"><li>Contact us</li></a>
+				<a href="/#contact"><li>Contact us</li></a>
 			</ul>
 			<div class="buttons">
 				<a href="/#contact">
@@ -70,8 +70,8 @@ const { pagename } = Astro.props
 						<a href="/"> <li>Home</li></a>
 						<a href="/about-kev/"><li>About Kev</li></a>
 						<a href="/gallery/"><li>Gallery</li></a>
-						<a href="/#contact/"><li>Contact us</li></a>
-						<a href="/#contact/"><li>Order Now</li></a>
+						<a href="/#contact"><li>Contact us</li></a>
+						<a href="/#contact"><li>Order Now</li></a>
 					</ul>
 
 					<button class="openDialog" class="open-video">
@@ -90,26 +90,31 @@ const { pagename } = Astro.props
 	const openDropdown = document.querySelector('#open-dropdown')
 	const closeDropdown = document.querySelector('#close-dropdown')
 	const dropdownMenu = document.querySelector('.dropdown-menu')
+	const html = document.querySelector('html')
 
 	openDropdown.addEventListener('click', () => {
 		dropdownMenu.classList.add('active')
 		dropdownMenu.setAttribute('aria-expanded', 'true')
+		html.style.overflowY = 'hidden'
 	})
 
 	closeDropdown.addEventListener('click', () => {
 		dropdownMenu.classList.remove('active')
 		dropdownMenu.setAttribute('aria-expanded', 'false')
+		html.style.overflowY = 'auto'
 	})
 </script>
 
 <script type="module">
 	const mySmoother = window.homeSmoother
+	const dropdownMenu = document.querySelector('.dropdown-menu')
+	const html = document.querySelector('html')
 
 	document.addEventListener('DOMContentLoaded', (event) => {
-		const button = document.querySelector('header a[href="/#contact"] button')
+		const anchors = document.querySelectorAll('header a[href="/#contact"]')
 
-		if (button) {
-			button.addEventListener('click', (event) => {
+		anchors.forEach((anchor) => {
+			anchor.addEventListener('click', (event) => {
 				// Check if we're on the home page
 				if (window.location.pathname === '/') {
 					event.preventDefault()
@@ -118,9 +123,15 @@ const { pagename } = Astro.props
 					if (target) {
 						mySmoother.scrollTo(target, true, 'top top')
 					}
+					// Close the dropdown and remove the overflow from the HTML
+					if (dropdownMenu.classList.contains('active')) {
+						dropdownMenu.classList.remove('active')
+						dropdownMenu.setAttribute('aria-expanded', 'false')
+						html.style.overflowY = 'auto'
+					}
 				}
 			})
-		}
+		})
 	})
 </script>
 

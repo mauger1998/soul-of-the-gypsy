@@ -11,7 +11,7 @@ import { getSanity } from '../lib/api'
 import '/src/styles/style.scss'
 
 const query = `*[_type == "about"]`
-const inspirationQuery = `*[_type == "inspiration"]`
+const inspirationQuery = `*[_type == "inspiration"] | order(orderRank asc)`
 const aboutSections = await getSanity(query)
 const inspiration = await getSanity(inspirationQuery)
 const sections = aboutSections[0].sections

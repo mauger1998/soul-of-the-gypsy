@@ -31,7 +31,7 @@ import Tag from '../type/Tag.astro'
 	gsap.fromTo(
 		'.two-column-section .right img:nth-child(1)',
 		{
-			clipPath: 'polygon(99.9% 0, 100% 0, 100% 100%, 99.9% 100%)' // start with a polygon that is just barely visible on the right side of the image
+			clipPath: 'polygon(99.999999% 0, 100% 0, 100% 100%, 99.999999% 100%)' // start with a polygon that is just barely visible on the right side of the image
 		},
 		{
 			scrollTrigger: {
@@ -39,7 +39,7 @@ import Tag from '../type/Tag.astro'
 				start: 'top 60%',
 				toggleActions: 'play none none reverse'
 			},
-			clipPath: 'polygon(1% 0, 100% 0, 100% 100%, 1% 100%)' // animate to a polygon that spans the entire width of the image
+			clipPath: 'polygon(0.0001% 0, 100% 0, 100% 100%, 0.00001% 100%)' // animate to a polygon that spans the entire width of the image
 		}
 	)
 	gsap.to('.two-column-section .left h2, .two-column-section .left .tag', {
@@ -111,11 +111,25 @@ import Tag from '../type/Tag.astro'
 				.mask {
 					position: relative;
 					width: 100%;
-					// overflow: hidden;
+					overflow: hidden;
+					display: flex;
+					align-items: stretch;
 					img {
+						width: 100%;
 						&:nth-child(1) {
 							max-height: 300px;
+							width: 100%;
+
 							object-fit: cover;
+							transition: transform 300ms ease;
+						}
+					}
+					&:hover {
+						img {
+							&:nth-child(1) {
+								transform: scale(1.05);
+								transition: transform 300ms ease;
+							}
 						}
 					}
 				}

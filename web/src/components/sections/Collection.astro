@@ -1,6 +1,5 @@
 ---
 import { urlForImage } from '../../lib/urlForImage'
-import Button from '../Button.astro'
 import Project from '../items/Project.astro'
 
 const { title, image, projects, themeColor = 'sketchbook' } = Astro.props
@@ -296,6 +295,13 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 					grid-template-columns: 1fr 1fr;
 					column-gap: 4rem;
 					row-gap: 6rem;
+
+					& > img {
+						top: 58%;
+						right: 0;
+						z-index: 1;
+						width: 100px;
+					}
 				}
 			}
 		}
@@ -305,6 +311,12 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 					grid-template-columns: 1fr;
 					column-gap: 4rem;
 					row-gap: 6rem;
+
+					& > img {
+						top: 100%;
+						right: 0;
+						width: 60px;
+					}
 				}
 			}
 		}

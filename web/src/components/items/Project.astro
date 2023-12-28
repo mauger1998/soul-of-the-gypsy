@@ -6,9 +6,9 @@ const { image, title, text, index, pagename } = Astro.props
 
 <div data-speed={1 - index / 50} class="project">
 	<div class="mask">
-		<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+		<img src={urlForImage(image).url()} alt={image.alt} />
 		<dialog>
-			<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
+			<img src={urlForImage(image).url()} alt={image.alt} />
 			<div class="content">
 				<h3>{title}</h3>
 				<p>{text}</p>

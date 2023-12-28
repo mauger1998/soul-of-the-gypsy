@@ -1,56 +1,20 @@
 ---
-const { title, tag, text, image, pagename = 'home', styles } = Astro.props
+const { title, tag, text, image, pagename = 'home' } = Astro.props
 import { formatText } from '../../lib/formatText'
 import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
 import Tag from '../type/Tag.astro'
-import Dialog from '../pop-ups/Dialog.astro'
 const paragraphs = formatText(text)
 ---
 
 <section class="card-section">
 	<div class="wrapper">
-		{pagename === 'gallery' ? <Dialog styles={styles} /> : null}
 		<div class="card">
-			{
-				pagename === 'gallery' ? (
-					<svg
-						id="keep-scrolling"
-						width="15"
-						height="28"
-						viewBox="0 0 15 28"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<rect
-							x="1.03516"
-							y="0.589844"
-							width="12.93"
-							height="26.2188"
-							rx="6.46501"
-							stroke="white"
-							stroke-width="0.5"
-						/>
-						<circle cx="7.5" cy="20.3125" r="5.01172" fill="white" />
-					</svg>
-				) : null
-			}
 			<div class="left">
 				{pagename === 'gallery' ? <h1>{title}</h1> : <h2>{title}</h2>}
 				<Tag text={tag} />
 				{paragraphs.map(({ paragraph }) => <p>{paragraph}</p>)}
-				<div class="buttons">
-					<!-- <Button text="See gallery now" to="/gallery/" variant="white-outline" /> -->
-					{
-						pagename === 'gallery' ? (
-							<>
-								<a id="open-modal">Search by art style</a>
-							</>
-						) : (
-							<Button variant="white-outline" to="/gallery/" text="View gallery now" />
-						)
-					}
-				</div>
+				<Button to="/gallery/" variant="white-outline" text="View full gallery" />
 			</div>
 			<div class="right">
 				<img src={urlForImage(image).format('webp').url()} alt={image.alt} />
@@ -73,38 +37,6 @@ const paragraphs = formatText(text)
 		clipPath: 'polygon(0 -50%, 150% -50%, 150% 100%, 0 100%)'
 	})
 </script>
-<script type="module">
-	if (window.location.pathname === '/gallery/') {
-		let smoother = window.smoother
-
-		const keepScrollingIcon = document.getElementById('keep-scrolling')
-
-		keepScrollingIcon.addEventListener('click', (event) => {
-			event.preventDefault()
-			smoother.scrollTo('#fine-art', true, 'top top')
-		})
-		document.addEventListener('DOMContentLoaded', (event) => {
-			const openModal = document.getElementById('open-modal')
-			const dialog = document.querySelector('.search-dialog')
-			const closeModal = document.getElementById('close-modal')
-
-			openModal.addEventListener('click', (event) => {
-				event.stopPropagation() // Prevent this click from triggering the document click event
-				dialog.showModal()
-			})
-			closeModal.addEventListener('click', (event) => {
-				event.stopPropagation() // Prevent this click from triggering the document click event
-				dialog.close()
-			})
-
-			document.addEventListener('click', (event) => {
-				if (event.target === dialog) {
-					dialog.close()
-				}
-			})
-		})
-	}
-</script>
 
 <style lang="scss">
 	.card-section {
@@ -120,31 +52,6 @@ const paragraphs = formatText(text)
 				gap: 2rem;
 				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 				position: relative;
-
-				#keep-scrolling {
-					width: 1.5rem;
-					position: absolute;
-					left: 50%;
-					top: 85%;
-					transform: translate(-50%, 0%);
-					cursor: pointer;
-
-					circle {
-						animation: bounce 2s infinite ease-in-out;
-
-						@keyframes bounce {
-							0% {
-								transform: translateY(0);
-							}
-							50% {
-								transform: translateY(-0.25rem);
-							}
-							100% {
-								transform: translateY(0);
-							}
-						}
-					}
-				}
 
 				.left {
 					width: 55%;

@@ -4,7 +4,6 @@ import { formatSubtitle } from '../lib/formatTitle.js'
 const { tag, title } = Astro.props
 
 const formattedTitle = formatTitle(title)
-const formattedSubtitle = formatSubtitle(tag)
 ---
 
 <main>
@@ -13,7 +12,7 @@ const formattedSubtitle = formatSubtitle(tag)
 			<img src="/images/new-hero-images/pngegg 1.png" alt="Florence Chapel Art Inspiration" />
 		</div>
 		<div class="title">
-			<h3 set:html={formattedSubtitle} />
+			<h3>{tag}</h3>
 			<h1 set:html={formattedTitle} />
 		</div>
 		<div class="soul-image">
@@ -30,6 +29,7 @@ const formattedSubtitle = formatSubtitle(tag)
 			url('/images/new-hero-images/kevs-hero-galler-desktop.webp');
 		background-size: cover;
 		background-position: center;
+		overflow-y: hidden;
 
 		.wrapper {
 			padding-block: 18rem 2rem;
@@ -41,7 +41,7 @@ const formattedSubtitle = formatSubtitle(tag)
 
 			.florence-image {
 				display: flex;
-				transform: translate(-4rem, 2rem);
+				transform: translate(-4rem, 2rem) skew(0deg);
 				width: calc(30% + 4rem);
 				z-index: 1;
 
@@ -52,7 +52,7 @@ const formattedSubtitle = formatSubtitle(tag)
 
 			.soul-image {
 				width: calc(30% + 4rem);
-				transform: translate(10rem, 6rem);
+				transform: translate(10rem, 6rem) skew(0deg);
 			}
 
 			.title {
@@ -134,7 +134,26 @@ const formattedSubtitle = formatSubtitle(tag)
 				}
 			}
 		}
-
+		@media (max-width: 700px) {
+			.wrapper {
+				.forence-image {
+					transform: translate(-2rem, 2rem) skew(0deg);
+				}
+				.soul-image {
+					transform: translate(2rem, 2rem) skew(0deg);
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				.forence-image {
+					transform: translate(-1rem, 2rem) skew(0deg);
+				}
+				.soul-image {
+					transform: translate(1rem, 1rem) skew(0deg);
+				}
+			}
+		}
 		@media (max-width: 450px) {
 			.wrapper {
 				.title {

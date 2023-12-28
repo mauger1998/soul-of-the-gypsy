@@ -1,6 +1,6 @@
 <div class="loader">
 	<div class="panel">
-		<h3>
+		<h3 class="tracked">
 			<div class="track">
 				<span id="target">KEV</span>
 				<span id="target-two">ASH</span>
@@ -50,7 +50,7 @@
 			ease: 'power1.ease'
 		})
 		.to('span .word .char', {
-			y: '-100%',
+			y: '-110%',
 			stagger: 0.05,
 			duration: 0.3,
 			ease: 'power1.out'
@@ -98,9 +98,25 @@
 			},
 			'-=0.5'
 		)
+		.from(
+			'main .florence-image',
+			{
+				transform: 'translate(-4rem, 18rem) skew(-10deg)',
+				ease: 'power1.inOut'
+			},
+			'-=0.6'
+		)
+		.from(
+			'main .soul-image',
+			{
+				transform: 'translate(10rem, 22rem) skew(-10deg)',
+				ease: 'power1.inOut'
+			},
+			'-=0.2'
+		)
 </script>
 
-<style lang="scss">
+<style is:global lang="scss">
 	.loader {
 		position: fixed;
 		top: 0;
@@ -114,7 +130,7 @@
 		background-color: $white;
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 		pointer-events: none;
-		display: none;
+		// display: none;
 		&.disabled {
 			opacity: 0;
 		}
@@ -129,23 +145,36 @@
 			justify-content: center;
 		}
 		h3 {
-			height: $h2 * 1.1;
+			height: $h2 * 1.25;
 			overflow: hidden;
-
 			.track {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-
+				padding: 1rem;
+				padding-top: 0;
 				span {
 					font-size: $h2;
 					line-height: 1.1;
 					font-weight: 700;
+
 					&:nth-child(1) {
 						color: $white;
+
+						.word {
+							.char {
+								font-family: 'Chelantro';
+							}
+						}
 					}
 					&:nth-child(2) {
 						color: $white;
+
+						.word {
+							.char {
+								font-family: 'Chelantro';
+							}
+						}
 					}
 
 					@media (max-width: 700px) {

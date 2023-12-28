@@ -22,6 +22,11 @@ export default {
       title: 'Description',
       type: 'text',
     },
+    {
+      name: 'sticker',
+      title: 'Sticker',
+      type: 'customImage',
+    },
   ],
   preview: {
     select: {
