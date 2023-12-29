@@ -18,6 +18,7 @@ export default {
         {
           type: 'card',
         },
+
         {
           type: 'projects',
         },

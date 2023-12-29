@@ -1,9 +1,9 @@
 ---
-const { to, variant, text } = Astro.props
+const { to, variant, text, ...props } = Astro.props
 ---
 
 <a href={to}>
-	<button class={variant}>
+	<button {...props} class={variant}>
 		{text}
 		{
 			variant === 'white-outline' ? (

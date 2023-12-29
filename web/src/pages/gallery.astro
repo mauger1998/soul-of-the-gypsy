@@ -3,6 +3,7 @@ import GalleryCta from '../components/GalleryCta.astro'
 import GalleryHero from '../components/GalleryHero.astro'
 import Card from '../components/sections/Card.astro'
 import Collection from '../components/sections/Collection.astro'
+import QuoteCard from '../components/sections/QuoteCard.astro'
 import Video from '../components/Video.astro'
 import Layout from '../Layouts/Layout.astro'
 import { getSanity } from '../lib/api'
@@ -49,6 +50,16 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 			dialogToClose.close()
 		})
 	})
+
+	window.onload = (event) => {
+		let urlHash = window.location.href.split('#')[1]
+
+		let scrollElem = document.querySelector('#' + urlHash)
+
+		if (urlHash && scrollElem) {
+			smoother.scrollTo(scrollElem, true, 'top top')
+		}
+	}
 </script>
 <Layout
 	title="Soul of the Gypsy Gallery | Order a Custom Piece"
@@ -59,21 +70,12 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	{
 		sections.map((section) => {
 			switch (section._type) {
-				// case 'card':
-				// 	return (
-				// 		<Card
-				// 			pagename="gallery"
-				// 			title={section.title}
-				// 			tag={section.tag}
-				// 			text={section.text}
-				// 			image={section.image}
-				// 		/>
-				// 	)
 				case 'collection':
 					return (
 						<Collection
 							titleColor={section.titleColor}
 							title={section.title}
+							description={section.description}
 							image={section.image}
 							projects={section.projects}
 							themeColor={section.themeColor}

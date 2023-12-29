@@ -1,8 +1,29 @@
 ---
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { getSanity } from '../lib/api'
 
-const { title = 'The Soul Of The Gypsy', description, keywords, pathname, pagename } = Astro.props
+const {
+	title = 'The Soul Of The Gypsy',
+	description,
+	keywords,
+	pathname,
+	pagename,
+	collections
+} = Astro.props
+
+const query = `*[_type == "gallery"]{
+	...,
+	sections[]{
+		...,
+		projects[]->{
+			...
+		}
+	}
+}`
+const galleryCollectionSections = await getSanity(query)
+const sections = galleryCollectionSections[0].sections
+const collectionSections = sections.filter((section) => section._type === 'collection')
 ---
 
 <html lang="en">
@@ -52,7 +73,7 @@ const { title = 'The Soul Of The Gypsy', description, keywords, pathname, pagena
 		<div class="scroll-content">
 			<Header pagename={pagename} />
 			<slot />
-			<Footer />
+			<Footer collections={collectionSections} />
 		</div>
 	</body>
 </html>

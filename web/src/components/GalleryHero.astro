@@ -80,7 +80,8 @@ const formattedTitle = formatTitle(title)
 		.to('main .rectangle', {
 			scale: 1,
 			filter: 'blur(0px)',
-			duration: 1
+			duration: 1,
+			ease: 'ease'
 		})
 		.to(
 			'main h1, main a',
@@ -90,7 +91,7 @@ const formattedTitle = formatTitle(title)
 				ease: 'power1.inOut',
 				stagger: 0.25
 			},
-			'-=0.35'
+			'-=0.4'
 		)
 </script>
 <style is:global lang="scss">

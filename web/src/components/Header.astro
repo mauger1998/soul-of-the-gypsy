@@ -106,12 +106,15 @@ const { pagename } = Astro.props
 </script>
 
 <script type="module">
-	const mySmoother = window.homeSmoother
-	const dropdownMenu = document.querySelector('.dropdown-menu')
-	const html = document.querySelector('html')
-
 	document.addEventListener('DOMContentLoaded', (event) => {
+		const mySmoother = window.homeSmoother
+		const gallerySmoother = window.smoother
+		const dropdownMenu = document.querySelector('.dropdown-menu')
+		const html = document.querySelector('html')
 		const anchors = document.querySelectorAll('header a[href="/#contact"]')
+		const footerAnchors = document.querySelectorAll(
+			'footer .collections-column nav a:not(:first-child)'
+		)
 
 		anchors.forEach((anchor) => {
 			anchor.addEventListener('click', (event) => {
@@ -132,6 +135,21 @@ const { pagename } = Astro.props
 				}
 			})
 		})
+		footerAnchors.forEach((anchor) => [
+			anchor.addEventListener('click', (event) => {
+				if (window.location.pathname === '/gallery/' || window.location.pathname === '/gallery/') {
+					event.preventDefault()
+					const anchorChild = anchor.querySelector('li')
+					const target = document.querySelector(
+						`#${anchorChild.textContent.split(' ').join('-').toLowerCase()}`
+					)
+					console.log(target)
+					if (target) {
+						gallerySmoother.scrollTo(target, true, 'top top')
+					}
+				}
+			})
+		])
 	})
 </script>
 

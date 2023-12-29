@@ -3,6 +3,7 @@ import AboutHero from '../components/AboutHero.astro'
 import Cta from '../components/Cta.astro'
 import Card from '../components/sections/Card.astro'
 import Inspiration from '../components/sections/Inspiration.astro'
+import QuoteCard from '../components/sections/QuoteCard.astro'
 import TwoColumn from '../components/sections/TwoColumn.astro'
 import Why from '../components/sections/Why.astro'
 import Video from '../components/Video.astro'
@@ -26,7 +27,7 @@ const sections = aboutSections[0].sections
 	gsap.registerPlugin(ScrollTrigger)
 	gsap.registerPlugin(ScrollSmoother)
 
-	ScrollSmoother.create({
+	window.aboutSmoother = ScrollSmoother.create({
 		content: document.querySelector('.scroll-content'),
 		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
 		effects: true, // looks for data-speed and data-lag attributes on elements
@@ -54,14 +55,14 @@ const sections = aboutSections[0].sections
 		title={sections[2].title}
 		cards={sections[2].iconCards}
 	/>
+	<QuoteCard title={sections[3].text} tag={sections[3].tag} image={sections[3].image} />
 	<Inspiration cards={inspiration} />
-
 	<Card
-		tag={sections[3].tag}
-		title={sections[3].title}
-		text={sections[3].text}
-		image={sections[3].image}
+		tag={sections[4].tag}
+		title={sections[4].title}
+		text={sections[4].text}
+		image={sections[4].image}
 	/>
-	<Cta title={sections[4].title.title} />
+	<Cta title={sections[5].title.title} />
 </Layout>
 <Video />

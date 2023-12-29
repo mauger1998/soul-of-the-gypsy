@@ -2,7 +2,7 @@
 import { urlForImage } from '../../lib/urlForImage'
 import Project from '../items/Project.astro'
 
-const { title, image, projects, themeColor = 'sketchbook' } = Astro.props
+const { title, image, projects, themeColor = 'sketchbook', description } = Astro.props
 
 const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 ---
@@ -45,6 +45,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 	})
 
 	const allBannerH2s = document.querySelectorAll('.banner h2')
+	const allBannerPs = document.querySelectorAll('.banner p')
 	const allBannerImages = document.querySelectorAll('.banner')
 
 	allBannerImages.forEach((image) => {
@@ -58,13 +59,19 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		})
 	})
 
-	allBannerH2s.forEach((h2) => {
-		gsap.to(h2, {
+	allBannerH2s.forEach((h2, index) => {
+		let tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: h2,
 				start: 'top bottom',
 				toggleActions: 'play none none reverse'
-			},
+			}
+		})
+
+		tl.to(h2, {
+			y: 0,
+			opacity: 1
+		}).to(allBannerPs[index], {
 			y: 0,
 			opacity: 1
 		})
@@ -105,6 +112,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 		<div class="banner">
 			<div class="content">
 				<h2>{title}</h2>
+				<p>{description}</p>
 			</div>
 		</div>
 		<div class="projects">
@@ -142,7 +150,7 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 				background-position: center;
 				width: 100vw;
 				margin-block-start: -6rem;
-				padding-block: 40rem 2rem;
+				padding-block: 36rem 2rem;
 				clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 
 				@media (max-width: 700px) {
@@ -172,12 +180,14 @@ const bgUrl = `url(${urlForImage(image).format('webp').url()})`
 					opacity: 0;
 					transform: translateY(4rem);
 
-					&.white {
-						color: $white;
-					}
-					&.black {
-						color: $black;
-					}
+					color: $white;
+				}
+				p {
+					color: $white;
+					opacity: 0;
+					transform: translateY(4rem);
+					max-width: 60ch;
+					margin-block: 0.5rem 0;
 				}
 			}
 			.projects {

@@ -4,7 +4,7 @@ import Button from '../Button.astro'
 const { image, title, text, index, pagename } = Astro.props
 ---
 
-<div data-speed={1 - index / 50} class="project">
+<div class="project">
 	<div class="mask">
 		<img src={urlForImage(image).url()} alt={image.alt} />
 		<dialog>

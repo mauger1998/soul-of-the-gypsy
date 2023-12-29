@@ -1,3 +1,7 @@
+---
+const { collections } = Astro.props
+---
+
 <footer>
 	<div class="wrapper">
 		<div class="footer-top">
@@ -13,10 +17,13 @@
 						<h3>Home</h3>
 					</a>
 					<a href="/about-kev/">
-						<li>About Kev</li>
+						<li>What we offer</li>
 					</a>
 					<a href="/gallery/">
-						<li>Gallery</li>
+						<li>Why the soul of the gypsy?</li>
+					</a>
+					<a href="/#contact">
+						<li>Contact us</li>
 					</a>
 				</nav>
 			</div>
@@ -26,24 +33,25 @@
 						<h3>About Kev</h3>
 					</a>
 					<a href=" about-kev ">
-						<li>Bio</li>
+						<li>The gypsy lifestyle</li>
 					</a>
-					<a href=" about-kev ">
-						<li>Soul Of The Gypsy</li>
+					<a href="about-kev">
+						<li>Kevs Inspiration</li>
 					</a>
 				</nav>
 			</div>
-			<div class="column">
+			<div class="column collections-column">
 				<nav>
 					<a href="/gallery/">
 						<h3>Gallery</h3>
 					</a>
-					<a href="/gallery/">
-						<li>All Art</li>
-					</a>
-					<a href="/gallery/">
-						<li>Contact Kev</li>
-					</a>
+					{
+						collections.map((collection) => (
+							<a href={`/gallery/#${collection.title.split(' ').join('-').toLowerCase()}`}>
+								<li>{collection.title}</li>
+							</a>
+						))
+					}
 				</nav>
 			</div>
 			<div class="column">
@@ -103,7 +111,7 @@
 						display: flex;
 						flex-direction: column;
 						align-items: flex-start;
-						gap: 1rem;
+						gap: 0.75rem;
 						h3,
 						li {
 							color: $white;
