@@ -65,6 +65,7 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	title="Soul of the Gypsy Gallery | Order a Custom Piece"
 	description="Explore Kev Ash's creations in our gallery, from Graphite Art to Oil Paintings Custom Clothing Designs & much more. Immerse yourself in the Soul of the Gypsy and order a custom piece today."
 	pathname="gallery/"
+	pagename="gallery"
 >
 	<GalleryHero tag="Kev Ash" title="Gallery" styles={collectionSections} pagename="gallery" />
 	{
@@ -90,3 +91,43 @@ const collectionSections = sections.filter((section) => section._type === 'colle
 	}
 </Layout>
 <Video />
+
+<a class="fixed open-modal" id="open-modal">
+	<img src="/svg/menu-black.svg" alt="Open Art Menu Icon" />
+</a>
+<style is:global lang="scss">
+	#open-modal.fixed {
+		width: 3rem;
+		height: 3rem;
+		position: fixed;
+		background-color: $white;
+		box-shadow:
+			rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+			rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+			rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+		border-radius: 50%;
+		padding: translateY(-0.25rem);
+		display: grid;
+		place-items: center;
+		bottom: 4rem;
+		right: 4rem;
+		cursor: pointer;
+		transition: 300ms scale ease;
+		visibility: hidden;
+		pointer-events: none;
+
+		&:hover {
+			scale: 1.1;
+			transition: 300ms scale ease;
+		}
+		img {
+			width: 2rem;
+			transform: rotateY(180deg);
+		}
+
+		@media (max-width: 700px) {
+			bottom: translateY(-0.25rem);
+			right: 2rem;
+		}
+	}
+</style>

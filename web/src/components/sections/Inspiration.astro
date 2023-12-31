@@ -14,9 +14,8 @@ const secondHalf = cards.slice(-half)
 		<div class="title">
 			<h2>Kevs Inspiration</h2>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus tempore ex aliquam eos,
-				blanditiis assumenda molestias dolorum dolore sit soluta ea repellendus, dolorem
-				consectetur? Ratione minima esse corrupti cupiditate et.
+				"Inspirations & experiences, shape your life or in my case, also my artwork. Music is the
+				soundtrack to your life & it certainly is for me."
 			</p>
 		</div>
 		<div class="marquee">
@@ -234,6 +233,8 @@ const secondHalf = cards.slice(-half)
 								left: 50%;
 								transform: translate(-50%, -50%);
 								width: clamp(350px, 50vw, 800px);
+								overflow: hidden;
+								overflow-y: scroll;
 
 								&:focus {
 									outline: none;
@@ -253,7 +254,7 @@ const secondHalf = cards.slice(-half)
 									p {
 										color: $black;
 										margin-block: 1rem 1.5rem;
-										max-width: 40ch;
+										max-width: 60ch;
 									}
 								}
 

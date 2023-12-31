@@ -71,9 +71,11 @@ const { image, title, text, index, pagename } = Astro.props
 				left: 50%;
 				transform: translate(-50%, -50%);
 				overflow: hidden;
+				overflow-y: auto;
 
 				.content {
 					padding: 2rem;
+					overflow-y: scroll;
 
 					h3 {
 						color: $black;
@@ -81,7 +83,7 @@ const { image, title, text, index, pagename } = Astro.props
 					p {
 						color: $black;
 						margin-block: 1rem 1.5rem;
-						max-width: 40ch;
+						max-width: 60ch;
 					}
 				}
 				&:focus {
