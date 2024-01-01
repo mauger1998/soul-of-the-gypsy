@@ -79,6 +79,21 @@ const { collections } = Astro.props
 					<img src="/svg/black-island-logo 2.svg" alt="Island Web Design Guernsey & Jersey Logo" />
 				</a>
 				<p>Copyright &copy; {new Date().getFullYear()}</p>
+				<a
+					href="https://www.themansellcollection.co.uk/kevin-ash"
+					target="_blank"
+					rel="external"
+					class="mansell-collection"
+				>
+					<img
+						id="mansell-logo"
+						src="/images/mansell-logo-white.png"
+						alt="The Mansell Collection Logo"
+					/>
+					<div class="tooltip">
+						<label for="mansell-logo">As featured in the Mansell Collection</label>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -147,10 +162,62 @@ const { collections } = Astro.props
 						font-size: $text;
 						font-weight: 300;
 						text-align: left;
+						width: 200px;
 						img {
 							display: block;
 							width: 125px;
 							margin-block-start: 0.5rem;
+						}
+					}
+					.mansell-collection {
+						position: relative;
+						width: 200px;
+						display: flex;
+						align-items: flex-end;
+						justify-content: flex-end;
+						&:hover .tooltip {
+							visibility: visible;
+							opacity: 1;
+						}
+						img {
+							width: 100px;
+						}
+						.tooltip {
+							visibility: hidden;
+							background-color: $white;
+							color: $black;
+							text-align: center;
+							position: absolute;
+							z-index: 1;
+							bottom: 100%;
+							left: 50%;
+							opacity: 0;
+							transition: opacity 0.3s ease;
+							padding-inline: 1rem;
+							width: 100%;
+							clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+							padding-block: 0.5rem 2rem;
+							transform: translateX(-50%);
+
+							label {
+								max-width: 32ch;
+								font-size: 14px;
+								line-height: 1.3;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 600px) {
+			.wrapper {
+				.footer-bar {
+					.content {
+						a {
+							width: 140px;
+						}
+						.mansell-collection {
+							width: 140px;
 						}
 					}
 				}
@@ -159,18 +226,34 @@ const { collections } = Astro.props
 		@media (max-width: 550px) {
 			.wrapper {
 				.footer-bar {
-					gap: 1rem;
+					gap: 2rem;
 					row-gap: 2rem;
 				}
 			}
 		}
-		@media (max-width: 350px) {
+
+		@media (max-width: 463px) {
 			.wrapper {
 				.footer-bar {
 					.content {
-						flex-direction: column;
+						flex-direction: column-reverse;
 						align-items: flex-start;
-						gap: 1.5rem;
+						gap: 2rem;
+
+						a {
+							img {
+								width: 100%;
+							}
+						}
+
+						.mansell-collection {
+							align-items: flex-start;
+							justify-content: flex-start;
+
+							img {
+								width: 100%;
+							}
+						}
 					}
 				}
 			}

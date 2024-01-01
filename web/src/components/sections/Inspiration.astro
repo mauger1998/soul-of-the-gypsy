@@ -300,6 +300,25 @@ const secondHalf = cards.slice(-half)
 				}
 			}
 		}
+		@media (max-width: 500px) {
+			.wrapper {
+				.marquee {
+					.track {
+						.cards {
+							.card {
+								.mask {
+									width: 200px !important;
+
+									img {
+										height: 200px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@keyframes marquee {
