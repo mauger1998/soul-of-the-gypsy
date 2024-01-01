@@ -109,11 +109,20 @@ const { pagename } = Astro.props
 	document.addEventListener('DOMContentLoaded', (event) => {
 		const mySmoother = window.homeSmoother
 		const gallerySmoother = window.smoother
+		const aboutSmoother = window.aboutSmoother
 		const dropdownMenu = document.querySelector('.dropdown-menu')
 		const html = document.querySelector('html')
 		const anchors = document.querySelectorAll('header a[href="/#contact"]')
 		const footerAnchors = document.querySelectorAll(
 			'footer .collections-column nav a:not(:first-child)'
+		)
+
+		const footerAboutAnchors = document.querySelectorAll(
+			'footer .about-column nav a:not(:first-child)'
+		)
+
+		const footerHomeAnchors = document.querySelectorAll(
+			'footer .home-column nav a:not(:first-child)'
 		)
 
 		anchors.forEach((anchor) => {
@@ -137,7 +146,24 @@ const { pagename } = Astro.props
 		})
 		footerAnchors.forEach((anchor) => [
 			anchor.addEventListener('click', (event) => {
-				if (window.location.pathname === '/gallery/' || window.location.pathname === '/gallery/') {
+				if (window.location.pathname === '/gallery/' || window.location.pathname === '/gallery') {
+					event.preventDefault()
+					const anchorChild = anchor.querySelector('li')
+					const target = document.querySelector(
+						`#${anchorChild.textContent.split(' ').join('-').toLowerCase()}`
+					)
+					if (target) {
+						gallerySmoother.scrollTo(target, true, 'top top')
+					}
+				}
+			})
+		])
+		footerAboutAnchors.forEach((anchor) => {
+			anchor.addEventListener('click', () => {
+				if (
+					window.location.pathname === '/about-kev/' ||
+					window.location.pathname === '/about-kev'
+				) {
 					event.preventDefault()
 					const anchorChild = anchor.querySelector('li')
 					const target = document.querySelector(
@@ -145,11 +171,27 @@ const { pagename } = Astro.props
 					)
 					console.log(target)
 					if (target) {
-						gallerySmoother.scrollTo(target, true, 'top top')
+						aboutSmoother.scrollTo(target, true, 'top top')
 					}
 				}
 			})
-		])
+		})
+		footerHomeAnchors.forEach((anchor) => {
+			anchor.addEventListener('click', () => {
+				if (window.location.pathname === '/') {
+					event.preventDefault()
+					const anchorChild = anchor.querySelector('li')
+					let textContent = anchorChild.textContent.replace(/[^a-zA-Z0-9 ]/g, '') // Remove special characters
+					const target = document.querySelector(
+						`#${textContent.split(' ').join('-').toLowerCase()}`
+					)
+					console.log(target)
+					if (target) {
+						homeSmoother.scrollTo(target, true, 'top top')
+					}
+				}
+			})
+		})
 	})
 </script>
 

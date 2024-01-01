@@ -33,6 +33,20 @@ const sections = aboutSections[0].sections
 		effects: true, // looks for data-speed and data-lag attributes on elements
 		smoothTouch: 0 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
 	})
+
+	const html = document.querySelector('html')
+	html.style.overflowY = 'visible'
+
+	let aboutSmoother = window.aboutSmoother
+	window.onload = (event) => {
+		let urlHash = window.location.href.split('#')[1]
+
+		let scrollElem = document.querySelector('#' + urlHash)
+
+		if (urlHash && scrollElem) {
+			aboutSmoother.scrollTo(scrollElem, true, 'top top')
+		}
+	}
 </script>
 
 <Layout
