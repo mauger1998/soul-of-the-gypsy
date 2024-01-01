@@ -46,7 +46,7 @@
 
 	loaderTimeline
 		.to('.panel', {
-			clipPath: 'polygon(0 1%, 100% 1%, 100% 100%, 0% 100%)',
+			clipPath: 'polygon(0 1%, 100% 1%, 100% 99.99%, 0% 99.99%)',
 			ease: 'power1.ease'
 		})
 		.to('span .word .char', {
@@ -63,11 +63,10 @@
 		.to(
 			'.loader',
 			{
-				clipPath: 'polygon(0 0, 100% 0, 100% 0.001%, 0 0.001%)',
+				clipPath: 'polygon(0 0, 100% 0, 100% 1%, 0 1%)',
 				ease: 'power1.ease',
-
 				onComplete: () => {
-					html.style.overflowY = 'scroll'
+					html.style.overflowY = 'auto'
 				}
 			},
 			'-=0.25'
@@ -123,14 +122,14 @@
 		left: 0;
 		width: 100%;
 		height: 100vh;
+		max-height: 1000px;
 		z-index: 99990000000;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: $white;
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 99.99%, 0 99.99%);
 		pointer-events: none;
-		// display: none;
 		&.disabled {
 			opacity: 0;
 		}
@@ -146,7 +145,7 @@
 		}
 		h3 {
 			height: $h2 * 1.25;
-			overflow: hidden;
+			overflow-y: hidden;
 			.track {
 				display: flex;
 				flex-direction: column;
@@ -157,22 +156,43 @@
 					font-size: $h2;
 					line-height: 1.1;
 					font-weight: 700;
+					overflow: visible;
 
 					&:nth-child(1) {
 						color: $white;
+						overflow: visible;
+						letter-spacing: 1rem;
+						width: 150%;
 
 						.word {
+							overflow: visible;
+							max-width: 600px;
+							text-align: center;
+							width: 100%;
+
 							.char {
 								font-family: 'Chelantro';
+								overflow: visible;
+								clip-path: none;
 							}
 						}
 					}
 					&:nth-child(2) {
 						color: $white;
+						overflow: visible;
+						letter-spacing: 1rem;
+						width: 150%;
 
 						.word {
+							overflow: visible;
+							max-width: 600px;
+							text-align: center;
+							width: 100%;
+
 							.char {
 								font-family: 'Chelantro';
+								overflow: visible;
+								clip-path: none;
 							}
 						}
 					}
