@@ -68,7 +68,7 @@ import Button from './Button.astro'
 		clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
 	})
 
-	gsap.to('.contact-section .left h3, .contact-section .left a', {
+	gsap.to('.contact-section .left h3,.contact-section .left p, .contact-section .left a', {
 		scrollTrigger: {
 			trigger: '.contact-section .left h3',
 			start: 'top 80%',
@@ -170,6 +170,8 @@ import Button from './Button.astro'
 				p {
 					position: relative;
 					max-width: 60ch;
+					opacity: 0;
+					transform: translateY(2rem);
 					img {
 						width: 4rem;
 						left: 0;

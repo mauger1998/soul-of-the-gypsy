@@ -119,6 +119,7 @@ const paragraphs = formatText(text)
 					padding-inline-start: 1rem;
 					transform: translateY(4rem);
 					opacity: 0;
+					margin-block-start: 0.5rem;
 
 					&:not(:first-of-type) {
 						margin-block-start: 1.5rem;
@@ -126,6 +127,9 @@ const paragraphs = formatText(text)
 
 					@media (max-width: 700px) {
 						padding-inline-start: 0;
+					}
+					@media (max-width: 605px) {
+						margin-block-start: 2rem;
 					}
 				}
 			}
