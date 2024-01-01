@@ -240,51 +240,46 @@ const formattedTitle = formatTitle(title)
 				}
 			}
 		}
-		@media (max-width: 1024px) {
+		@media (max-width: 800px) {
 			.rectangle {
 				background-image: linear-gradient(to top, #03030390, #03030300 70%),
 					url('/images/new-hero-images/kev-hero-mobile-long.webp');
 			}
 
-			@media (max-width: 1024px) {
-				background-image: linear-gradient(to top, #03030390, #03030300 70%),
-					url('/images/gallery-hero/posters-on-a-wall-gallery-hero-moible 1.webp');
+			.wrapper {
+				padding-block: 30rem 2rem;
+				height: 95vh;
+				max-height: 1000px;
 
-				.wrapper {
-					padding-block: 30rem 2rem;
-					height: 95vh;
-					max-height: 1000px;
+				.title {
+					position: absolute;
+					top: 30%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					width: 100%;
 
-					.title {
-						position: absolute;
-						top: 30%;
-						left: 50%;
-						transform: translate(-50%, -50%);
-						width: 100%;
-
-						h1 {
-							font-size: $mobile-h1;
-							color: $black;
-						}
-
-						h3 {
-							font-size: 20px;
-							color: $black;
-						}
+					h1 {
+						font-size: $mobile-h1;
+						color: $black;
 					}
-					.florence-image {
-						width: 100%;
-						transform: none;
-						margin-inline-start: -4rem;
-						margin-block-end: -2rem;
-						// border: 2px solid red;
+
+					h3 {
+						font-size: 20px;
+						color: $black;
 					}
-					.soul-image {
-						width: 100%;
-						transform: none;
-						margin-inline-end: -8rem;
-						margin-block-end: -6rem;
-					}
+				}
+				.florence-image {
+					width: 100%;
+					transform: none;
+					margin-inline-start: -4rem;
+					margin-block-end: -2rem;
+					// border: 2px solid red;
+				}
+				.soul-image {
+					width: 100%;
+					transform: none;
+					margin-inline-end: -8rem;
+					margin-block-end: -6rem;
 				}
 			}
 		}

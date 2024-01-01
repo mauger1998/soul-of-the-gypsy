@@ -208,6 +208,10 @@ const { title, text, cards, sticker } = Astro.props
 									scale: 1 0;
 									transform-origin: top;
 									opacity: 1;
+
+									@media (max-width: 700px) {
+										height: 145px;
+									}
 								}
 							}
 						}
