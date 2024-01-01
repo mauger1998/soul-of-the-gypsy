@@ -69,6 +69,10 @@ const paragraphs = formatText(text)
 					width: clamp(50px, 15vw, 250px);
 					left: 0;
 					top: 42%;
+
+					@media (max-width: 500px) {
+						top: 35%;
+					}
 				}
 			}
 			.content {
@@ -104,9 +108,25 @@ const paragraphs = formatText(text)
 				p {
 					max-width: 42ch;
 					margin-block-start: 1.5rem;
-					padding-inline-start: 1.25rem;
+					padding-inline-start: 4rem;
 					opacity: 0;
 					transform: translateY(2rem);
+
+					@media (max-width: 825px) {
+						padding-inline-start: 3.5rem;
+					}
+					@media (max-width: 740px) {
+						padding-inline-start: 3rem;
+					}
+					@media (max-width: 600px) {
+						padding-inline-start: 2.5rem;
+					}
+					@media (max-width: 440px) {
+						padding-inline-start: 2.5rem;
+					}
+					@media (max-width: 420px) {
+						padding-inline: 1rem;
+					}
 				}
 			}
 		}

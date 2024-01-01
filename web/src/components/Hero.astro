@@ -26,8 +26,7 @@ const formattedTitle = formatTitle(title)
 <style is:global lang="scss">
 	main {
 		background-image: linear-gradient(to bottom, #030303, #03030300 25%),
-			linear-gradient(to top, #030303, #03030300 70%),
-			url('/images/gallery-hero/posters-on-a-wall-gallery-hero 1.webp');
+			linear-gradient(to top, #030303, #03030300 70%), url('/images/gallery-hero-images.png');
 		background-size: cover;
 		background-position: center;
 		overflow-y: hidden;
@@ -41,6 +40,7 @@ const formattedTitle = formatTitle(title)
 			gap: 0;
 			max-width: 100%;
 			overflow: hidden;
+			max-height: 1000px;
 
 			.florence-image {
 				display: flex;
@@ -96,9 +96,9 @@ const formattedTitle = formatTitle(title)
 				}
 			}
 		}
-		@media (max-width: 1024px) {
+		@media (max-width: 900px) {
 			background-image: linear-gradient(#03030370, #03030370 100%),
-				url('/images/gallery-hero/posters-on-a-wall-gallery-hero-moible 1.webp');
+				url('/images/keith-bowler-jimmy-gallery-images-mobile.png');
 
 			.wrapper {
 				padding-block: 30rem 2rem;

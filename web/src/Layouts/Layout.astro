@@ -3,14 +3,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { getSanity } from '../lib/api'
 
-const {
-	title = 'The Soul Of The Gypsy',
-	description,
-	keywords,
-	pathname,
-	pagename,
-	collections
-} = Astro.props
+const { title = 'The Soul Of The Gypsy', description, keywords, pathname, pagename } = Astro.props
 
 const query = `*[_type == "gallery"]{
 	...,

@@ -6,6 +6,13 @@ import Button from './Button.astro'
 	<div class="wrapper">
 		<div class="left">
 			<h3>Contact Soul Of The Gypsy</h3>
+			<p>
+				<img src="/svg/quote-svgrepo-com.svg" alt="Quote Marks" />
+				 "When you buy something from an artist you're buying more than an object. You're buying
+				hundreds of hours of errors and experimentation. You're buying years of frustration and
+				moments of pure joy. You're not buying just one thing, you are buying a piece of a soul... a
+				small piece of someone else's life."
+			</p>
 			<div class="contact-info">
 				<a href="mailto:kev@thesoulofthegypsy.com">
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
@@ -38,12 +45,15 @@ import Button from './Button.astro'
 					<label for="message">Message:</label>
 					<textarea name="message" id="message" rows="4"></textarea>
 				</fieldset>
+				<div class="g-recaptcha" data-sitekey="6LfwXEIpAAAAAJIu89IjsyUyN7FeTWEZ02rSfUxt"></div>
+
 				<Button text="Send Message" variant="white-outline" />
 			</form>
 		</div>
 	</div>
 </section>
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
 <script>
 	import { gsap } from 'gsap'
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -69,6 +79,75 @@ import Button from './Button.astro'
 		stagger: 0.2
 	})
 </script>
+<script is:inline>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		const form = document.getElementById('contact')
+		if (form) {
+			form.addEventListener('submit', function (event) {
+				event.preventDefault()
+
+				// form validation
+				var name = document.getElementById('name')
+				var email = document.getElementById('email')
+				var phone = document.getElementById('phone')
+				var message = document.getElementById('message')
+
+				var fields = [name, email, message, phone]
+				var isValid = true
+
+				fields.forEach((field) => {
+					if (field.value === '') {
+						field.classList.add('invalid')
+						isValid = false
+					} else {
+						field.classList.remove('invalid')
+					}
+				})
+
+				if (!isValid) {
+					alert('All fields are required.')
+					return
+				}
+
+				// reCAPTCHA validation
+				var response = grecaptcha.getResponse()
+				if (response.length == 0) {
+					alert('reCAPTCHA is mandatory.')
+					return
+				}
+
+				// send email
+				emailjs.init('U5BP5OhBbcsFNurjH') // replace with your EmailJS user ID
+				emailjs
+					.send('service_pifgtqm', 'template_yqh83kf', {
+						// replace with your EmailJS service ID and template ID
+						name: name.value,
+						email: email.value,
+						phone: phone.value,
+						message: message.value
+					})
+					.then(
+						function (response) {
+							console.log('SUCCESS!', response.status, response.text)
+							// clear form
+							name.value = ''
+							email.value = ''
+							phone.value = ''
+							message.value = ''
+
+							// redirect to thank you page
+							window.location.href = '/thank-you/'
+						},
+						function (error) {
+							console.log('FAILED...', error)
+						}
+					)
+			})
+		} else {
+			console.error('Form not found')
+		}
+	})
+</script>
 <style lang="scss">
 	.contact-section {
 		.wrapper {
@@ -88,15 +167,28 @@ import Button from './Button.astro'
 					opacity: 0;
 					transform: translateY(2rem);
 				}
+				p {
+					position: relative;
+					max-width: 60ch;
+					img {
+						width: 4rem;
+						left: 0;
+						opacity: 0.2;
+						position: absolute;
+						top: 0;
+						transform: translate(-25%, -50%);
+					}
+				}
 				.contact-info {
 					display: flex;
-					flex-direction: column;
-					align-items: flex-start;
+					align-items: center;
 					gap: 1.5rem;
+					margin-block: 2.5rem 0;
 					a {
 						color: $white;
 						opacity: 0;
 						transform: translateY(2rem);
+						white-space: nowrap;
 						img {
 							width: 1rem;
 						}
@@ -158,18 +250,55 @@ import Button from './Button.astro'
 							display: block;
 						}
 					}
+					.g-recaptcha {
+						margin-block-end: 2.5rem;
+
+						@media (max-width: 350px) {
+							scale: 0.8;
+							transform-origin: left;
+						}
+
+						& > * {
+							width: 2rem !important;
+						}
+					}
 				}
 			}
 		}
-		@media (max-width: 900px) {
+		@media (max-width: 1074px) {
+			.wrapper {
+				.left {
+					.contact-info {
+						flex-direction: column;
+						align-items: flex-start;
+					}
+				}
+			}
+		}
+		@media (max-width: 1024px) {
 			.wrapper {
 				flex-direction: column;
 
 				.left {
 					width: 100%;
+					.contact-info {
+						flex-direction: row;
+						align-items: center;
+					}
 				}
 				.right {
 					width: 100%;
+				}
+			}
+		}
+		@media (max-width: 500px) {
+			.wrapper {
+				gap: 4rem;
+				.left {
+					.contact-info {
+						flex-direction: column;
+						align-items: flex-start;
+					}
 				}
 			}
 		}

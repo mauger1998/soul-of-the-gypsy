@@ -62,7 +62,13 @@ const { pagename } = Astro.props
 			</div>
 		</nav>
 		<div class="dropdown">
-			<img id="open-dropdown" src="/svg/menu-alt-02-svgrepo-com.svg" alt="Open Dropdown Menu" />
+			{
+				pagename === 'gallery' ? (
+					<img id="open-dropdown" src="/svg/menu-black.svg" alt="Open Dropdown Menu" />
+				) : (
+					<img id="open-dropdown" src="/svg/menu-alt-02-svgrepo-com.svg" alt="Open Dropdown Menu" />
+				)
+			}
 			<div aria-expanded="false" class="dropdown-menu">
 				<img id="close-dropdown" src="/svg/close-lg-svgrepo-com.svg" alt="Close Icon" />
 				<nav>
