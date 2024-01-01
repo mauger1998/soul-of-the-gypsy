@@ -247,11 +247,11 @@ const formattedTitle = formatTitle(title)
 			}
 
 			.wrapper {
-				padding-block: 30rem 2rem;
-				height: 95vh;
+				padding-block: 28rem 2rem;
+				height: 90dvh;
 				max-height: 1000px;
 
-				.title {
+				& > .title {
 					position: absolute;
 					top: 30%;
 					left: 50%;
@@ -262,10 +262,12 @@ const formattedTitle = formatTitle(title)
 						font-size: $mobile-h1;
 						color: $black;
 					}
-
+				}
+				.title {
 					h3 {
 						font-size: 20px;
 						color: $black;
+						width: 100% !important;
 					}
 				}
 				.florence-image {
