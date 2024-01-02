@@ -1,6 +1,10 @@
 <section class="billboard-section">
 	<div class="wrapper">
 		<img src="/images/soul-billboard 4.webp" alt="Soul Of The Gypsy Billboard Now Open" />
+		<img
+			src="/images/mobile-smaller/soul-billboard 3.webp"
+			alt="Soul Of The Gypsy Billboard Now Open"
+		/>
 	</div>
 </section>
 
@@ -9,6 +13,18 @@
 		.wrapper {
 			padding: 0;
 			max-width: 100%;
+
+			img {
+				&:nth-child(2) {
+					display: none;
+				}
+				@media (max-width: 700px) {
+					display: none;
+					&:nth-child(2) {
+						display: block;
+					}
+				}
+			}
 		}
 	}
 </style>

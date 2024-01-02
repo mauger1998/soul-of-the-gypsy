@@ -10,6 +10,7 @@ const formattedTitle = formatTitle(title)
 	<div class="wrapper">
 		<div class="florence-image">
 			<img src="/images/new-hero-images/pngegg 1.webp" alt="Florence Chapel Art Inspiration" />
+			<img src="/images/mobile-smaller/pngegg 2.webp" alt="Florence Chapel Art Inspiration" />
 		</div>
 		<div class="title">
 			<h3>{tag}</h3>
@@ -17,7 +18,11 @@ const formattedTitle = formatTitle(title)
 		</div>
 		<div class="soul-image">
 			<img
-				src="/images/new-hero-images/soul-of-the-gypsy-nobg 4.webp"
+				src="/images/mobile-smaller/soul-of-the-gypsy-nobg 3 1.webp"
+				alt="Soul of the gypsy oil painting canvas"
+			/>
+			<img
+				src="/images/mobile-smaller/soul-of-the-gypsy-nobg 3 1.webp"
 				alt="Soul of the gypsy oil painting canvas"
 			/>
 		</div>
@@ -49,13 +54,33 @@ const formattedTitle = formatTitle(title)
 				z-index: 1;
 
 				img {
-					// display: block;
+					&:nth-child(2) {
+						display: none;
+					}
+					@media (max-width: 700px) {
+						display: none;
+						&:nth-child(2) {
+							display: block;
+						}
+					}
 				}
 			}
 
 			.soul-image {
 				width: calc(30% + 4rem);
 				transform: translate(10rem, 6rem) skew(0deg);
+
+				img {
+					&:nth-child(2) {
+						display: none;
+					}
+					@media (max-width: 700px) {
+						display: none;
+						&:nth-child(2) {
+							display: block;
+						}
+					}
+				}
 			}
 
 			.title {

@@ -25,7 +25,10 @@ import Button from './Button.astro'
 					<img src="/svg/diamond-blue.svg" alt="Blue Diamond" />
 				</a>
 			</div>
-			<div class="mask"><img src="/images/ghandi.webp" alt="Ghandi and an original Piece" /></div>
+			<div class="mask">
+				<img src="/images/ghandi.webp" alt="Ghandi and an original Piece" />
+				<img src="/images/mobile-smaller/frames 4.webp" alt="Ghandi and an original Piece" />
+			</div>
 		</div>
 		<div class="right">
 			<form action="POST">
@@ -208,6 +211,16 @@ import Button from './Button.astro'
 						clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 						width: 100%;
 						transition: scale 300ms ease;
+
+						&:nth-child(2) {
+							display: none;
+						}
+						@media (max-width: 700px) {
+							display: none;
+							&:nth-child(2) {
+								display: block;
+							}
+						}
 					}
 
 					&:hover {
