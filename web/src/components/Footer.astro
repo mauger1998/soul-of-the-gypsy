@@ -57,15 +57,6 @@ const { collections } = Astro.props
 			<div class="column">
 				<h3>Follow Us</h3>
 				<div class="socials">
-					<a rel="external nofollow" target="_blank" href="https://www.facebook.com/"
-						><img src="/svg/facebook.svg" alt="Facebook Icon" /></a
-					>
-					<a rel="external nofollow" target="_blank" href="https://instagram.com/kevinashart"
-						><img src="/svg/instagram.svg" alt="Instagram Icon" /></a
-					>
-					<a rel="external nofollow" target="_blank" href="https://www.facebook.com/"
-						><img src="/svg/facebook.svg" alt="Facebook Icon" /></a
-					>
 					<a rel="external nofollow" target="_blank" href="https://instagram.com/kevinashart"
 						><img src="/svg/instagram.svg" alt="Instagram Icon" /></a
 					>
@@ -119,6 +110,9 @@ const { collections } = Astro.props
 					}
 				}
 				.column {
+					&:first-child {
+						padding-block-start: 0.75rem;
+					}
 					h4 {
 						color: $white;
 					}
@@ -143,7 +137,7 @@ const { collections } = Astro.props
 						margin-block: 1rem 0;
 
 						img {
-							width: 1.5rem;
+							width: 2.5rem;
 						}
 					}
 				}

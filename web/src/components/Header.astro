@@ -15,16 +15,7 @@ const { pagename } = Astro.props
 				}
 			</a>
 			<div class="socials">
-				<a href="https://facebook.com/">
-					{
-						pagename === 'gallery' ? (
-							<img src="/svg/facebook-black.svg" alt="Facebook Icon" />
-						) : (
-							<img src="/svg/facebook.svg" alt="Facebook Icon" />
-						)
-					}
-				</a>
-				<a href="https://instagram.com/">
+				<a rel="external nofollow" target="_blank" href="https://instagram.com/">
 					{
 						pagename === 'gallery' ? (
 							<img src="/svg/instagram-black.svg" alt="Instagram Icon" />
