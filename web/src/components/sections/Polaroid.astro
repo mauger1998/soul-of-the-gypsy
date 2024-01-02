@@ -1,0 +1,67 @@
+---
+import Button from '../Button.astro'
+---
+
+<section class="polaroid-section">
+	<div class="wrapper">
+		<div class="left">
+			<h3>
+				Beyond the canvas, Kev's art serves as a vibrant window through the ages, resurrecting and
+				celebrating nostalgia with timeless creativity
+			</h3>
+			<Button variant="white-outline" text="View full gallery" />
+		</div>
+		<div class="right">
+			<img src="/images/new-hero-images/kev-polaroid.webp" alt="Polaroid of Kevs Home Studio" />
+		</div>
+	</div>
+</section>
+
+<style lang="scss">
+	.polaroid-section {
+		.wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4rem;
+
+			.left {
+				width: 50%;
+				h3 {
+					color: $white;
+					line-height: 1.3;
+					font-size: $h3;
+					max-width: 26ch;
+					margin-block: 0 1.5rem;
+				}
+			}
+
+			.right {
+				width: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				img {
+					width: 100%;
+					max-width: 500px;
+					transform: rotateZ(2deg);
+				}
+			}
+		}
+		@media (max-width: 900px) {
+			.wrapper {
+				flex-direction: column-reverse;
+				align-items: flex-start;
+
+				.left {
+					width: 100%;
+					max-width: 500px;
+					margin-inline: auto;
+				}
+				.right {
+					width: 100%;
+				}
+			}
+		}
+	}
+</style>

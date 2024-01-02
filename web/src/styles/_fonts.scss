@@ -3,34 +3,46 @@
 	src: url('/Poppins/Poppins-Light.ttf') format('truetype');
 	font-weight: 300;
 	font-style: normal;
+	font-display: swap; // Add this line
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-LightItalic.ttf') format('truetype');
 	font-weight: 300;
 	font-style: italic;
+	font-display: swap; // Add this line
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-Regular.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 400;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-Italic.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 400;
 	font-style: italic;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-Medium.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 500;
+	font-display: swap; // Add this line
+
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-MediumItalic.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 500;
 	font-style: italic;
 }
@@ -38,24 +50,32 @@
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-SemiBold.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 600;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 600;
 	font-style: italic;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-Bold.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 700;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Poppins Art';
 	src: url('/Poppins/Poppins-BoldItalic.ttf') format('truetype');
+	font-display: swap; // Add this line
+
 	font-weight: 700;
 	font-style: italic;
 }
@@ -63,11 +83,13 @@
 @font-face {
 	font-family: 'Hyperwave';
 	src: url('/hyperwave/Hyperwave.otf') format('truetype');
+	font-display: swap; // Add this line
 }
 // Chelantro
 @font-face {
 	font-family: 'Chelantro';
 	src: url('/Chelantro-Font/Chelantro.ttf') format('truetype');
+	font-display: swap; // Add this line
 }
 h1 {
 	font-size: $h1;

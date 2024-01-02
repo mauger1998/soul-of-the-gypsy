@@ -13,6 +13,7 @@ import List from '../components/sections/List.astro'
 import Contact from '../components/Contact.astro'
 import Video from '../components/Video.astro'
 import Billboard from '../components/sections/Billboard.astro'
+import Polaroid from '../components/sections/Polaroid.astro'
 
 const query = `*[_type == "home"]{
   ...,
@@ -48,6 +49,7 @@ const projects = await getSanity(projectsQuery)
 	<Soul title={sections[3].title.title} text={sections[3].text} />
 	<Why title={sections[4].title} cards={sections[4].iconCards} />
 	<ProjectGrid pagename="home" projects={sections[5].projects} />
+	<Polaroid />
 	<Card
 		title={sections[6].title}
 		tag={sections[6].tag}
