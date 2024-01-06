@@ -18,7 +18,7 @@ const { title } = Astro.props
 			video {
 				scale: 0.5;
 				width: 100%;
-				background-color: $white;
+				background-color: #393939;
 			}
 
 			.play-button {
@@ -31,6 +31,11 @@ const { title } = Astro.props
 				background: url('/svg/play-svgrepo-com.svg') no-repeat center center;
 				background-size: contain;
 				cursor: pointer;
+
+				/* Hide on touch devices */
+				@media (hover: none) {
+					display: none;
+				}
 			}
 		}
 	}
@@ -45,7 +50,7 @@ const { title } = Astro.props
 	gsap.to('.video-section video', {
 		scrollTrigger: {
 			trigger: '.video-section video',
-			start: 'top 50%',
+			start: 'top 80%',
 
 			toggleActions: 'play none none reverse'
 		},

@@ -153,7 +153,6 @@ const { pagename } = Astro.props
 					const target = document.querySelector(
 						`#${anchorChild.textContent.split(' ').join('-').toLowerCase()}`
 					)
-					console.log(target)
 					if (target) {
 						aboutSmoother.scrollTo(target, true, 'top top')
 					}
@@ -169,7 +168,6 @@ const { pagename } = Astro.props
 					const target = document.querySelector(
 						`#${textContent.split(' ').join('-').toLowerCase()}`
 					)
-					console.log(target)
 					if (target) {
 						homeSmoother.scrollTo(target, true, 'top top')
 					}
@@ -183,8 +181,6 @@ const { pagename } = Astro.props
 		const path = url.pathname
 		const hash = url.hash
 		let linkId
-
-		console.log('script running')
 
 		switch (path) {
 			case '/':
