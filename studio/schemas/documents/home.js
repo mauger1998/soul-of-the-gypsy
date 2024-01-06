@@ -14,12 +14,17 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+
+      options: {
+        sortable: false,
+      },
       of: [
         {type: 'basic'},
         {type: 'projects'},
         {type: 'card'},
         {type: 'twoColumn'},
         {type: 'iconCardSection'},
+        {type: 'polaroid'},
       ],
     },
   ],

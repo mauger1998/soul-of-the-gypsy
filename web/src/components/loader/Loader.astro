@@ -10,18 +10,7 @@
 </div>
 
 <script is:inline src="/ScrollSmoother.min.js"></script>
-
-<script>
-	import { gsap } from 'gsap'
-	import { ScrollTrigger } from 'gsap/ScrollTrigger'
-	import SplitType from 'split-type'
-
-	gsap.registerPlugin(ScrollTrigger)
-	const loaderTimeline = gsap.timeline({})
-
-	// Register the ScrollSmoother plugin
-	gsap.registerPlugin(ScrollSmoother)
-
+<script type="module">
 	window.homeSmoother = ScrollSmoother.create({
 		content: document.querySelector('.scroll-content'),
 		smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
@@ -37,8 +26,20 @@
 
 		if (urlHash && scrollElem) {
 			homeSmoother.scrollTo(scrollElem, true, 'top top')
+			console.log('scrolling to ' + urlHash)
 		}
 	}
+</script>
+<script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+	import SplitType from 'split-type'
+
+	gsap.registerPlugin(ScrollTrigger)
+	const loaderTimeline = gsap.timeline({})
+
+	// Register the ScrollSmoother plugin
+	gsap.registerPlugin(ScrollSmoother)
 
 	const loaderText = new SplitType('#target')
 	const loaderTextTwo = new SplitType('#target-two')

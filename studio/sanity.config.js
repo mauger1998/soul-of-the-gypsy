@@ -13,7 +13,7 @@ export default defineConfig({
   projectId: '5iens2lz',
   dataset: 'production',
 
-  plugins: [deskTool({structure: deskStructure}), visionTool(), media(), netlifyTool()],
+  plugins: [deskTool({structure: deskStructure}), media(), netlifyTool()],
 
   schema: {
     types: schemaTypes,

@@ -11,6 +11,7 @@ import basic from './sections/basic'
 import card from './sections/card'
 import collection from './sections/collection'
 import iconCardSection from './sections/iconCardSection'
+import polaroid from './sections/polaroid'
 import projects from './sections/projects'
 import quoteCard from './sections/quoteCard'
 import twoColumn from './sections/twoColumn'
@@ -33,4 +34,5 @@ export const schemaTypes = [
   gallery,
   project,
   inspiration,
+  polaroid,
 ]

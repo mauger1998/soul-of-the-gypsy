@@ -1,18 +1,19 @@
 ---
+import { urlForImage } from '../../lib/urlForImage'
 import Button from '../Button.astro'
+const { title, image } = Astro.props
 ---
 
 <section class="polaroid-section">
 	<div class="wrapper">
 		<div class="left">
 			<h3>
-				Beyond the canvas, Kev's art serves as a vibrant window through the ages, resurrecting and
-				celebrating nostalgia with timeless creativity
+				{title}
 			</h3>
 			<Button to="/gallery/" variant="white-outline" text="View full gallery" />
 		</div>
 		<div class="right">
-			<img src="/images/new-hero-images/kev-polaroid.webp" alt="Polaroid of Kevs Home Studio" />
+			<img src={urlForImage(image).url()} alt={image.alt} />
 		</div>
 	</div>
 </section>
@@ -44,7 +45,7 @@ import Button from '../Button.astro'
 				img {
 					width: 100%;
 					max-width: 500px;
-					transform: rotateZ(2deg);
+					transform: rotateZ(1deg);
 				}
 			}
 		}

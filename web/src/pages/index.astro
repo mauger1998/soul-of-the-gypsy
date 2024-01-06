@@ -45,20 +45,20 @@ const projects = await getSanity(projectsQuery)
 		subtitle={sections[1].subtitle}
 		text={sections[1].text}
 	/>
+	<Video />
 	<List title={sections[2].title} text={sections[2].text} cards={sections[2].iconCards} />
 	<Soul title={sections[3].title.title} text={sections[3].text} />
 	<Why title={sections[4].title} cards={sections[4].iconCards} />
 	<ProjectGrid pagename="home" projects={sections[5].projects} />
-	<Polaroid />
+	<Polaroid title={sections[6].title} image={sections[6].image} />
 	<Card
-		title={sections[6].title}
-		tag={sections[6].tag}
-		text={sections[6].text}
-		image={sections[6].image}
+		title={sections[7].title}
+		tag={sections[7].tag}
+		text={sections[7].text}
+		image={sections[7].image}
 	/>
 
 	<Contact />
 	<Billboard />
 </Layout>
 <Loader />
-<Video />
